@@ -117,6 +117,9 @@ SDL_Surface * SDL_CreateRGBSurface (Uint32 flags,
 	surface->locked = 0;
 	surface->map = NULL;
 	surface->unused1 = 0;
+#if defined(__APPLE__)
+	surface->backing_scale_factor = 1.0;
+#endif
 	SDL_SetClipRect(surface, NULL);
 	SDL_FormatChanged(surface);
 

@@ -119,6 +119,11 @@ typedef struct SDL_Surface {
 
 	/** Reference count -- used when freeing surface */
 	int refcount;				/**< Read-mostly */
+
+#if defined(__APPLE__)
+	/** the scale factor applied to the window */
+	double backing_scale_factor;	/**< Read-only */
+#endif
 } SDL_Surface;
 
 /** @name SDL_Surface Flags
