@@ -16,6 +16,10 @@
 #include "SDL.h"
 #include "SDL_audio.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 struct {
 	SDL_AudioSpec spec;
 	Uint8   *sound;			/* Pointer to wave data */
@@ -63,6 +67,7 @@ void poked(int sig)
 int main(int argc, char *argv[])
 {
 	char name[32];
+	char* path;
 
 	/* Load the SDL library */
 	if ( SDL_Init(SDL_INIT_AUDIO) < 0 ) {
@@ -70,13 +75,21 @@ int main(int argc, char *argv[])
 		return(1);
 	}
 	if ( argv[1] == NULL ) {
-		argv[1] = "sample.wav";
+#ifdef __MACOSX__
+		CFStringRef name = CFSTR("sample");
+		CFStringRef extension = CFSTR("wav");
+		CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+		CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+		path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+		path = "sample.wav";
+#endif
+	} else {
+		path = argv[1];
 	}
 	/* Load the wave file into memory */
-	if ( SDL_LoadWAV(argv[1],
-			&wave.spec, &wave.sound, &wave.soundlen) == NULL ) {
-		fprintf(stderr, "Couldn't load %s: %s\n",
-						argv[1], SDL_GetError());
+	if ( SDL_LoadWAV(path, &wave.spec, &wave.sound, &wave.soundlen) == NULL ) {
+		fprintf(stderr, "Couldn't load %s: %s\n", path, SDL_GetError());
 		quit(1);
 	}
 

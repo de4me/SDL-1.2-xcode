@@ -11,6 +11,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 /* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
 static void quit(int rc)
 {
@@ -29,9 +33,17 @@ void DrawPict(SDL_Surface *screen, char *bmpfile,
 
 	/* Load the image into a surface */
 	if ( bmpfile == NULL ) {
+#ifdef __MACOSX__
+		CFStringRef name = CFSTR("sample");
+		CFStringRef extension = CFSTR("bmp");
+		CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+		CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+		bmpfile = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
 		bmpfile = "sample.bmp";		/* Sample image */
+#endif
 	}
-fprintf(stderr, "Loading picture: %s\n", bmpfile);
+	fprintf(stderr, "Loading picture: %s\n", bmpfile);
 	picture = SDL_LoadBMP(bmpfile);
 	if ( picture == NULL ) {
 		fprintf(stderr, "Couldn't load %s: %s\n", bmpfile,

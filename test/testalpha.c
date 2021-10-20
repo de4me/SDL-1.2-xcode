@@ -10,6 +10,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 #define FRAME_TICKS	(1000/30)		/* 30 frames/second */
 
 /* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
@@ -331,6 +335,7 @@ int main(int argc, char *argv[])
 	SDL_Surface *light;
 	int mouse_pressed;
 	Uint32 ticks, lastticks;
+	char* path;
 
 
 	/* Initialize SDL */
@@ -406,8 +411,18 @@ int main(int argc, char *argv[])
 		quit(1);
 	}
 
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("icon");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "icon.bmp";
+#endif
+
 	/* Load the sprite */
-	if ( LoadSprite(screen, "icon.bmp") < 0 ) {
+	if ( LoadSprite(screen, path) < 0 ) {
 		SDL_FreeSurface(light);
 		quit(1);
 	}

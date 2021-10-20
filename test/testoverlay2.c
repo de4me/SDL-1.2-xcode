@@ -11,6 +11,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 #define MOOSEPIC_W 64
 #define MOOSEPIC_H 88
 
@@ -293,6 +297,7 @@ int main(int argc, char **argv)
     int fpsdelay;
     int overlay_format=SDL_YUY2_OVERLAY;
     int scale=5;
+	char* path;
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) < 0)
     {
@@ -398,8 +403,18 @@ int main(int argc, char **argv)
         quit(1);
     }
 
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("moose");
+	CFStringRef extension = CFSTR("dat");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "moose.dat";
+#endif
+
     /* load the trojan moose images */
-    handle=SDL_RWFromFile("moose.dat", "rb");
+    handle=SDL_RWFromFile(path, "rb");
     if (handle==NULL)
     {
         fprintf(stderr, "Can't find the file moose.dat !\n");

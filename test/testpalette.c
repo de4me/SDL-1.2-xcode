@@ -17,6 +17,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 /* screen size */
 #define SCRW 640
 #define SCRH 480
@@ -142,6 +146,7 @@ int main(int argc, char **argv)
     int boatx[NBOATS], boaty[NBOATS], boatdir[NBOATS];
     int gamma_fade = 0;
     int gamma_ramp = 0;
+	char* path;
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	sdlerr("initialising SDL");
@@ -175,7 +180,17 @@ int main(int argc, char **argv)
 
     if (vidflags & SDL_FULLSCREEN) SDL_ShowCursor (SDL_FALSE);
 
-    if((boat[0] = SDL_LoadBMP("sail.bmp")) == NULL)
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("sail");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "sail.bmp";
+#endif
+
+    if((boat[0] = SDL_LoadBMP(path)) == NULL)
 	sdlerr("loading sail.bmp");
     /* We've chosen magenta (#ff00ff) as colour key for the boat */
     SDL_SetColorKey(boat[0], SDL_SRCCOLORKEY | SDL_RLEACCEL,

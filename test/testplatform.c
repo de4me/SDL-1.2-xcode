@@ -90,7 +90,7 @@ int TestEndian(SDL_bool verbose)
 		++error;
 	}
 	if ( verbose ) {
-		printf("Value 16 = 0x%X, swapped = 0x%X\n", value16, SDL_Swap16(value16));
+		printf("Value 16 = 0x%hX, swapped = 0x%hX\n", value16, SDL_Swap16(value16));
 	}
 	if ( SDL_Swap16(value16) != swapped16 ) {
 		if ( verbose ) {
@@ -174,7 +174,11 @@ int main(int argc, char *argv[])
 #elif __MACOS__
 			"MacOS Classic"
 #elif __MACOSX__
+#ifdef __aarch64__
+			"Mac OS X (Apple Silicon)"
+#else
 			"Mac OS X"
+#endif
 #elif __NETBSD__
 			"NetBSD"
 #elif __OPENBSD__

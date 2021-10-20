@@ -10,6 +10,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 static SDL_Surface *dest = NULL;
 static SDL_Surface *src = NULL;
 static int testSeconds = 10;
@@ -212,6 +216,7 @@ static int setup_test(int argc, char **argv)
     int dstalpha = 255;
     int screenSurface = 0;
     int i = 0;
+	char* path;
 
     for (i = 1; i < argc; i++)
     {
@@ -269,7 +274,17 @@ static int setup_test(int argc, char **argv)
         return(0);
     }
 
-    bmp = SDL_LoadBMP("sample.bmp");
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("sample");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "sample.bmp";
+#endif
+
+    bmp = SDL_LoadBMP(path);
     if (bmp == NULL)
     {
         fprintf(stderr, "SDL_LoadBMP failed: %s\n", SDL_GetError());

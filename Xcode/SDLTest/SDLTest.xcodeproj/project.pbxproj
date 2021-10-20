@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -53,10 +53,8 @@
 /* Begin PBXBuildFile section */
 		002F337509CA14F900EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		002F337909CA14F900EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
-		002F337A09CA14F900EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		002F338B09CA16BF00EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		002F338F09CA16BF00EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
-		002F339009CA16BF00EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		002F339B09CA17BC00EBEB88 /* testblitspeed.c in Sources */ = {isa = PBXBuildFile; fileRef = 002F339A09CA17BC00EBEB88 /* testblitspeed.c */; };
 		002F33A809CA188600EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F33A909CA188600EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
@@ -86,53 +84,24 @@
 		002F33C109CA188600EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F33CF09CA19A600EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		002F33D209CA19A600EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
-		002F33D309CA19A600EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		002F33D409CA19A600EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F33E309CA1A0B00EBEB88 /* testdyngl.c in Sources */ = {isa = PBXBuildFile; fileRef = 002F33E209CA1A0B00EBEB88 /* testdyngl.c */; };
 		002F340609CA1BFF00EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		002F340909CA1BFF00EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
-		002F340A09CA1BFF00EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		002F340B09CA1BFF00EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F341809CA1C5B00EBEB88 /* testfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 002F341709CA1C5B00EBEB88 /* testfile.c */; };
 		002F342509CA1F0300EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		002F342809CA1F0300EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
-		002F342909CA1F0300EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		002F342A09CA1F0300EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F343709CA1F6F00EBEB88 /* testiconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 002F343609CA1F6F00EBEB88 /* testiconv.c */; };
 		002F344109CA1FB300EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		002F344409CA1FB300EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
-		002F344509CA1FB300EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		002F344609CA1FB300EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F345409CA202000EBEB88 /* testoverlay2.c in Sources */ = {isa = PBXBuildFile; fileRef = 002F345209CA201C00EBEB88 /* testoverlay2.c */; };
 		002F345E09CA204F00EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		002F346109CA204F00EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
-		002F346209CA204F00EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		002F346309CA204F00EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F347009CA20A600EBEB88 /* testplatform.c in Sources */ = {isa = PBXBuildFile; fileRef = 002F346F09CA20A600EBEB88 /* testplatform.c */; };
-		003FA64D093FFDB3000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA64E093FFDB5000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA64F093FFDB7000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA650093FFDBA000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA651093FFDBC000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA652093FFDBE000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA653093FFDC1000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA654093FFDC3000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA655093FFDC6000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA656093FFDC8000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA657093FFDCA000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA658093FFDCC000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA659093FFDCF000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA65A093FFDD1000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA65B093FFDD3000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA65C093FFDD5000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA65D093FFDD7000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA65E093FFDDA000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA660093FFDDF000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA661093FFDE1000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA662093FFDE3000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA663093FFDE6000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA664093FFDE8000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
-		003FA665093FFDEA000C53B3 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		00794DD909D1F894003FC8A1 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00794DD809D1F894003FC8A1 /* OpenGL.framework */; };
 		00794E6609D20865003FC8A1 /* sample.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 00794E6209D20839003FC8A1 /* sample.wav */; };
 		00794EA209D2344B003FC8A1 /* icon.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 00794E5D09D20839003FC8A1 /* icon.bmp */; };
@@ -145,6 +114,68 @@
 		00794F0B09D238F4003FC8A1 /* sample.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 00794E6109D20839003FC8A1 /* sample.bmp */; };
 		00794F1109D2392B003FC8A1 /* icon.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 00794E5D09D20839003FC8A1 /* icon.bmp */; };
 		00794F8709D2413B003FC8A1 /* sample.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 00794E6109D20839003FC8A1 /* sample.bmp */; };
+		BDA801EF271D319800CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA801F0271D319800CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA801F2271D3AA400CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA801F3271D3AA400CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA801F5271D3B5700CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA801F6271D3B5700CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA801F8271D3B5B00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA801F9271D3B5B00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA801FB271D3B6100CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA801FC271D3B6100CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA801FE271D3B6500CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA801FF271D3B6500CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80201271D3B6900CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80202271D3B6900CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80204271D3B6D00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80205271D3B6D00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80207271D3B7100CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80208271D3B7100CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8020A271D3B7500CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8020B271D3B7500CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8020D271D3B7800CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8020E271D3B7800CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80210271D3B7D00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80211271D3B7D00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80213271D3B8100CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80214271D3B8100CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80216271D3B8500CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80217271D3B8500CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80219271D3B8900CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8021A271D3B8900CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8021C271D3B8D00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8021D271D3B8D00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8021F271D3B9100CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80220271D3B9100CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80222271D3B9400CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80223271D3B9400CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80225271D3B9700CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80226271D3B9700CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80228271D3B9900CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80229271D3B9900CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8022B271D3B9E00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8022C271D3B9E00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8022E271D3BA200CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8022F271D3BA200CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80231271D3BA500CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80232271D3BA500CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80234271D3BA800CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80235271D3BA800CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80237271D3BAC00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80238271D3BAC00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8023A271D3BB100CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8023B271D3BB100CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA8023D271D3BB400CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8023E271D3BB400CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80240271D3BB700CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80241271D3BB700CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80243271D3BBD00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80244271D3BBD00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80246271D3BC000CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA80247271D3BC000CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDA80249271D3BC900CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDA8024A271D3BC900CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEC566AF0761D90300A33029 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		BEC566B10761D90300A33029 /* checkkeys.c in Sources */ = {isa = PBXBuildFile; fileRef = 092D6D10FFB30A2C7F000001 /* checkkeys.c */; };
 		BEC566BC0761D90300A33029 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
@@ -698,7 +729,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794E6609D20865003FC8A1 /* sample.wav in CopyFiles */,
 			);
@@ -708,7 +739,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794EA209D2344B003FC8A1 /* icon.bmp in CopyFiles */,
 			);
@@ -718,7 +749,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794EB709D235F5003FC8A1 /* sample.bmp in CopyFiles */,
 			);
@@ -728,7 +759,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794EE709D236ED003FC8A1 /* sample.bmp in CopyFiles */,
 			);
@@ -738,7 +769,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794EF009D23739003FC8A1 /* utf8.txt in CopyFiles */,
 			);
@@ -748,7 +779,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794EF709D237DE003FC8A1 /* moose.dat in CopyFiles */,
 			);
@@ -758,7 +789,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794EFE09D2382B003FC8A1 /* sail.bmp in CopyFiles */,
 			);
@@ -768,7 +799,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794F0409D23869003FC8A1 /* icon.bmp in CopyFiles */,
 			);
@@ -778,7 +809,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794F0B09D238F4003FC8A1 /* sample.bmp in CopyFiles */,
 			);
@@ -788,7 +819,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794F1109D2392B003FC8A1 /* icon.bmp in CopyFiles */,
 			);
@@ -798,10 +829,351 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				00794F8709D2413B003FC8A1 /* sample.bmp in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA801F1271D319800CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA801F0271D319800CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA801F4271D3AA400CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA801F3271D3AA400CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA801F7271D3B5700CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA801F6271D3B5700CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA801FA271D3B5B00CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA801F9271D3B5B00CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA801FD271D3B6100CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA801FC271D3B6100CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80200271D3B6500CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA801FF271D3B6500CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80203271D3B6900CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80202271D3B6900CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80206271D3B6D00CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80205271D3B6D00CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80209271D3B7100CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80208271D3B7100CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8020C271D3B7500CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8020B271D3B7500CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8020F271D3B7800CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8020E271D3B7800CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80212271D3B7D00CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80211271D3B7D00CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80215271D3B8100CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80214271D3B8100CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80218271D3B8500CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80217271D3B8500CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8021B271D3B8900CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8021A271D3B8900CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8021E271D3B8D00CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8021D271D3B8D00CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80221271D3B9100CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80220271D3B9100CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80224271D3B9400CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80223271D3B9400CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80227271D3B9700CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80226271D3B9700CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8022A271D3B9900CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80229271D3B9900CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8022D271D3B9E00CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8022C271D3B9E00CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80230271D3BA200CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8022F271D3BA200CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80233271D3BA500CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80232271D3BA500CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80236271D3BA800CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80235271D3BA800CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80239271D3BAC00CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80238271D3BAC00CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8023C271D3BB100CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8023B271D3BB100CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8023F271D3BB400CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8023E271D3BB400CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80242271D3BB800CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80241271D3BB700CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80245271D3BBD00CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80244271D3BBD00CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA80248271D3BC000CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA80247271D3BC000CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDA8024B271D3BC900CCA1E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BDA8024A271D3BC900CCA1E9 /* SDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -890,8 +1262,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80249271D3BC900CCA1E9 /* SDL.framework in Frameworks */,
 				002F337909CA14F900EBEB88 /* libsdlmain.a in Frameworks */,
-				002F337A09CA14F900EBEB88 /* SDL.framework in Frameworks */,
 				002F33A909CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -900,8 +1272,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA801FE271D3B6500CCA1E9 /* SDL.framework in Frameworks */,
 				002F338F09CA16BF00EBEB88 /* libsdlmain.a in Frameworks */,
-				002F339009CA16BF00EBEB88 /* SDL.framework in Frameworks */,
 				002F33A809CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,8 +1282,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80204271D3B6D00CCA1E9 /* SDL.framework in Frameworks */,
 				002F33D209CA19A600EBEB88 /* libsdlmain.a in Frameworks */,
-				002F33D309CA19A600EBEB88 /* SDL.framework in Frameworks */,
 				002F33D409CA19A600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -920,8 +1292,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8020A271D3B7500CCA1E9 /* SDL.framework in Frameworks */,
 				002F340909CA1BFF00EBEB88 /* libsdlmain.a in Frameworks */,
-				002F340A09CA1BFF00EBEB88 /* SDL.framework in Frameworks */,
 				002F340B09CA1BFF00EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -930,8 +1302,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80213271D3B8100CCA1E9 /* SDL.framework in Frameworks */,
 				002F342809CA1F0300EBEB88 /* libsdlmain.a in Frameworks */,
-				002F342909CA1F0300EBEB88 /* SDL.framework in Frameworks */,
 				002F342A09CA1F0300EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -940,8 +1312,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80222271D3B9400CCA1E9 /* SDL.framework in Frameworks */,
 				002F344409CA1FB300EBEB88 /* libsdlmain.a in Frameworks */,
-				002F344509CA1FB300EBEB88 /* SDL.framework in Frameworks */,
 				002F344609CA1FB300EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -950,8 +1322,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80228271D3B9900CCA1E9 /* SDL.framework in Frameworks */,
 				002F346109CA204F00EBEB88 /* libsdlmain.a in Frameworks */,
-				002F346209CA204F00EBEB88 /* SDL.framework in Frameworks */,
 				002F346309CA204F00EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -960,8 +1332,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA801EF271D319800CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568620761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA64D093FFDB3000C53B3 /* SDL.framework in Frameworks */,
 				002F33C109CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -970,8 +1342,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA801F2271D3AA400CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568630761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA64E093FFDB5000C53B3 /* SDL.framework in Frameworks */,
 				002F33C009CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,8 +1352,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA801F5271D3B5700CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568640761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA64F093FFDB7000C53B3 /* SDL.framework in Frameworks */,
 				002F33BF09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -990,8 +1362,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA801F8271D3B5B00CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568650761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA650093FFDBA000C53B3 /* SDL.framework in Frameworks */,
 				002F33BE09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1000,8 +1372,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA801FB271D3B6100CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568660761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA651093FFDBC000C53B3 /* SDL.framework in Frameworks */,
 				002F33BD09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1010,8 +1382,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80201271D3B6900CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568670761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA652093FFDBE000C53B3 /* SDL.framework in Frameworks */,
 				002F33BB09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1020,8 +1392,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80207271D3B7100CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568680761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA653093FFDC1000C53B3 /* SDL.framework in Frameworks */,
 				002F33BC09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1030,8 +1402,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8020D271D3B7800CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568690761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA654093FFDC3000C53B3 /* SDL.framework in Frameworks */,
 				002F33BA09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1040,8 +1412,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80210271D3B7D00CCA1E9 /* SDL.framework in Frameworks */,
 				BEC5686A0761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA655093FFDC6000C53B3 /* SDL.framework in Frameworks */,
 				002F33B909CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 				00794DD909D1F894003FC8A1 /* OpenGL.framework in Frameworks */,
 			);
@@ -1051,8 +1423,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80231271D3BA500CCA1E9 /* SDL.framework in Frameworks */,
 				BEC5686B0761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA656093FFDC8000C53B3 /* SDL.framework in Frameworks */,
 				002F33B809CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1061,8 +1433,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80216271D3B8500CCA1E9 /* SDL.framework in Frameworks */,
 				BEC5686C0761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA657093FFDCA000C53B3 /* SDL.framework in Frameworks */,
 				002F33B709CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1071,8 +1443,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80219271D3B8900CCA1E9 /* SDL.framework in Frameworks */,
 				BEC5686D0761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA658093FFDCC000C53B3 /* SDL.framework in Frameworks */,
 				002F33B509CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1081,8 +1453,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8021C271D3B8D00CCA1E9 /* SDL.framework in Frameworks */,
 				BEC5686E0761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA659093FFDCF000C53B3 /* SDL.framework in Frameworks */,
 				002F33B609CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1091,8 +1463,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8021F271D3B9100CCA1E9 /* SDL.framework in Frameworks */,
 				BEC5686F0761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA65A093FFDD1000C53B3 /* SDL.framework in Frameworks */,
 				002F33B409CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1101,8 +1473,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80225271D3B9700CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568700761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA65B093FFDD3000C53B3 /* SDL.framework in Frameworks */,
 				002F33B309CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1111,8 +1483,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8022B271D3B9E00CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568710761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA65C093FFDD5000C53B3 /* SDL.framework in Frameworks */,
 				002F33B209CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1121,8 +1493,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8022E271D3BA200CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568720761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA65D093FFDD7000C53B3 /* SDL.framework in Frameworks */,
 				002F33B109CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1131,8 +1503,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80234271D3BA800CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568730761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA65E093FFDDA000C53B3 /* SDL.framework in Frameworks */,
 				002F33B009CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1141,8 +1513,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80237271D3BAC00CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568750761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA660093FFDDF000C53B3 /* SDL.framework in Frameworks */,
 				002F33AF09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1151,8 +1523,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8023A271D3BB100CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568760761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA661093FFDE1000C53B3 /* SDL.framework in Frameworks */,
 				002F33AE09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1161,8 +1533,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA8023D271D3BB400CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568770761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA662093FFDE3000C53B3 /* SDL.framework in Frameworks */,
 				002F33AD09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1171,8 +1543,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80240271D3BB700CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568780761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA663093FFDE6000C53B3 /* SDL.framework in Frameworks */,
 				002F33AC09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1181,8 +1553,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80243271D3BBD00CCA1E9 /* SDL.framework in Frameworks */,
 				BEC568790761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA665093FFDEA000C53B3 /* SDL.framework in Frameworks */,
 				002F33AB09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1191,8 +1563,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA80246271D3BC000CCA1E9 /* SDL.framework in Frameworks */,
 				BEC5687A0761D90600A33029 /* libsdlmain.a in Frameworks */,
-				003FA664093FFDE8000C53B3 /* SDL.framework in Frameworks */,
 				002F33AA09CA188600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1258,6 +1630,7 @@
 			comments = "I made these tests link against our \"default\" framework which includes X11 stuff. If you didn't install the X11 headers with Xcode, you might have problems building the SDL.framework (which is a dependency). You can swap the dependencies around to get around this, or you can modify the default SDL.framework target to not include X11 stuff. (Go into its target build options and remove all the Preprocessor macros.)\n\n\n\nWe are sort of in a half-way state at the moment. Going \"all-the-way\" means we copy the SDL.framework inside the app bundle so we can run the test without the step of the user \"installing\" the framework. But there is an oversight/bug in Xcode that doesn't correctly find the location of the framework when in an embedded/nested Xcode project. We could probably try to hack this with a shell script that checks multiple directories for existence, but this is messier and more work than I prefer, so I rather just wait for Apple to fix this. In the meantime...\n\nThe \"All\" target will build the SDL framework from the Xcode project. The other targets do not have this dependency set (for flexibility reasons in case we make changes). If you have not built the framework, you will probably be unable to link. You will either need to build the framework, or you need to add \"-framework SDL\" to the link options and make sure you have the SDL.framework installed somewhere where it can be seen (like /Library/Frameworks...I think we already set this one up.) \n\nTo run though, you should have a copy of the SDL.framework in /Library/Frameworks or ~/Library/Frameworks.\n\n\n\n\ntestgl and testdyngl need -DHAVE_OPENGL\ntestgl needs to link against OpenGL.framework\n\n";
 			name = SDLTest;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
@@ -1575,6 +1948,7 @@
 				002F337409CA14F900EBEB88 /* Resources */,
 				002F337609CA14F900EBEB88 /* Sources */,
 				002F337809CA14F900EBEB88 /* Frameworks */,
+				BDA8024B271D3BC900CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1596,6 +1970,7 @@
 				002F338C09CA16BF00EBEB88 /* Sources */,
 				002F338E09CA16BF00EBEB88 /* Frameworks */,
 				00794EA909D234E8003FC8A1 /* CopyFiles */,
+				BDA80200271D3B6500CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1616,6 +1991,7 @@
 				002F33CE09CA19A600EBEB88 /* Resources */,
 				002F33D009CA19A600EBEB88 /* Sources */,
 				002F33D109CA19A600EBEB88 /* Frameworks */,
+				BDA80206271D3B6D00CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1636,6 +2012,7 @@
 				002F340509CA1BFF00EBEB88 /* Resources */,
 				002F340709CA1BFF00EBEB88 /* Sources */,
 				002F340809CA1BFF00EBEB88 /* Frameworks */,
+				BDA8020C271D3B7500CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1657,6 +2034,7 @@
 				002F342609CA1F0300EBEB88 /* Sources */,
 				002F342709CA1F0300EBEB88 /* Frameworks */,
 				00794EEC09D2371F003FC8A1 /* CopyFiles */,
+				BDA80215271D3B8100CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1678,6 +2056,7 @@
 				002F344209CA1FB300EBEB88 /* Sources */,
 				002F344309CA1FB300EBEB88 /* Frameworks */,
 				00794EF409D237C7003FC8A1 /* CopyFiles */,
+				BDA80224271D3B9400CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1698,6 +2077,7 @@
 				002F345D09CA204F00EBEB88 /* Resources */,
 				002F345F09CA204F00EBEB88 /* Sources */,
 				002F346009CA204F00EBEB88 /* Frameworks */,
+				BDA8022A271D3B9900CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1718,6 +2098,7 @@
 				BEC566AE0761D90300A33029 /* Resources */,
 				BEC566B00761D90300A33029 /* Sources */,
 				BEC566B20761D90300A33029 /* Frameworks */,
+				BDA801F1271D319800CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1738,6 +2119,7 @@
 				BEC566BB0761D90300A33029 /* Resources */,
 				BEC566BD0761D90300A33029 /* Sources */,
 				BEC566BF0761D90300A33029 /* Frameworks */,
+				BDA801F4271D3AA400CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1759,6 +2141,7 @@
 				BEC566CA0761D90300A33029 /* Sources */,
 				BEC566CC0761D90300A33029 /* Frameworks */,
 				00794E6409D2084F003FC8A1 /* CopyFiles */,
+				BDA801F7271D3B5700CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1780,6 +2163,7 @@
 				BEC566D80761D90300A33029 /* Sources */,
 				BEC566DA0761D90300A33029 /* Frameworks */,
 				00794EA009D2343A003FC8A1 /* CopyFiles */,
+				BDA801FA271D3B5B00CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1800,6 +2184,7 @@
 				BEC566E40761D90300A33029 /* Resources */,
 				BEC566E60761D90300A33029 /* Sources */,
 				BEC566E80761D90300A33029 /* Frameworks */,
+				BDA801FD271D3B6100CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1820,6 +2205,7 @@
 				BEC566F10761D90300A33029 /* Resources */,
 				BEC566F30761D90300A33029 /* Sources */,
 				BEC566F50761D90300A33029 /* Frameworks */,
+				BDA80203271D3B6900CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1840,6 +2226,7 @@
 				BEC566FE0761D90300A33029 /* Resources */,
 				BEC567000761D90300A33029 /* Sources */,
 				BEC567020761D90300A33029 /* Frameworks */,
+				BDA80209271D3B7100CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1861,6 +2248,7 @@
 				BEC5670D0761D90400A33029 /* Sources */,
 				BEC5670F0761D90400A33029 /* Frameworks */,
 				00794EE509D236E4003FC8A1 /* CopyFiles */,
+				BDA8020F271D3B7800CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1881,6 +2269,7 @@
 				BEC567190761D90400A33029 /* Resources */,
 				BEC5671B0761D90400A33029 /* Sources */,
 				BEC5671D0761D90400A33029 /* Frameworks */,
+				BDA80212271D3B7D00CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1901,6 +2290,7 @@
 				BEC567260761D90400A33029 /* Resources */,
 				BEC567280761D90400A33029 /* Sources */,
 				BEC5672A0761D90400A33029 /* Frameworks */,
+				BDA80233271D3BA500CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1921,6 +2311,7 @@
 				BEC567330761D90400A33029 /* Resources */,
 				BEC567350761D90400A33029 /* Sources */,
 				BEC567370761D90400A33029 /* Frameworks */,
+				BDA80218271D3B8500CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1941,6 +2332,7 @@
 				BEC567400761D90400A33029 /* Resources */,
 				BEC567420761D90400A33029 /* Sources */,
 				BEC567440761D90400A33029 /* Frameworks */,
+				BDA8021B271D3B8900CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1961,6 +2353,7 @@
 				BEC5674D0761D90400A33029 /* Resources */,
 				BEC5674F0761D90400A33029 /* Sources */,
 				BEC567510761D90400A33029 /* Frameworks */,
+				BDA8021E271D3B8D00CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1982,6 +2375,7 @@
 				BEC5675C0761D90400A33029 /* Sources */,
 				BEC5675E0761D90400A33029 /* Frameworks */,
 				00794F6109D24125003FC8A1 /* CopyFiles */,
+				BDA80221271D3B9100CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2003,6 +2397,7 @@
 				BEC567690761D90400A33029 /* Sources */,
 				BEC5676B0761D90400A33029 /* Frameworks */,
 				00794EFC09D2381C003FC8A1 /* CopyFiles */,
+				BDA80227271D3B9700CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2023,6 +2418,7 @@
 				BEC567750761D90500A33029 /* Resources */,
 				BEC567770761D90500A33029 /* Sources */,
 				BEC567790761D90500A33029 /* Frameworks */,
+				BDA8022D271D3B9E00CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2044,6 +2440,7 @@
 				BEC567840761D90500A33029 /* Sources */,
 				BEC567860761D90500A33029 /* Frameworks */,
 				00794F0209D2385F003FC8A1 /* CopyFiles */,
+				BDA80230271D3BA200CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2064,6 +2461,7 @@
 				BEC567900761D90500A33029 /* Resources */,
 				BEC567920761D90500A33029 /* Sources */,
 				BEC567940761D90500A33029 /* Frameworks */,
+				BDA80236271D3BA800CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2084,6 +2482,7 @@
 				BEC567AA0761D90500A33029 /* Resources */,
 				BEC567AC0761D90500A33029 /* Sources */,
 				BEC567AE0761D90500A33029 /* Frameworks */,
+				BDA80239271D3BAC00CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2104,6 +2503,7 @@
 				BEC567B70761D90500A33029 /* Resources */,
 				BEC567B90761D90500A33029 /* Sources */,
 				BEC567BB0761D90500A33029 /* Frameworks */,
+				BDA8023C271D3BB100CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2125,6 +2525,7 @@
 				BEC567C60761D90500A33029 /* Sources */,
 				BEC567C80761D90500A33029 /* Frameworks */,
 				00794F0909D238E3003FC8A1 /* CopyFiles */,
+				BDA8023F271D3BB400CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2146,6 +2547,7 @@
 				BEC567D40761D90500A33029 /* Sources */,
 				BEC567D60761D90500A33029 /* Frameworks */,
 				00794F0F09D23923003FC8A1 /* CopyFiles */,
+				BDA80242271D3BB800CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2166,6 +2568,7 @@
 				BEC567E00761D90600A33029 /* Resources */,
 				BEC567E20761D90600A33029 /* Sources */,
 				BEC567E40761D90600A33029 /* Frameworks */,
+				BDA80245271D3BBD00CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2186,6 +2589,7 @@
 				BEC567ED0761D90600A33029 /* Resources */,
 				BEC567EF0761D90600A33029 /* Sources */,
 				BEC567F10761D90600A33029 /* Frameworks */,
+				BDA80248271D3BC000CCA1E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2222,6 +2626,8 @@
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 001B5A0C08BDB826006539E9 /* Build configuration list for PBXProject "SDLTest" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
@@ -3176,8 +3582,13 @@
 		001B593908BDB826006539E9 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Info-checkkeys__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = checkkeys;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Deployment;
@@ -3185,8 +3596,13 @@
 		001B593A08BDB826006539E9 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Info-checkkeys__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = checkkeys;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Development;
@@ -3194,8 +3610,13 @@
 		001B593B08BDB826006539E9 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Info-checkkeys__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = checkkeys;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
@@ -3204,6 +3625,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-graywin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = graywin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3213,6 +3635,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-graywin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = graywin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3222,6 +3645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-graywin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = graywin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3231,6 +3655,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-loopwave__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = loopwave;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3240,6 +3665,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-loopwave__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = loopwave;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3249,6 +3675,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-loopwave__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = loopwave;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3258,6 +3685,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testalpha__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testalpha;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3267,6 +3695,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testalpha__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testalpha;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3276,6 +3705,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testalpha__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testalpha;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3285,6 +3715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testbitmap__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testbitmap;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3294,6 +3725,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testbitmap__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testbitmap;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3303,6 +3735,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testbitmap__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testbitmap;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3312,6 +3745,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testcdrom__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testcdrom;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3321,6 +3755,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testcdrom__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testcdrom;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3330,6 +3765,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testcdrom__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testcdrom;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3339,6 +3775,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testerror__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testerror;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3348,6 +3785,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testerror__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testerror;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3357,6 +3795,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testerror__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testerror;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3366,6 +3805,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testgamma__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testgamma;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3375,6 +3815,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testgamma__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testgamma;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3384,6 +3825,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testgamma__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testgamma;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3394,6 +3836,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = HAVE_OPENGL;
 				INFOPLIST_FILE = "Info-testgl__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testgl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3404,6 +3847,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = HAVE_OPENGL;
 				INFOPLIST_FILE = "Info-testgl__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testgl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3414,6 +3858,7 @@
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = HAVE_OPENGL;
 				INFOPLIST_FILE = "Info-testgl__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testgl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3423,6 +3868,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testthread__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testthread;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3432,6 +3878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testthread__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testthread;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3441,6 +3888,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testthread__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testthread;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3450,6 +3898,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testjoystick__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testjoystick;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3459,6 +3908,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testjoystick__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testjoystick;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3468,6 +3918,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testjoystick__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testjoystick;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3477,6 +3928,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testkeys__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testkeys;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3486,6 +3938,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testkeys__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testkeys;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3495,6 +3948,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testkeys__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testkeys;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3504,6 +3958,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testlock__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testlock;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3513,6 +3968,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testlock__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testlock;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3522,6 +3978,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testlock__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testlock;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3531,6 +3988,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testpalette__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testpalette;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3540,6 +3998,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testpalette__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testpalette;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3549,6 +4008,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testpalette__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testpalette;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3558,6 +4018,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testsem__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testsem;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3567,6 +4028,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testsem__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testsem;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3576,6 +4038,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testsem__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testsem;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3585,6 +4048,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testsprite__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testsprite;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3594,6 +4058,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testsprite__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testsprite;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3603,6 +4068,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testsprite__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testsprite;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3612,6 +4078,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testtimer__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testtimer;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3621,6 +4088,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testtimer__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testtimer;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3630,6 +4098,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testtimer__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testtimer;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3639,6 +4108,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testversion__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testversion;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3648,6 +4118,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testversion__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testversion;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3657,6 +4128,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testversion__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testversion;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3666,6 +4138,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testvidinfo__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testvidinfo;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3675,6 +4148,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testvidinfo__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testvidinfo;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3684,6 +4158,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testvidinfo__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testvidinfo;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3693,6 +4168,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testwin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testwin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3702,6 +4178,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testwin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testwin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3711,6 +4188,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testwin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testwin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3720,6 +4198,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testwm__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testwm;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3729,6 +4208,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testwm__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testwm;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3738,6 +4218,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testwm__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testwm;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3747,6 +4228,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-threadwin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = threadwin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3756,6 +4238,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-threadwin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = threadwin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3765,6 +4248,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-threadwin__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = threadwin;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3774,6 +4258,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-torturethread__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = torturethread;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3783,6 +4268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-torturethread__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = torturethread;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3792,6 +4278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-torturethread__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = torturethread;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3860,6 +4347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testoverlay__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testoverlay;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3869,6 +4357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testoverlay__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testoverlay;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3878,6 +4367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testoverlay__Upgraded_.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testoverlay;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3886,8 +4376,7 @@
 		001B5A0D08BDB826006539E9 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../SDL/build/$(CONFIGURATION)",
@@ -3902,9 +4391,9 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.6;
+				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
@@ -3913,8 +4402,7 @@
 		001B5A0E08BDB826006539E9 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../SDL/build/$(CONFIGURATION)",
@@ -3929,9 +4417,9 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.6;
+				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
@@ -3940,8 +4428,7 @@
 		001B5A0F08BDB826006539E9 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../SDL/build/$(CONFIGURATION)",
@@ -3956,9 +4443,9 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.6;
+				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
@@ -3968,6 +4455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-test.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = test;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3977,6 +4465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-test.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = test;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3986,6 +4475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-test.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = test;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3995,6 +4485,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testblitspeed.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testblitspeed;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4004,6 +4495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testblitspeed.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testblitspeed;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4013,6 +4505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testblitspeed.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testblitspeed;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4026,6 +4519,7 @@
 					HAVE_OPENGL,
 				);
 				INFOPLIST_FILE = "Info-testdyngl.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testdyngl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4039,6 +4533,7 @@
 					HAVE_OPENGL,
 				);
 				INFOPLIST_FILE = "Info-testdyngl.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testdyngl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4052,6 +4547,7 @@
 					HAVE_OPENGL,
 				);
 				INFOPLIST_FILE = "Info-testdyngl.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testdyngl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4061,6 +4557,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testfile.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testfile;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4070,6 +4567,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testfile.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testfile;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4079,6 +4577,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testfile.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testfile;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4088,6 +4587,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testiconv.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testiconv;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4097,6 +4597,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testiconv.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testiconv;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4106,6 +4607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testiconv.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testiconv;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4115,6 +4617,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testoverlay2.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testoverlay2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4124,6 +4627,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testoverlay2.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testoverlay2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4133,6 +4637,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testoverlay2.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testoverlay2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4142,6 +4647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testplatform.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testplatform;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4151,6 +4657,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testplatform.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testplatform;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4160,6 +4667,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "Info-testplatform.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = testplatform;
 				WRAPPER_EXTENSION = app;
 			};

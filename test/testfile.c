@@ -11,12 +11,16 @@
 #include "SDL_endian.h"
 
 
-#include <stdio.h>	
+#include <stdio.h>
 
 /* WARNING ! those 2 files will be destroyed by this test program */
+#if __MACOSX__
+#define FBASENAME1	"/tmp/sdldata1"		/* this file will be created during tests */
+#define FBASENAME2	"/tmp/sdldata2"		/* this file should not exists before starting test */
+#else
 #define FBASENAME1	"sdldata1"		/* this file will be created during tests */
 #define FBASENAME2	"sdldata2"		/* this file should not exists before starting test */
-
+#endif
 
 #ifndef NULL
 #define NULL ((void *)0)

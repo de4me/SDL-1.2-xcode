@@ -9,6 +9,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 #define NUM_SPRITES	100
 #define MAX_SPEED 	1
 
@@ -159,6 +163,7 @@ int main(int argc, char *argv[])
 	int    i, done;
 	SDL_Event event;
 	Uint32 then, now, frames;
+	char* path;
 
 	/* Initialize SDL */
 	if ( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
@@ -220,8 +225,18 @@ int main(int argc, char *argv[])
 		quit(2);
 	}
 
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("icon");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "icon.bmp";
+#endif
+
 	/* Load the sprite */
-	if ( LoadSprite("icon.bmp") < 0 ) {
+	if ( LoadSprite(path) < 0 ) {
 		quit(1);
 	}
 

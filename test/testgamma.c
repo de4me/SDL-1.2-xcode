@@ -8,6 +8,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 /* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
 static void quit(int rc)
 {
@@ -81,6 +85,7 @@ int main(int argc, char *argv[])
 	Uint16 ramp[256];
 	Uint16 red_ramp[256];
 	Uint32 then, timeout;
+	char* path;
 
 	/* Check command line arguments */
 	argv += get_video_args(argv, &w, &h, &bpp, &flags);
@@ -124,8 +129,18 @@ int main(int argc, char *argv[])
 	}
 #endif
 
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("sample");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "sample.bmp";
+#endif
+
 	/* Do all the drawing work */
-	image = SDL_LoadBMP("sample.bmp");
+	image = SDL_LoadBMP(path);
 	if ( image ) {
 		SDL_Rect dst;
 

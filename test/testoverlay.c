@@ -14,6 +14,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 SDL_Surface *screen, *pic;
 SDL_Overlay *overlay;
 int scale;
@@ -330,6 +334,7 @@ int main(int argc, char **argv)
 	Uint32 then, now;
 #endif
 	int i;
+	char* path;
 
 	/* Set default options and check command-line */
 	flip = 0;
@@ -479,8 +484,18 @@ int main(int argc, char **argv)
 	/* Set the window manager title bar */
 	SDL_WM_SetCaption("SDL test overlay", "testoverlay");
 
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("sample");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "sample.bmp";
+#endif
+
 	/* Load picture */
-	bmpfile=(argv[1]?argv[1]:"sample.bmp");
+	bmpfile=(argv[1]?argv[1]:path);
 	pic = SDL_LoadBMP(bmpfile);
 	if ( pic == NULL ) {
 		fprintf(stderr, "Couldn't load %s: %s\n", bmpfile,

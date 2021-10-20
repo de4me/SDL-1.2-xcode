@@ -7,6 +7,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 /* Is the cursor visible? */
 static int visible = 1;
 
@@ -338,6 +342,7 @@ int main(int argc, char *argv[])
 	Uint8 *icon_mask;
 	int parsed;
 	int w, h;
+	char* path;
 
 	if ( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
 		fprintf(stderr,
@@ -386,8 +391,18 @@ int main(int argc, char *argv[])
 		}
 	}
 
+#ifdef __MACOSX__
+	CFStringRef name = CFSTR("icon");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+	path = "icon.bmp";		/* Sample image */
+#endif
+
 	/* Set the icon -- this must be done before the first mode set */
-	icon = LoadIconSurface("icon.bmp", &icon_mask);
+	icon = LoadIconSurface(path, &icon_mask);
 	if ( icon != NULL ) {
 		SDL_WM_SetIcon(icon, icon_mask);
 	}

@@ -3,6 +3,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 static size_t widelen(char *data)
 {
 	size_t len = 0;
@@ -35,13 +39,24 @@ int main(int argc, char *argv[])
 	int i;
 	FILE *file;
 	int errors = 0;
+	char* path;
 
-	if ( !argv[1] ) {
-		argv[1] = "utf8.txt";
+	if ( argv[1] == NULL ) {
+#ifdef __MACOSX__
+		CFStringRef name = CFSTR("utf8");
+		CFStringRef extension = CFSTR("txt");
+		CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+		CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+		path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+#else
+		path = "utf8.txt";
+#endif
+	} else {
+		path = argv[1];
 	}
-	file = fopen(argv[1], "rb");
+	file = fopen(path, "rb");
 	if ( !file ) {
-		fprintf(stderr, "Unable to open %s\n", argv[1]);
+		fprintf(stderr, "Unable to open %s\n", path);
 		return (1);
 	}
 
