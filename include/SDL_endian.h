@@ -97,8 +97,12 @@ static __inline__ Uint16 SDL_Swap16(Uint16 x)
 #elif defined(__GNUC__) && defined(__aarch64__)
 static __inline__ Uint16 SDL_Swap16(Uint16 x)
 {
+#if __has_builtin(__builtin_bswap16)
+	return __builtin_bswap16(x);
+#else
 	__asm__("rev16 %w1, %w0" : "=r"(x) : "r"(x));
 	return x;
+#endif
 }
 #elif defined(__GNUC__) && (defined(__m68k__) && !defined(__mcoldfire__))
 static __inline__ Uint16 SDL_Swap16(Uint16 x)
@@ -144,8 +148,12 @@ static __inline__ Uint32 SDL_Swap32(Uint32 x)
 #elif defined(__GNUC__) && defined(__aarch64__)
 static __inline__ Uint32 SDL_Swap32(Uint32 x)
 {
+#if __has_builtin(__builtin_bswap32)
+	return __builtin_bswap32(x);
+#else
 	__asm__("rev %w1, %w0": "=r"(x):"r"(x));
 	return x;
+#endif
 }
 #elif defined(__GNUC__) && (defined(__m68k__) && !defined(__mcoldfire__))
 static __inline__ Uint32 SDL_Swap32(Uint32 x)
@@ -185,6 +193,24 @@ static __inline__ Uint64 SDL_Swap64(Uint64 x)
 {
 	__asm__("bswapq %0" : "=r" (x) : "0" (x));
 	return x;
+}
+#elif defined(__GNUC__) && defined(__aarch64__)
+static __inline__ Uint64 SDL_Swap64(Uint64 x)
+{
+#if __has_builtin(__builtin_bswap64)
+	return __builtin_bswap64(x);
+#else
+	Uint32 hi, lo;
+
+	/* Separate into high and low 32-bit values and swap them */
+	lo = SDL_static_cast(Uint32, x & 0xFFFFFFFF);
+	x >>= 32;
+	hi = SDL_static_cast(Uint32, x & 0xFFFFFFFF);
+	x = SDL_Swap32(lo);
+	x <<= 32;
+	x |= SDL_Swap32(hi);
+	return (x);
+#endif
 }
 #elif defined(__WATCOMC__) && defined(__386__)
 extern _inline Uint64 SDL_Swap64(Uint64);
