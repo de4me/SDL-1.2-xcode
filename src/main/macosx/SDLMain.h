@@ -13,4 +13,9 @@
 @interface SDLMain : NSObject
 @end
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
+@interface SDLMain () <NSApplicationDelegate>
+@end
+#endif
+
 #endif /* _SDLMain_h_ */
