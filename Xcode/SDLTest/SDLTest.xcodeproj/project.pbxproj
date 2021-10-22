@@ -4391,6 +4391,7 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
@@ -4409,6 +4410,7 @@
 					"$(HOME)/Library/Frameworks",
 					/Library/Frameworks,
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 4.0;
 				GCC_VERSION_x86_64 = 4.2;
@@ -4417,9 +4419,11 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
@@ -4443,6 +4447,7 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;

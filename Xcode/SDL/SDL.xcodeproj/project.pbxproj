@@ -1652,14 +1652,12 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = "Info-Framework.plist";
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				OTHER_LDFLAGS_ppc = "-prebind -seg1addr 0x30000000";
 				PRODUCT_BUNDLE_IDENTIFIER = org.libsdl.SDL;
 				PRODUCT_NAME = SDL;
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -1668,13 +1666,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = "$(GCC_PREPROCESSOR_DEFINITIONS)";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRODUCT_NAME = SDL;
-				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
@@ -1711,6 +1706,7 @@
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "";
 			};
@@ -1726,13 +1722,11 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = "Info-Framework.plist";
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.libsdl.SDL;
 				PRODUCT_NAME = SDL;
-				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -1741,13 +1735,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = "$(GCC_PREPROCESSOR_DEFINITIONS)";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRODUCT_NAME = SDL;
-				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
