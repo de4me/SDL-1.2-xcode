@@ -1665,7 +1665,11 @@ void SDL_GL_Lock()
 		this->glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		(this->glColor4f)(1.0, 1.0, 1.0, 1.0);		/* Solaris workaround */
 
+#if defined(__APPLE__)
+		this->glViewport(0, 0, this->screen->w*this->screen->backing_scale_factor, this->screen->h*this->screen->backing_scale_factor);
+#else
 		this->glViewport(0, 0, this->screen->w, this->screen->h);
+#endif
 		this->glMatrixMode(GL_PROJECTION);
 		this->glPushMatrix();
 		this->glLoadIdentity();
