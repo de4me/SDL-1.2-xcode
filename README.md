@@ -1,4 +1,16 @@
 
+# SDL 1.2 for macOS
+
+[![Downloads](https://img.shields.io/github/downloads/de4me/SDL-1.2-xcode/total.svg)](https://github.com/de4me/SDL-1.2-xcode/releases)
+[![github stars](https://img.shields.io/github/stars/de4me/SDL-1.2-xcode.svg)](https://github.com/de4me/SDL-1.2-xcode/stargazers)
+
+Nightly builds | Platform
+---:| ---
+[![Build status](https://ci.appveyor.com/api/projects/status/a0ntord2230coudy?svg=true)](https://ci.appveyor.com/project/de4me/sdl1-macosx) | macOS Big Sur arm64, x86_64
+[![Build status](https://ci.appveyor.com/api/projects/status/gg6l8fdawbmd5afw?svg=true)](https://ci.appveyor.com/project/de4me/sdl1-ubuntu) | Ubuntu 18.04 x86_64
+[![Build status](https://ci.appveyor.com/api/projects/status/9gg1gq6j5lxyuo2f?svg=true)](https://ci.appveyor.com/project/de4me/sdl1-windows) | Windows 7 x86_64
+
+
 # DEPRECATED
 
 The 1.2 branch of SDL is deprecated. While we occasionally collect fixes
