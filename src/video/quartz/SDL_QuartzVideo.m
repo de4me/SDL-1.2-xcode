@@ -826,7 +826,7 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
 	}
 #endif
 #else
-	current->backing_scale_factor = qz_window.contentScaleFactor;
+	current->backing_scale_factor = 1.0;
 #endif
 
     /* Setup OpenGL for a fullscreen context */
