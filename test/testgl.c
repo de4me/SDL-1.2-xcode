@@ -131,7 +131,11 @@ void SDL_GL_Enter2DMode()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+#if defined(__APPLE__)
+	glViewport(0, 0, screen->w*screen->backing_scale_factor, screen->h*screen->backing_scale_factor);
+#else
 	glViewport(0, 0, screen->w, screen->h);
+#endif
 
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
@@ -476,6 +480,7 @@ int RunGLTest( int argc, char* argv[],
 			   {-0.5, -0.5,  0.5}};
 	Uint32 video_flags;
 	int value;
+	SDL_Surface* surface;
 
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
 		fprintf(stderr,"Couldn't initialize SDL: %s\n",SDL_GetError());
@@ -543,7 +548,8 @@ int RunGLTest( int argc, char* argv[],
 	} else {
 		SDL_GL_SetAttribute( SDL_GL_SWAP_CONTROL, 0 );
 	}
-	if ( SDL_SetVideoMode( w, h, bpp, video_flags ) == NULL ) {
+	surface = SDL_SetVideoMode( w, h, bpp, video_flags );
+	if ( surface == NULL ) {
 		fprintf(stderr, "Couldn't set GL mode: %s\n", SDL_GetError());
 		SDL_Quit();
 		exit(1);
@@ -589,8 +595,13 @@ int RunGLTest( int argc, char* argv[],
 	if ( gamma != 0.0 ) {
 		SDL_SetGamma(gamma, gamma, gamma);
 	}
-
-	glViewport( 0, 0, w, h );
+	
+#if defined(__APPLE__)
+	glViewport( 0, 0, surface->w*surface->backing_scale_factor, surface->h*surface->backing_scale_factor );
+#else
+	glViewport( 0, 0, surface->w, surface->h );
+#endif
+	
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity( );
 

@@ -102,6 +102,7 @@ int main(int argc,char *argv[])
 	int done=0;
 	GLfloat pixels[NB_PIXELS*3];
 	const char *gl_library = NULL; /* Use the default GL library */
+	SDL_Surface* surface;
 
 	if (argv[1]) {
 		gl_library = argv[1];
@@ -125,7 +126,8 @@ int main(int argc,char *argv[])
 		quit(1);
 	}
 
-	if (SDL_SetVideoMode(640,480,0,SDL_OPENGL)==NULL)
+	surface = SDL_SetVideoMode(640,480,0,SDL_OPENGL);
+	if (surface==NULL)
 	{
 		printf("Unable to open video mode : %s\n",SDL_GetError());
 		quit(1);
@@ -143,7 +145,11 @@ int main(int argc,char *argv[])
 		pixels[3*i+2]=rand()%250-125;
 	}
 	
-	f.glViewport(0,0,640,480);
+#if defined(__APPLE__)
+	f.glViewport(0, 0, surface->w*surface->backing_scale_factor, surface->h*surface->backing_scale_factor);
+#else
+	f.glViewport(0, 0, surface->w, surface->h);
+#endif
 	
 	f.glMatrixMode(GL_PROJECTION);
 	f.glLoadIdentity();
