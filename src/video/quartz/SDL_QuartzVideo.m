@@ -1086,7 +1086,7 @@ static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
 	}
 #endif
 #else
-	current->backing_scale_factor = qz_window.contentScaleFactor;
+	current->backing_scale_factor = 1.0;
 #endif
 
     /* For OpenGL, we bind the context to a subview */
