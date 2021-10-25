@@ -123,12 +123,13 @@ typedef struct SDL_PrivateVideoData {
     Uint8              *current_buffer;    /* the buffer being copied to the screen */
     BOOL               quit_thread;        /* used to quit the async blitting thread */
     SInt32             system_version;     /* used to dis-/enable workarounds depending on the system version */
+	NSPoint            window_position;    /* used to restore window position */
 
     void *opengl_library;    /* dynamically loaded OpenGL library. */
 } SDL_PrivateVideoData;
 
 #define _THIS    SDL_VideoDevice *this
-#define display_id (this->hidden->display)
+#define display_id QZ_GetCurrentDisplayID(this)
 #define mode (this->hidden->mode)
 #define save_mode (this->hidden->save_mode)
 #define use_new_mode_apis (this->hidden->use_new_mode_apis)
@@ -229,3 +230,4 @@ void         QZ_PrivateCocoaToSDL (_THIS, NSPoint *p);
 BOOL         QZ_IsMouseInWindow (_THIS);
 void         QZ_DoActivate (_THIS);
 void         QZ_DoDeactivate (_THIS);
+CGDirectDisplayID QZ_GetCurrentDisplayID (_THIS);

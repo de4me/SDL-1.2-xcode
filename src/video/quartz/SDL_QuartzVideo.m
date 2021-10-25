@@ -126,6 +126,8 @@ static void QZ_UnlockHWSurface(_THIS, SDL_Surface *surface);
 static int QZ_AllocHWSurface(_THIS, SDL_Surface *surface);
 static void QZ_FreeHWSurface (_THIS, SDL_Surface *surface);
 
+static int QZ_PrepareFullScreen(_THIS);
+
 /* Bootstrap binding, enables entry point into the driver */
 VideoBootStrap QZ_bootstrap = {
     "Quartz", "Mac OS X CoreGraphics", QZ_Available, QZ_CreateDevice
@@ -309,7 +311,7 @@ static int QZ_VideoInit (_THIS, SDL_PixelFormat *video_format)
 #endif
 
     /* Initialize the video settings; this data persists between mode switches */
-    display_id = kCGDirectMainDisplay;
+	this->hidden->display = kCGDirectMainDisplay;
 
 #if 0 /* The mouse event code needs to take this into account... */
     env = getenv("SDL_VIDEO_FULLSCREEN_DISPLAY");
@@ -604,7 +606,7 @@ static void QZ_UnsetVideoMode (_THIS, BOOL to_desktop, BOOL save_gl)
 
             /* Restore original screen resolution/bpp */
             QZ_RestoreDisplayMode (this);
-            CGReleaseAllDisplays ();
+			CGDisplayRelease(this->hidden->display);
             /* 
                 Reset the main screen's rectangle
                 See comment in QZ_SetVideoFullscreen for why we do this
@@ -687,12 +689,15 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     CGError error;
     NSRect contentRect;
     CGDisplayFadeReservationToken fade_token = kCGDisplayFadeReservationInvalidToken;
+	NSRect mainScreenFrame;
+	CGAffineTransform frame_transform;
 
     current->flags = SDL_FULLSCREEN;
     current->w = width;
     current->h = height;
 
     contentRect = NSMakeRect (0, 0, width, height);
+	QZ_PrepareFullScreen(this);
 
     /* Fade to black to hide resolution-switching flicker (and garbage
        that is displayed by a destroyed OpenGL context, if applicable) */
@@ -722,10 +727,7 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     }
 
     /* Put up the blanking window (a window above all other windows) */
-    if (getenv ("SDL_SINGLEDISPLAY"))
-        error = CGDisplayCapture (display_id);
-    else
-        error = CGCaptureAllDisplays ();
+    error = CGDisplayCapture(this->hidden->display);
 
     if ( CGDisplayNoErr != error ) {
         SDL_SetError ("Failed capturing display");
@@ -737,6 +739,10 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
         SDL_SetError ("Failed switching display resolution");
         goto ERR_NO_SWITCH;
     }
+
+    mainScreenFrame = CGDisplayBounds(CGMainDisplayID());
+    frame_transform = CGAffineTransformMake(1, 0, 0, -1, 0, mainScreenFrame.size.height);
+    screen_rect = CGRectApplyAffineTransform(CGDisplayBounds(this->hidden->display), frame_transform);
 
 #if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
     if ( !isLion ) {
@@ -794,8 +800,8 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     /* Check if we should recreate the window */
     if (qz_window == nil) {
         /* Manually create a window, avoids having a nib file resource */
-        qz_window = [ [ SDL_QuartzWindow alloc ] 
-            initWithContentRect:contentRect
+        qz_window = [ [ SDL_QuartzWindow alloc ]
+			initWithContentRect:screen_rect
                 styleMask:(isLion ? NSBorderlessWindowMask : 0)
                     backing:NSBackingStoreBuffered
                         defer:NO ];
@@ -814,6 +820,9 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
         current->flags |= (SDL_NOFRAME|SDL_RESIZABLE) & mode_flags;
         [ window_view setFrameSize:contentRect.size ];
     }
+
+	/* force screen position */
+	[qz_window setFrameOrigin: screen_rect.origin];
 
 #if defined(__MACOSX__)
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1070
@@ -944,8 +953,7 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
         We can hack around this bug by setting the screen rect
         ourselves. This hack should be removed if/when the bug is fixed.
     */
-    screen_rect = NSMakeRect(0,0,width,height);
-    QZ_SetFrame(this, [ NSScreen mainScreen ], screen_rect);
+    QZ_SetFrame(this, qz_window.screen, screen_rect);
 
     /* Save the flags to ensure correct tear-down */
     mode_flags = current->flags;
@@ -977,15 +985,25 @@ static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
 {
     unsigned int style;
     NSRect contentRect;
-    int center_window = 1;
+    int center_window;
     int origin_x, origin_y;
     CGDisplayFadeReservationToken fade_token = kCGDisplayFadeReservationInvalidToken;
+	NSRect windowFrame;
 
     current->flags = 0;
     current->w = width;
     current->h = height;
 
     contentRect = NSMakeRect (0, 0, width, height);
+
+	if (NSEqualPoints(this->hidden->window_position, NSZeroPoint)) {
+		windowFrame = contentRect;
+		center_window = true;
+	} else {
+		windowFrame.origin = this->hidden->window_position;
+		windowFrame.size = contentRect.size;
+		center_window = false;
+	}
 
     /*
         Check if we should completely destroy the previous mode 
@@ -1037,8 +1055,8 @@ static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
 
         /* Manually create a window, avoids having a nib file resource */
         qz_window = [ [ SDL_QuartzWindow alloc ] 
-            initWithContentRect:contentRect
-                styleMask:style 
+            initWithContentRect:windowFrame
+                styleMask:style
                     backing:NSBackingStoreBuffered
                         defer:NO ];
 
@@ -1062,7 +1080,10 @@ static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
             center_window = 0;
         } else if ( center_window ) {
             [ qz_window center ];
-        }
+		} else {
+			/* force screen position */
+			[qz_window setFrameOrigin: windowFrame.origin];
+		}
 
         [ qz_window setDelegate:
             [ [ SDL_QuartzWindowDelegate alloc ] init ] ];
@@ -1755,3 +1776,66 @@ int QZ_GetGammaRamp (_THIS, Uint16 *ramp)
 #endif
 }
 
+CGDirectDisplayID QZ_GetCurrentDisplayID(_THIS)
+{
+	NSScreen* screen;
+	NSNumber* number;
+	CGDirectDisplayID current_display;
+
+	if (qz_window == NULL) {
+		return this->hidden->display;
+	}
+	screen = qz_window.screen;
+	if (screen == NULL) {
+		return this->hidden->display;
+	}
+	number = screen.deviceDescription[@"NSScreenNumber"];
+	if (number == NULL) {
+		return this->hidden->display;
+	}
+	return number.unsignedIntValue;
+}
+
+static int QZ_PrepareFullScreen(_THIS)
+{
+	this->hidden->display = QZ_GetCurrentDisplayID(this);
+	
+	if (qz_window != NULL) {
+		this->hidden->window_position = qz_window.frame.origin;
+	} else {
+		this->hidden->window_position = NSZeroPoint;
+	}
+	
+	QZ_ReleaseDisplayMode(this, save_mode);
+	
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060)
+	if (use_new_mode_apis) {
+		save_mode = CGDisplayCopyDisplayMode(this->hidden->display);
+	}
+#endif
+
+#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1060)
+	if (!use_new_mode_apis) {
+		save_mode = CGDisplayCurrentMode(this->hidden->display);
+	}
+#endif
+	
+	if (save_mode == NULL) {
+		SDL_SetError("Couldn't figure out current display mode.");
+		return -1;
+	}
+	
+	/* Gather some information that is useful to know about the display */
+	QZ_GetModeInfo(this, save_mode, &device_width, &device_height, &device_bpp);
+	if (device_bpp == 0) {
+		QZ_ReleaseDisplayMode(this, save_mode);
+		save_mode = NULL;
+		SDL_SetError("Unsupported display mode");
+		return -1;
+	}
+
+	/* Determine the current screen size */
+	this->info.current_w = device_width;
+	this->info.current_h = device_height;
+	return 0;
+}
