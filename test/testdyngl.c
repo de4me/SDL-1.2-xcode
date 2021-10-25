@@ -27,6 +27,12 @@
 
 #include "SDL_opengl.h"
 
+#ifdef TEST_VGA16 /* Define this if you want to test VGA 16-color video modes */
+#define NUM_COLORS	16
+#else
+#define NUM_COLORS	256
+#endif
+
 /* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
 static void quit(int rc)
 {
@@ -94,15 +100,42 @@ void init_glfuncs(glfuncs* f)
 
 #define NB_PIXELS 1000
 
+SDL_Surface *CreateScreen(Uint16 w, Uint16 h, Uint8 bpp, Uint32 flags)
+{
+	SDL_Surface *screen;
+	int i;
+	SDL_Color palette[NUM_COLORS];
+
+	/* Set the video mode */
+	screen = SDL_SetVideoMode(w, h, bpp, flags);
+	if (screen == NULL) {
+		fprintf(stderr, "Couldn't set display mode: %s\n", SDL_GetError());
+		return(NULL);
+	}
+	fprintf(stderr, "Screen is in %s mode\n", (screen->flags & SDL_FULLSCREEN) ? "fullscreen" : "windowed");
+	if (bpp == 8) {
+		/* Set a gray colormap, reverse order from white to black */
+		for ( i=0; i<NUM_COLORS; ++i ) {
+			palette[i].r = (NUM_COLORS-1)-i * (256 / NUM_COLORS);
+			palette[i].g = (NUM_COLORS-1)-i * (256 / NUM_COLORS);
+			palette[i].b = (NUM_COLORS-1)-i * (256 / NUM_COLORS);
+		}
+		SDL_SetColors(screen, palette, 0, NUM_COLORS);
+	}
+	return(screen);
+}
+
 int main(int argc,char *argv[])
 {
 	glfuncs f;
 	int i;
 	SDL_Event event;
-	int done=0;
+	int done;
 	GLfloat pixels[NB_PIXELS*3];
 	const char *gl_library = NULL; /* Use the default GL library */
 	SDL_Surface* surface;
+	Uint32 surface_flags = SDL_OPENGL;
+	int change_fullscreen;
 
 	if (argv[1]) {
 		gl_library = argv[1];
@@ -126,7 +159,14 @@ int main(int argc,char *argv[])
 		quit(1);
 	}
 
-	surface = SDL_SetVideoMode(640,480,0,SDL_OPENGL);
+	init_glfuncs(&f);
+
+do_change_fullscreen:
+
+	change_fullscreen = 0;
+	done = 0;
+
+	surface = CreateScreen(640, 480, 0, surface_flags);
 	if (surface==NULL)
 	{
 		printf("Unable to open video mode : %s\n",SDL_GetError());
@@ -135,8 +175,6 @@ int main(int argc,char *argv[])
 
 	/* Set the window manager title bar */
 	SDL_WM_SetCaption( "SDL Dynamic OpenGL Loading Test", "testdyngl" );
-
-	init_glfuncs(&f);
 
 	for(i=0;i<NB_PIXELS;i++)
 	{
@@ -192,13 +230,33 @@ int main(int argc,char *argv[])
 
 		while(SDL_PollEvent(&event))
 		{
-			if(event.type & SDL_KEYDOWN)
-				done=1;
+			switch (event.type) {
+				case SDL_KEYDOWN:
+					switch (event.key.keysym.sym) {
+						case SDLK_RETURN:
+							surface_flags ^= SDL_FULLSCREEN;
+							change_fullscreen = 1;
+							done = 1;
+							break;
+						default:
+							done = 1;
+					}
+					break;
+				case SDL_QUIT:
+					done = 1;
+					break;
+				default:
+					break;
+			}
 		}
 
 		SDL_Delay(20);
 	}
 	while(!done);
+	
+	if (change_fullscreen) {
+		goto do_change_fullscreen;
+	}
 	
 	SDL_Quit();
 	return 0;
