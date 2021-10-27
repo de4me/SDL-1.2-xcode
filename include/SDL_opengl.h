@@ -107,7 +107,9 @@ extern "C" {
 /* Header file version number, required by OpenGL ABI for Linux */
 /* glext.h last updated 2008/03/24 */
 /* Current version at http://www.opengl.org/registry/ */
+#ifndef GL_GLEXT_VERSION
 #define GL_GLEXT_VERSION 40
+#endif
 
 #ifndef GL_VERSION_1_2
 #define GL_UNSIGNED_BYTE_3_3_2            0x8032
@@ -3193,10 +3195,18 @@ extern "C" {
 #endif
 
 #ifndef GL_NV_geometry_program4
+#ifndef GL_LINES_ADJACENCY_EXT
 #define GL_LINES_ADJACENCY_EXT            0x000A
+#endif
+#ifndef GL_LINE_STRIP_ADJACENCY_EXT
 #define GL_LINE_STRIP_ADJACENCY_EXT       0x000B
+#endif
+#ifndef GL_TRIANGLES_ADJACENCY_EXT
 #define GL_TRIANGLES_ADJACENCY_EXT        0x000C
+#endif
+#ifndef GL_TRIANGLE_STRIP_ADJACENCY_EXT
 #define GL_TRIANGLE_STRIP_ADJACENCY_EXT   0x000D
+#endif
 #define GL_GEOMETRY_PROGRAM_NV            0x8C26
 #define GL_MAX_PROGRAM_OUTPUT_VERTICES_NV 0x8C27
 #define GL_MAX_PROGRAM_TOTAL_OUTPUT_COMPONENTS_NV 0x8C28
