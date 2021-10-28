@@ -124,6 +124,7 @@ typedef struct SDL_PrivateVideoData {
     BOOL               quit_thread;        /* used to quit the async blitting thread */
     SInt32             system_version;     /* used to dis-/enable workarounds depending on the system version */
 	NSPoint            window_position;    /* used to restore window position */
+	BOOL               is_fullscreen;      /* fullscreen mode active */
 
     void *opengl_library;    /* dynamically loaded OpenGL library. */
 } SDL_PrivateVideoData;
