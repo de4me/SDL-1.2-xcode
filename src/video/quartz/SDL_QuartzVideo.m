@@ -126,7 +126,9 @@ static void QZ_UnlockHWSurface(_THIS, SDL_Surface *surface);
 static int QZ_AllocHWSurface(_THIS, SDL_Surface *surface);
 static void QZ_FreeHWSurface (_THIS, SDL_Surface *surface);
 
-static int QZ_PrepareFullScreen(_THIS);
+static int QZ_UpdateDisplay(_THIS);
+static NSPoint QZ_RectCenter(NSRect rect);
+static NSRect QZ_CenterRect(NSPoint position, NSRect rect);
 
 /* Bootstrap binding, enables entry point into the driver */
 VideoBootStrap QZ_bootstrap = {
@@ -691,39 +693,41 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     CGDisplayFadeReservationToken fade_token = kCGDisplayFadeReservationInvalidToken;
 	NSRect mainScreenFrame;
 	CGAffineTransform frame_transform;
+	CGDisplayModeRef mode_new;
 
     current->flags = SDL_FULLSCREEN;
     current->w = width;
     current->h = height;
 
     contentRect = NSMakeRect (0, 0, width, height);
-	QZ_PrepareFullScreen(this);
+	
+	/* Sorry, QuickDraw was ripped out. */
+	if (getenv("SDL_NSWindowPointer") || getenv("SDL_NSQuickDrawViewPointer")) {
+		SDL_SetError ("Embedded QuickDraw windows are no longer supported");
+		goto ERR_NO_MATCH;
+	}
 
+	/* See if requested mode exists */
+	mode_new = (CGDisplayModeRef) QZ_BestMode(this, bpp, width, height);
+	
+	/* Require an exact match to the requested mode */
+	if (mode_new == NULL) {
+		SDL_SetError ("Failed to find display resolution: %dx%dx%d", width, height, bpp);
+		goto ERR_NO_MATCH;
+	}
+	
+	if (this->hidden->is_fullscreen) {
+		if (mode != NULL && CFEqual(mode, mode_new)) {
+			goto SKIP_CHANGE_MODE;
+		}
+	} else {
+		QZ_UpdateDisplay(this);
+	}
+	
     /* Fade to black to hide resolution-switching flicker (and garbage
        that is displayed by a destroyed OpenGL context, if applicable) */
     if ( CGAcquireDisplayFadeReservation (5, &fade_token) == kCGErrorSuccess ) {
         CGDisplayFade (fade_token, 0.3, kCGDisplayBlendNormal, kCGDisplayBlendSolidColor, 0.0, 0.0, 0.0, TRUE);
-    }
-
-    /* Destroy any previous mode */
-    if (video_set == SDL_TRUE)
-        QZ_UnsetVideoMode (this, FALSE, save_gl);
-
-    /* Sorry, QuickDraw was ripped out. */
-    if (getenv("SDL_NSWindowPointer") || getenv("SDL_NSQuickDrawViewPointer")) {
-        SDL_SetError ("Embedded QuickDraw windows are no longer supported");
-        goto ERR_NO_MATCH;
-    }
-
-    QZ_ReleaseDisplayMode(this, mode);  /* NULL is okay. */
-
-    /* See if requested mode exists */
-    mode = QZ_BestMode(this, bpp, width, height);
-
-    /* Require an exact match to the requested mode */
-    if ( mode == NULL ) {
-        SDL_SetError ("Failed to find display resolution: %dx%dx%d", width, height, bpp);
-        goto ERR_NO_MATCH;
     }
 
     /* Put up the blanking window (a window above all other windows) */
@@ -733,12 +737,22 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
         SDL_SetError ("Failed capturing display");
         goto ERR_NO_CAPTURE;
     }
+	
+	/* Destroy any previous mode */
+	if (video_set == SDL_TRUE)
+		QZ_UnsetVideoMode (this, FALSE, save_gl);
 
     /* Do the physical switch */
-    if ( CGDisplayNoErr != QZ_SetDisplayMode(this, mode) ) {
+    if ( CGDisplayNoErr != QZ_SetDisplayMode(this, mode_new) ) {
         SDL_SetError ("Failed switching display resolution");
         goto ERR_NO_SWITCH;
     }
+
+SKIP_CHANGE_MODE:
+	
+	QZ_ReleaseDisplayMode(this, mode);  /* NULL is okay. */
+	mode = mode_new;
+	this->hidden->is_fullscreen = true;
 
     mainScreenFrame = CGDisplayBounds(CGMainDisplayID());
     frame_transform = CGAffineTransformMake(1, 0, 0, -1, 0, mainScreenFrame.size.height);
@@ -970,13 +984,13 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     /* Since the blanking window covers *all* windows (even force quit) correct recovery is crucial */
 ERR_NO_GL:      goto ERR_DOUBLEBUF;  /* this goto is to stop a compiler warning on newer SDKs. */
 ERR_DOUBLEBUF:  QZ_RestoreDisplayMode(this);
-ERR_NO_SWITCH:  CGReleaseAllDisplays ();
-ERR_NO_CAPTURE:
-ERR_NO_MATCH:   if ( fade_token != kCGDisplayFadeReservationInvalidToken ) {
+ERR_NO_SWITCH:  CGDisplayRelease(this->hidden->display);
+ERR_NO_CAPTURE: if ( fade_token != kCGDisplayFadeReservationInvalidToken ) {
                     CGDisplayFade (fade_token, 0.5, kCGDisplayBlendSolidColor, kCGDisplayBlendNormal, 0.0, 0.0, 0.0, FALSE);
                     CGReleaseDisplayFadeReservation (fade_token);
                 }
-                return NULL;
+                QZ_ReleaseDisplayMode(this, mode_new);
+ERR_NO_MATCH:   return NULL;
 }
 
 static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
@@ -995,13 +1009,18 @@ static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
     current->h = height;
 
     contentRect = NSMakeRect (0, 0, width, height);
+	
+	if (this->hidden->is_fullscreen) {
+		this->hidden->is_fullscreen = false;
+	} else {
+		QZ_UpdateDisplay(this);
+	}
 
 	if (NSEqualPoints(this->hidden->window_position, NSZeroPoint)) {
 		windowFrame = contentRect;
 		center_window = true;
 	} else {
-		windowFrame.origin = this->hidden->window_position;
-		windowFrame.size = contentRect.size;
+		windowFrame = QZ_CenterRect(this->hidden->window_position, contentRect);
 		center_window = false;
 	}
 
@@ -1796,12 +1815,15 @@ CGDirectDisplayID QZ_GetCurrentDisplayID(_THIS)
 	return number.unsignedIntValue;
 }
 
-static int QZ_PrepareFullScreen(_THIS)
+static int QZ_UpdateDisplay(_THIS)
 {
+	NSRect content_rect;
+	
 	this->hidden->display = QZ_GetCurrentDisplayID(this);
 	
 	if (qz_window != NULL) {
-		this->hidden->window_position = qz_window.frame.origin;
+		content_rect = [NSWindow contentRectForFrameRect:qz_window.frame styleMask:qz_window.styleMask];
+		this->hidden->window_position = QZ_RectCenter(content_rect);
 	} else {
 		this->hidden->window_position = NSZeroPoint;
 	}
@@ -1838,4 +1860,16 @@ static int QZ_PrepareFullScreen(_THIS)
 	this->info.current_w = device_width;
 	this->info.current_h = device_height;
 	return 0;
+}
+
+NSPoint QZ_RectCenter(NSRect rect) {
+	CGFloat x = rect.origin.x + rect.size.width / 2;
+	CGFloat y =	rect.origin.y + rect.size.height / 2;
+	return NSMakePoint(x, y);
+}
+
+NSRect QZ_CenterRect(NSPoint position, NSRect rect) {
+	CGFloat x = position.x - rect.size.width / 2;
+	CGFloat y =	position.y - rect.size.height / 2;
+	return NSMakeRect(x, y, rect.size.width, rect.size.height);
 }
