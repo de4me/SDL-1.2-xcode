@@ -691,8 +691,7 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     CGError error;
     NSRect contentRect;
     CGDisplayFadeReservationToken fade_token = kCGDisplayFadeReservationInvalidToken;
-	NSRect mainScreenFrame;
-	CGAffineTransform frame_transform;
+	CGAffineTransform transform;
 	CGDisplayModeRef mode_new;
 
     current->flags = SDL_FULLSCREEN;
@@ -754,9 +753,8 @@ SKIP_CHANGE_MODE:
 	mode = mode_new;
 	this->hidden->is_fullscreen = true;
 
-    mainScreenFrame = CGDisplayBounds(CGMainDisplayID());
-    frame_transform = CGAffineTransformMake(1, 0, 0, -1, 0, mainScreenFrame.size.height);
-    screen_rect = CGRectApplyAffineTransform(CGDisplayBounds(this->hidden->display), frame_transform);
+    transform = CGAffineTransformMake(1, 0, 0, -1, 0, CGDisplayPixelsHigh(CGMainDisplayID()));
+    screen_rect = CGRectApplyAffineTransform(CGDisplayBounds(this->hidden->display), transform);
 
 #if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
     if ( !isLion ) {
@@ -1113,6 +1111,7 @@ static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
         [ qz_window setContentSize:contentRect.size ];
         current->flags |= (SDL_NOFRAME|SDL_RESIZABLE) & mode_flags;
         [ window_view setFrameSize:contentRect.size ];
+		[qz_window setFrameOrigin: windowFrame.origin];
     }
 
 #if defined(__MACOSX__)
