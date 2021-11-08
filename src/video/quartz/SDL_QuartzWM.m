@@ -106,7 +106,8 @@ void QZ_UpdateCursor (_THIS) {
 }
 
 BOOL QZ_IsMouseInWindow (_THIS) {
-    if (qz_window == nil || (mode_flags & SDL_FULLSCREEN)) return YES; /*fullscreen*/
+    if (qz_window == nil)
+		return YES;
     else {
         NSPoint p = [ qz_window mouseLocationOutsideOfEventStream ];
         p.y -= 1.0f; /* Apparently y goes from 1 to h, not from 0 to h-1 (i.e. the "location of the mouse" seems to be defined as "the location of the top left corner of the mouse pointer's hot pixel" */
@@ -147,63 +148,81 @@ int QZ_ShowWMCursor (_THIS, WMcursor *cursor) {
 */
 
 /* Convert Cocoa screen coordinate to Cocoa window coordinate */
+/// screen (LL) -> window (LL)
 void QZ_PrivateGlobalToLocal (_THIS, NSPoint *p) {
-
-	if ( ! CGDisplayIsCaptured (display_id) )
+	if (qz_window != NULL) {
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1090
+		*p = [ qz_window convertPointFromScreen:*p ];
+#else
 		*p = [ qz_window convertScreenToBase:*p ];
+#endif
+	}
 }
 
 
 /* Convert Cocoa window coordinate to Cocoa screen coordinate */
+/// window (LL) -> screen (LL)
 void QZ_PrivateLocalToGlobal (_THIS, NSPoint *p) {
-
-	if ( ! CGDisplayIsCaptured (display_id) )
+	if (qz_window != NULL) {
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1090
+		*p = [ qz_window convertPointToScreen:*p ];
+#else
 		*p = [ qz_window convertBaseToScreen:*p ];
+#endif
+	}
 }
 
 /* Convert SDL coordinate to Cocoa coordinate */
+/// SDL (UL) -> window (LL)
 void QZ_PrivateSDLToCocoa (_THIS, NSPoint *p) {
 
-    if ( CGDisplayIsCaptured (display_id) ) { /* capture signals fullscreen */
-    
-        p->y = CGDisplayPixelsHigh (display_id) - p->y;
-    }
-    else {
-       
-        *p = [ window_view convertPoint:*p toView: nil ];
-        p->y = [window_view frame].size.height - p->y;
-    }
+	CGRect source_rect;
+	CGFloat height;
+	
+	if (qz_window != NULL) {
+		source_rect = [NSWindow contentRectForFrameRect:qz_window.frame styleMask:qz_window.styleMask];
+		height = source_rect.size.height;
+	} else {
+		height = CGDisplayPixelsHigh(display_id);
+	}
+	*p = NSMakePoint(p->x, height - p->y);
 }
 
 /* Convert Cocoa coordinate to SDL coordinate */
+/// window (LL) -> SDL (UL)
 void QZ_PrivateCocoaToSDL (_THIS, NSPoint *p) {
-
-    if ( CGDisplayIsCaptured (display_id) ) { /* capture signals fullscreen */
-    
-        p->y = CGDisplayPixelsHigh (display_id) - p->y;
-    }
-    else {
-
-        *p = [ window_view convertPoint:*p fromView: nil ];
-        p->y = [window_view frame].size.height - p->y;
-    }
+	
+	CGRect source_rect;
+	CGFloat height;
+	
+	if (qz_window != NULL) {
+		source_rect = [NSWindow contentRectForFrameRect:qz_window.frame styleMask:qz_window.styleMask];
+		height = source_rect.size.height;
+	} else {
+		height = CGDisplayPixelsHigh(display_id);
+	}
+	*p = NSMakePoint(p->x, height - p->y);
 }
 
 /* Convert SDL coordinate to window server (CoreGraphics) coordinate */
+/// SDL (UL) -> display (UL)
 CGPoint QZ_PrivateSDLToCG (_THIS, NSPoint *p) {
     
     CGPoint cgp;
+	CGRect screen_rect;
+	CGFloat height;
     
-    if ( ! CGDisplayIsCaptured (display_id) ) { /* not captured => not fullscreen => local coord */
-    
-        int height;
-        
+    if ( ! this->hidden->is_fullscreen ) { /* not captured => not fullscreen => local coord */
         QZ_PrivateSDLToCocoa (this, p);
         QZ_PrivateLocalToGlobal (this, p);
         
-        height = CGDisplayPixelsHigh (display_id);
+        height = CGDisplayPixelsHigh(CGMainDisplayID());
         p->y = height - p->y;
-    }
+	} else {
+		screen_rect = CGDisplayBounds(display_id);
+		p->x = screen_rect.origin.x + p->x;
+		p->y = screen_rect.origin.y + p->y;
+	}
     
     cgp.x = p->x;
     cgp.y = p->y;
