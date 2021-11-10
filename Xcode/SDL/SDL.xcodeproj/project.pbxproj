@@ -165,6 +165,7 @@
 		046B91ED0A11B53500FB151C /* SDL_sysloadso.c in Sources */ = {isa = PBXBuildFile; fileRef = 046B91E90A11B53500FB151C /* SDL_sysloadso.c */; };
 		046B92130A11B8AD00FB151C /* SDL_dlcompat.c in Sources */ = {isa = PBXBuildFile; fileRef = 046B92100A11B8AD00FB151C /* SDL_dlcompat.c */; };
 		046B92140A11B8AD00FB151C /* SDL_dlcompat.c in Sources */ = {isa = PBXBuildFile; fileRef = 046B92100A11B8AD00FB151C /* SDL_dlcompat.c */; };
+		BD31E676273C128600FBDDBC /* SDL_syscdrom.c in Sources */ = {isa = PBXBuildFile; fileRef = B2A23A7B04157C5700A80002 /* SDL_syscdrom.c */; };
 		BECDF62B0761BA81005FE872 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF2F0086C3A07F000001 /* SDLMain.nib */; };
 		BECDF62E0761BA81005FE872 /* SDL_audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 01538330006D78D67F000001 /* SDL_audio.c */; };
 		BECDF62F0761BA81005FE872 /* SDL_audiocvt.c in Sources */ = {isa = PBXBuildFile; fileRef = 01538331006D78D67F000001 /* SDL_audiocvt.c */; };
@@ -1581,6 +1582,7 @@
 				00162D5C09BD20DA0037C8D0 /* SDL_syssem.c in Sources */,
 				00162D5D09BD20DA0037C8D0 /* SDL_systhread.c in Sources */,
 				00162D6209BD21010037C8D0 /* SDL_systimer.c in Sources */,
+				BD31E676273C128600FBDDBC /* SDL_syscdrom.c in Sources */,
 				00162D7009BD214F0037C8D0 /* SDL_getenv.c in Sources */,
 				00162D7109BD214F0037C8D0 /* SDL_malloc.c in Sources */,
 				00162D7209BD214F0037C8D0 /* SDL_qsort.c in Sources */,
