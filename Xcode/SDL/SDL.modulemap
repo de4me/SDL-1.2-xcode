@@ -1,0 +1,36 @@
+
+framework module SDL [extern_c] [system] {
+  umbrella header "SDL.h"
+
+  export *
+  module * { export * }
+  
+  explicit module OpenGL {
+	header "SDL_opengl.h"
+	export *
+  }
+  
+  explicit module SysWM {
+	header "SDL_syswm.h"
+	export *
+  }
+  
+  exclude header "SDL_config.h"
+  exclude header "SDL_config_dreamcast.h"
+  exclude header "SDL_config_macos.h"
+  exclude header "SDL_config_macosx.h"
+  exclude header "SDL_config_os2.h"
+  exclude header "SDL_config_win32.h"
+  exclude header "SDL_config_minimal.h"
+  exclude header "SDL_byteorder.h"
+  exclude header "SDL_copying.h"
+  exclude header "SDL_getenv.h"
+  exclude header "SDL_name.h"
+  exclude header "SDL_platform.h"
+  exclude header "SDL_quit.h"
+  exclude header "SDL_types.h"
+  exclude header "begin_code.h"
+  exclude header "close_code.h"
+  
+}
+
