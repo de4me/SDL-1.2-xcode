@@ -1759,14 +1759,18 @@
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
+				PRIVATE_HEADERS_FOLDER_PATH = include/SDL;
 				PRODUCT_NAME = SDL;
+				PUBLIC_HEADERS_FOLDER_PATH = include/SDL;
 			};
 			name = Release;
 		};
 		00CFA624106A567900758660 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRIVATE_HEADERS_FOLDER_PATH = include/SDL;
 				PRODUCT_NAME = SDLmain;
+				PUBLIC_HEADERS_FOLDER_PATH = include/SDL;
 			};
 			name = Release;
 		};
@@ -1840,14 +1844,18 @@
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
+				PRIVATE_HEADERS_FOLDER_PATH = include/SDL;
 				PRODUCT_NAME = SDL;
+				PUBLIC_HEADERS_FOLDER_PATH = include/SDL;
 			};
 			name = Debug;
 		};
 		00CFA62A106A568900758660 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRIVATE_HEADERS_FOLDER_PATH = include/SDL;
 				PRODUCT_NAME = SDLmain;
+				PUBLIC_HEADERS_FOLDER_PATH = include/SDL;
 			};
 			name = Debug;
 		};
