@@ -55,7 +55,7 @@
 #else
 #define SDL_BYTEORDER	SDL_LIL_ENDIAN
 #endif
-#endif /* __linux __ */
+#endif /* __linux__ */
 #endif /* !SDL_BYTEORDER */
 
 
@@ -97,12 +97,7 @@ static __inline__ Uint16 SDL_Swap16(Uint16 x)
 #elif defined(__GNUC__) && defined(__aarch64__)
 static __inline__ Uint16 SDL_Swap16(Uint16 x)
 {
-#if __has_builtin(__builtin_bswap16)
 	return __builtin_bswap16(x);
-#else
-	__asm__("rev16 %w1, %w0" : "=r"(x) : "r"(x));
-	return x;
-#endif
 }
 #elif defined(__GNUC__) && (defined(__m68k__) && !defined(__mcoldfire__))
 static __inline__ Uint16 SDL_Swap16(Uint16 x)
@@ -111,7 +106,7 @@ static __inline__ Uint16 SDL_Swap16(Uint16 x)
 	return x;
 }
 #elif defined(__WATCOMC__) && defined(__386__)
-extern _inline Uint16 SDL_Swap16(Uint16);
+extern __inline Uint16 SDL_Swap16(Uint16);
 #pragma aux SDL_Swap16 = \
 	"xchg al, ah" \
 	parm   [ax]   \
@@ -148,12 +143,7 @@ static __inline__ Uint32 SDL_Swap32(Uint32 x)
 #elif defined(__GNUC__) && defined(__aarch64__)
 static __inline__ Uint32 SDL_Swap32(Uint32 x)
 {
-#if __has_builtin(__builtin_bswap32)
 	return __builtin_bswap32(x);
-#else
-	__asm__("rev %w1, %w0": "=r"(x):"r"(x));
-	return x;
-#endif
 }
 #elif defined(__GNUC__) && (defined(__m68k__) && !defined(__mcoldfire__))
 static __inline__ Uint32 SDL_Swap32(Uint32 x)
@@ -162,7 +152,7 @@ static __inline__ Uint32 SDL_Swap32(Uint32 x)
 	return x;
 }
 #elif defined(__WATCOMC__) && defined(__386__)
-extern _inline Uint32 SDL_Swap32(Uint32);
+extern __inline Uint32 SDL_Swap32(Uint32);
 #pragma aux SDL_Swap32 = \
 	"bswap eax"  \
 	parm   [eax] \
@@ -173,7 +163,7 @@ static __inline__ Uint32 SDL_Swap32(Uint32 x) {
 }
 #endif
 
-#ifdef SDL_HAS_64BIT_TYPE
+#ifdef SDL_HAS_64BIT_TYPE /**/
 #if defined(__GNUC__) && defined(__i386__) && \
    !(__GNUC__ == 2 && __GNUC_MINOR__ <= 95 /* broken gcc version */)
 static __inline__ Uint64 SDL_Swap64(Uint64 x)
@@ -188,32 +178,19 @@ static __inline__ Uint64 SDL_Swap64(Uint64 x)
 	        : "0"  (v.s.a),  "1" (v.s.b));
 	return v.u;
 }
+#elif defined(__GNUC__) && defined(__aarch64__)
+static __inline__ Uint64 SDL_Swap64(Uint64 x)
+{
+	return __builtin_bswap64(x);
+}
 #elif defined(__GNUC__) && defined(__x86_64__)
 static __inline__ Uint64 SDL_Swap64(Uint64 x)
 {
 	__asm__("bswapq %0" : "=r" (x) : "0" (x));
 	return x;
 }
-#elif defined(__GNUC__) && defined(__aarch64__)
-static __inline__ Uint64 SDL_Swap64(Uint64 x)
-{
-#if __has_builtin(__builtin_bswap64)
-	return __builtin_bswap64(x);
-#else
-	Uint32 hi, lo;
-
-	/* Separate into high and low 32-bit values and swap them */
-	lo = SDL_static_cast(Uint32, x & 0xFFFFFFFF);
-	x >>= 32;
-	hi = SDL_static_cast(Uint32, x & 0xFFFFFFFF);
-	x = SDL_Swap32(lo);
-	x <<= 32;
-	x |= SDL_Swap32(hi);
-	return (x);
-#endif
-}
 #elif defined(__WATCOMC__) && defined(__386__)
-extern _inline Uint64 SDL_Swap64(Uint64);
+extern __inline Uint64 SDL_Swap64(Uint64);
 #pragma aux SDL_Swap64 = \
 	"bswap eax"     \
 	"bswap edx"     \
@@ -235,7 +212,7 @@ static __inline__ Uint64 SDL_Swap64(Uint64 x)
 	return (x);
 }
 #endif
-#else
+#else  /* SDL_HAS_64BIT_TYPE */
 /* This is mainly to keep compilers from complaining in SDL code.
  * If there is no real 64-bit datatype, then compilers will complain about
  * the fake 64-bit datatype that SDL provides when it compiles user code.
