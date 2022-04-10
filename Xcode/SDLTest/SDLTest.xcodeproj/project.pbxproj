@@ -2627,6 +2627,7 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 1330;
 			};
 			buildConfigurationList = 001B5A0C08BDB826006539E9 /* Build configuration list for PBXProject "SDLTest" */;
 			compatibilityVersion = "Xcode 2.4";
