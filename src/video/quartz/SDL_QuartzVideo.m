@@ -130,6 +130,12 @@ static int QZ_UpdateDisplay(_THIS);
 static NSPoint QZ_RectCenter(NSRect rect);
 static NSRect QZ_CenterRect(NSPoint position, NSRect rect);
 
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060)
+
+CGDisplayModeRef QZ_BestDisplayMode(_THIS, const int bpp, const int w, const int h);
+
+#endif
+
 /* Bootstrap binding, enables entry point into the driver */
 VideoBootStrap QZ_bootstrap = {
     "Quartz", "Mac OS X CoreGraphics", QZ_Available, QZ_CreateDevice
@@ -647,25 +653,7 @@ static const void *QZ_BestMode(_THIS, const int bpp, const int w, const int h)
 
 #if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060)
     if (use_new_mode_apis) {
-        /* apparently, we have to roll our own now. :/ */
-        CFArrayRef mode_list = CGDisplayCopyAllDisplayModes(display_id, NULL);
-        if (mode_list != NULL) {
-            const CFIndex num_modes = CFArrayGetCount(mode_list);
-            CFIndex i;
-            for (i = 0; i < num_modes; i++) {
-                const void *vidmode = CFArrayGetValueAtIndex(mode_list, i);
-                Uint32 thisw, thish, thisbpp;
-                QZ_GetModeInfo(this, vidmode, &thisw, &thish, &thisbpp);
-
-                /* We only care about exact matches, apparently. */
-                if ((thisbpp == bpp) && (thisw == w) && (thish == h)) {
-                    best = vidmode;
-                    break;  /* got it! */
-                }
-            }
-            CGDisplayModeRetain((CGDisplayModeRef) best);  /* NULL is ok */
-            CFRelease(mode_list);
-        }
+		best = QZ_BestDisplayMode(this, bpp, w, h);
     }
 #endif
 
@@ -1872,3 +1860,47 @@ NSRect QZ_CenterRect(NSPoint position, NSRect rect) {
 	CGFloat y =	position.y - rect.size.height / 2;
 	return NSMakeRect(x, y, rect.size.width, rect.size.height);
 }
+
+//MARK: - macOS 10.6+
+
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060)
+
+CGDisplayModeRef QZ_BestDisplayMode(_THIS, const int bpp, const int w, const int h)
+{
+	CGDisplayModeRef result = NULL;
+	CGDirectDisplayID display = display_id;
+	if (display != kCGNullDirectDisplay) {
+		CFArrayRef array = CGDisplayCopyAllDisplayModes(display, NULL);
+		if (array != NULL) {
+			CFIndex count = CFArrayGetCount(array);
+			Uint32 curw = INT_MAX;
+			Uint32 curh = INT_MAX;
+			double display_refresh_rate = 60.0;
+			CGDisplayModeRef display_mode = CGDisplayCopyDisplayMode(display);
+			if (display_mode) {
+				display_refresh_rate = CGDisplayModeGetRefreshRate(display_mode);
+				CGDisplayModeRelease(display_mode);
+			}
+			double cur_refresh_rate = display_refresh_rate;
+			for (CFIndex i = 0; i < count; i++) {
+				Uint32 thisw, thish, thisbpp;
+				CGDisplayModeRef this_mode = (CGDisplayModeRef) CFArrayGetValueAtIndex(array, i);
+				QZ_GetModeInfo(this, this_mode, &thisw, &thish, &thisbpp);
+				double this_refresh_rate = CGDisplayModeGetRefreshRate(this_mode);
+				if ((thisbpp == bpp) && (thisw >= w) && (thish >= h) && (this_refresh_rate<=display_refresh_rate)) {
+					if ((curw >= thisw) && (curh >= thish) && (cur_refresh_rate <= this_refresh_rate)) {
+						result = this_mode;
+						curw = thisw;
+						curh = thish;
+						cur_refresh_rate = this_refresh_rate;
+					}
+				}
+			}
+			CGDisplayModeRetain(result);  /* NULL is ok */
+			CFRelease(array);
+		}
+	}
+	return result;
+}
+
+#endif
