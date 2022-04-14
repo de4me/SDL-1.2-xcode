@@ -607,9 +607,9 @@ static void QZ_UnsetVideoMode (_THIS, BOOL to_desktop, BOOL save_gl)
             #endif
 
             /* Restore original screen resolution/bpp */
-            QZ_RestoreDisplayMode (this);
 			CGDisplayRelease(this->hidden->display);
-            /* 
+            QZ_RestoreDisplayMode (this);
+            /*
                 Reset the main screen's rectangle
                 See comment in QZ_SetVideoFullscreen for why we do this
             */
@@ -728,14 +728,6 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     if ( CGAcquireDisplayFadeReservation (5, &fade_token) == kCGErrorSuccess ) {
         CGDisplayFade (fade_token, 0.3, kCGDisplayBlendNormal, kCGDisplayBlendSolidColor, 0.0, 0.0, 0.0, TRUE);
     }
-
-    /* Put up the blanking window (a window above all other windows) */
-    error = CGDisplayCapture(this->hidden->display);
-
-    if ( CGDisplayNoErr != error ) {
-        SDL_SetError ("Failed capturing display");
-        goto ERR_NO_CAPTURE;
-    }
 	
 	/* Destroy any previous mode */
 	if (video_set == SDL_TRUE)
@@ -746,6 +738,14 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
         SDL_SetError ("Failed switching display resolution");
         goto ERR_NO_SWITCH;
     }
+	
+	/* Put up the blanking window (a window above all other windows) */
+	error = CGDisplayCapture(this->hidden->display);
+
+	if ( CGDisplayNoErr != error ) {
+		SDL_SetError ("Failed capturing display");
+		goto ERR_NO_CAPTURE;
+	}
 
 SKIP_CHANGE_MODE:
 	
@@ -981,9 +981,9 @@ SKIP_CHANGE_MODE:
 
     /* Since the blanking window covers *all* windows (even force quit) correct recovery is crucial */
 ERR_NO_GL:      goto ERR_DOUBLEBUF;  /* this goto is to stop a compiler warning on newer SDKs. */
-ERR_DOUBLEBUF:  QZ_RestoreDisplayMode(this);
-ERR_NO_SWITCH:  CGDisplayRelease(this->hidden->display);
-ERR_NO_CAPTURE: if ( fade_token != kCGDisplayFadeReservationInvalidToken ) {
+ERR_DOUBLEBUF:  CGDisplayRelease(this->hidden->display);
+ERR_NO_CAPTURE: QZ_RestoreDisplayMode(this);
+ERR_NO_SWITCH: if ( fade_token != kCGDisplayFadeReservationInvalidToken ) {
                     CGDisplayFade (fade_token, 0.5, kCGDisplayBlendSolidColor, kCGDisplayBlendNormal, 0.0, 0.0, 0.0, FALSE);
                     CGReleaseDisplayFadeReservation (fade_token);
                 }
