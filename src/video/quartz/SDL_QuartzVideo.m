@@ -1887,14 +1887,14 @@ CGDisplayModeRef QZ_BestDisplayMode(_THIS, const int bpp, const int w, const int
 				CGDisplayModeRef this_mode = (CGDisplayModeRef) CFArrayGetValueAtIndex(array, i);
 				QZ_GetModeInfo(this, this_mode, &thisw, &thish, &thisbpp);
 				double this_refresh_rate = CGDisplayModeGetRefreshRate(this_mode);
-				if ((thisbpp == bpp) && (thisw >= w) && (thish >= h) && (this_refresh_rate<=display_refresh_rate)) {
-					if ((curw >= thisw) && (curh >= thish) && (cur_refresh_rate <= this_refresh_rate)) {
-						result = this_mode;
-						curw = thisw;
-						curh = thish;
-						cur_refresh_rate = this_refresh_rate;
-					}
-				}
+				if ((thisbpp != bpp) || (thisw < w) || (thish < h) || (this_refresh_rate > display_refresh_rate))
+					continue;
+				if ((curw < thisw) || (curh < thish) || (cur_refresh_rate > this_refresh_rate))
+					continue;
+				result = this_mode;
+				curw = thisw;
+				curh = thish;
+				cur_refresh_rate = this_refresh_rate;
 			}
 			CGDisplayModeRetain(result);  /* NULL is ok */
 			CFRelease(array);
