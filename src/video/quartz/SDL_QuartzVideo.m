@@ -680,7 +680,7 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     NSRect contentRect;
     CGDisplayFadeReservationToken fade_token = kCGDisplayFadeReservationInvalidToken;
 	CGAffineTransform transform;
-	CGDisplayModeRef mode_new;
+	CFTypeRef mode_new;
 
     current->flags = SDL_FULLSCREEN;
     current->w = width;
@@ -695,7 +695,7 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
 	}
 
 	/* See if requested mode exists */
-	mode_new = (CGDisplayModeRef) QZ_BestMode(this, bpp, width, height);
+	mode_new = QZ_BestMode(this, bpp, width, height);
 	
 	/* Require an exact match to the requested mode */
 	if (mode_new == NULL) {
