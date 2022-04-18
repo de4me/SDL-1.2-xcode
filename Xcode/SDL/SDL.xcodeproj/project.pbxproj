@@ -1510,7 +1510,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nif ! command -v find &> /dev/null || ! command -v sed &> /dev/null\nthen\n    echo \"commands could not be found\"\n    exit\nfi\n\nHEADERS=\"\"\nFILES=()\nPATHS=(\"$BUILT_PRODUCTS_DIR/$PRIVATE_HEADERS_FOLDER_PATH\" \"$BUILT_PRODUCTS_DIR/$PUBLIC_HEADERS_FOLDER_PATH\")\n\nfor path in \"${PATHS[@]}\"; do\n    if [ -d \"$path\" ]; then\n        for file in `find \"$path\"`;\n        do\n            FILES+=(\"$file\")\n            NAME=\"${file##*/}\"\n            HEADERS+=\"s/\\\"$NAME\\\"/<$PRODUCT_MODULE_NAME\\/$NAME>/g;\"\n        done\n    fi\ndone\n\nfor file in \"${FILES[@]}\"; do\n    sed -i '' -e \"$HEADERS\" \"$file\"\ndone\n";
+			shellScript = "#!/bin/bash\n\nif ! command -v find &> /dev/null || ! command -v sed &> /dev/null\nthen\n    echo \"commands could not be found\"\n    exit\nfi\n\nHEADERS=\"\"\nFILES=()\nPATHS=(\"$BUILT_PRODUCTS_DIR/$PRIVATE_HEADERS_FOLDER_PATH\" \"$BUILT_PRODUCTS_DIR/$PUBLIC_HEADERS_FOLDER_PATH\")\n\nfor path in \"${PATHS[@]}\"; do\n    if [ -d \"$path\" ]; then\n        ARRAY=( $(ls \"$path\") )\n        for file in \"${ARRAY[@]}\"; do\n            FILES+=( \"$path/$file\" )\n            NAME=\"${file##*/}\"\n            HEADERS+=\"s/\\\"$NAME\\\"/<$PRODUCT_MODULE_NAME\\/$NAME>/g;\"\n        done\n    fi\ndone\n\nfor file in \"${FILES[@]}\"; do\n    sed -i '' -e \"$HEADERS\" \"$file\"\ndone\n";
 		};
 		BECDF6BD0761BA81005FE872 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
