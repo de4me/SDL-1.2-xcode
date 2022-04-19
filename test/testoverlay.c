@@ -335,6 +335,7 @@ int main(int argc, char **argv)
 #endif
 	int i;
 	char* path;
+	char buffer[255];
 
 	/* Set default options and check command-line */
 	flip = 0;
@@ -485,11 +486,13 @@ int main(int argc, char **argv)
 	SDL_WM_SetCaption("SDL test overlay", "testoverlay");
 
 #ifdef __MACOSX__
+	buffer[0] = 0;
 	CFStringRef name = CFSTR("sample");
 	CFStringRef extension = CFSTR("bmp");
 	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
 	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+	CFStringGetCString(url_path, &buffer[0], sizeof(buffer), kCFStringEncodingUTF8);
+	path = &buffer[0];
 #else
 	path = "sample.bmp";
 #endif

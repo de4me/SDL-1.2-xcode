@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 	Uint16 red_ramp[256];
 	Uint32 then, timeout;
 	char* path;
+	char buffer[255];
 
 	/* Check command line arguments */
 	argv += get_video_args(argv, &w, &h, &bpp, &flags);
@@ -130,11 +131,13 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef __MACOSX__
+	buffer[0] = 0;
 	CFStringRef name = CFSTR("sample");
 	CFStringRef extension = CFSTR("bmp");
 	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
 	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+	CFStringGetCString(url_path, &buffer[0], sizeof(buffer), kCFStringEncodingUTF8);
+	path = &buffer[0];
 #else
 	path = "sample.bmp";
 #endif

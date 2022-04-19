@@ -67,6 +67,7 @@ void poked(int sig)
 int main(int argc, char *argv[])
 {
 	char name[32];
+	char buffer[255];
 	char* path;
 
 	/* Load the SDL library */
@@ -76,11 +77,13 @@ int main(int argc, char *argv[])
 	}
 	if ( argv[1] == NULL ) {
 #ifdef __MACOSX__
+		buffer[0] = 0;
 		CFStringRef name = CFSTR("sample");
 		CFStringRef extension = CFSTR("wav");
 		CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
 		CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-		path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+		CFStringGetCString(url_path, &buffer[0], sizeof(buffer), kCFStringEncodingUTF8);
+		path = &buffer[0];
 #else
 		path = "sample.wav";
 #endif

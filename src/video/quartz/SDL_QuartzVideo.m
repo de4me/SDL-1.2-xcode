@@ -27,14 +27,22 @@
 /* These APIs aren't just deprecated; they're gone from the headers in the
    10.7 SDK. If we're using a >= 10.7 SDK, but targeting < 10.7, then we
    force these function declarations. */
-#if ((MAC_OS_X_VERSION_MIN_REQUIRED < 1070) && (MAC_OS_X_VERSION_MAX_ALLOWED >= 1070))
-CG_EXTERN void *CGDisplayBaseAddress(CGDirectDisplayID display)
-  CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_6,
-    __IPHONE_NA, __IPHONE_NA);
-CG_EXTERN size_t CGDisplayBytesPerRow(CGDirectDisplayID display)
-  CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_6,
-    __IPHONE_NA, __IPHONE_NA);
-#endif
+#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
+  #if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1070)
+    CG_EXTERN void *CGDisplayBaseAddress(CGDirectDisplayID display) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_6, __IPHONE_NA, __IPHONE_NA);
+    CG_EXTERN size_t CGDisplayBytesPerRow(CGDirectDisplayID display) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_6, __IPHONE_NA, __IPHONE_NA);
+  #endif
+  #if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1080)
+    CG_EXTERN uint32_t CGDisplayBeamPosition(CGDirectDisplayID display) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_7, __IPHONE_NA, __IPHONE_NA);
+    CG_EXTERN boolean_t CGDisplayCanSetPalette(CGDirectDisplayID display) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_7, __IPHONE_NA, __IPHONE_NA);
+  #endif
+  #if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+    CG_EXTERN void CGPaletteSetColorAtIndex(QZ_DirectPaletteRef directPalette, CGDeviceColor color, uint32_t index) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_7, __IPHONE_NA, __IPHONE_NA);
+    CG_EXTERN QZ_DirectPaletteRef CGPaletteCreateDefaultColorPalette(void) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_7, __IPHONE_NA, __IPHONE_NA);
+    CG_EXTERN CGError CGDisplaySetPalette(CGDirectDisplayID display, QZ_DirectPaletteRef directPalette) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_7, __IPHONE_NA, __IPHONE_NA);
+    CG_EXTERN void CGPaletteRelease(QZ_DirectPaletteRef directPalette) CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_7, __IPHONE_NA, __IPHONE_NA);
+  #endif
+#endif // (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
 
 
 static inline BOOL IS_LION_OR_LATER(_THIS)
@@ -742,7 +750,12 @@ SKIP_CHANGE_MODE:
 	this->hidden->is_fullscreen = true;
 
     transform = CGAffineTransformMake(1, 0, 0, -1, 0, CGDisplayPixelsHigh(CGMainDisplayID()));
-    screen_rect = CGRectApplyAffineTransform(CGDisplayBounds(this->hidden->display), transform);
+	CGRect rect_cg = CGRectApplyAffineTransform(CGDisplayBounds(this->hidden->display), transform);
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1050)
+    screen_rect = NSRectFromCGRect(rect_cg);
+#else
+	screen_rect = NSMakeRect(rect_cg.origin.x, rect_cg.origin.y, rect_cg.size.width, rect_cg.size.height);
+#endif
 
 #if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
     if ( !isLion ) {
@@ -825,14 +838,12 @@ SKIP_CHANGE_MODE:
 	[qz_window setFrameOrigin: screen_rect.origin];
 
 #if defined(__MACOSX__)
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1070
+#if (MAC_OS_X_VERSION_MIN_REQUIRED >= 1070)
 	current->backing_scale_factor = qz_window.backingScaleFactor;
+#elif (MAC_OS_X_VERSION_MAX_ALLOWED >= 1070)
+	current->backing_scale_factor = [qz_window respondsToSelector:@selector(backingScaleFactor)] ? qz_window.backingScaleFactor : 1.0;
 #else
-	if( @available(macOS 10.7, *) ) {
-		current->backing_scale_factor = qz_window.backingScaleFactor;
-	} else {
-		current->backing_scale_factor = 1.0;
-	}
+	current->backing_scale_factor = 1.0;
 #endif
 #else
 	current->backing_scale_factor = 1.0;
@@ -1103,14 +1114,12 @@ static SDL_Surface* QZ_SetVideoWindowed (_THIS, SDL_Surface *current, int width,
     }
 
 #if defined(__MACOSX__)
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1070
+#if (MAC_OS_X_VERSION_MIN_REQUIRED >= 1070)
 	current->backing_scale_factor = qz_window.backingScaleFactor;
+#elif (MAC_OS_X_VERSION_MAX_ALLOWED >= 1070)
+	current->backing_scale_factor = [qz_window respondsToSelector:@selector(backingScaleFactor)] ? qz_window.backingScaleFactor : 1.0;
 #else
-	if( @available(macOS 10.7, *) ) {
-		current->backing_scale_factor = qz_window.backingScaleFactor;
-	} else {
-		current->backing_scale_factor = 1.0;
-	}
+	current->backing_scale_factor = 1.0;
 #endif
 #else
 	current->backing_scale_factor = 1.0;
@@ -1314,7 +1323,7 @@ static int QZ_SetColors (_THIS, int first_color, int num_colors,
 #if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
     /* we shouldn't have an 8-bit mode on Lion! */
     if (!IS_LION_OR_LATER(this)) {
-        CGTableCount  index;
+        uint32_t  index;
         CGDeviceColor color;
 
         for (index = first_color; index < first_color+num_colors; index++) {
@@ -1795,11 +1804,11 @@ CGDirectDisplayID QZ_GetCurrentDisplayID(_THIS)
 	if (screen == NULL) {
 		return this->hidden->display;
 	}
-	number = screen.deviceDescription[@"NSScreenNumber"];
+	number = [screen.deviceDescription objectForKey:@"NSScreenNumber"];
 	if (number == NULL) {
 		return this->hidden->display;
 	}
-	return number.unsignedIntValue;
+	return (CGDirectDisplayID) [number unsignedIntValue];
 }
 
 static int QZ_UpdateDisplay(_THIS)
@@ -1850,15 +1859,13 @@ static int QZ_UpdateDisplay(_THIS)
 }
 
 NSPoint QZ_RectCenter(NSRect rect) {
-	CGFloat x = rect.origin.x + rect.size.width / 2;
-	CGFloat y =	rect.origin.y + rect.size.height / 2;
-	return NSMakePoint(x, y);
+	return NSMakePoint(NSMidX(rect), NSMidY(rect));
 }
 
 NSRect QZ_CenterRect(NSPoint position, NSRect rect) {
-	CGFloat x = position.x - rect.size.width / 2;
-	CGFloat y =	position.y - rect.size.height / 2;
-	return NSMakeRect(x, y, rect.size.width, rect.size.height);
+	NSPoint pt = NSMakePoint(position.x - rect.size.width / 2,
+							 position.y - rect.size.height / 2);
+	return NSMakeRect(pt.x, pt.y, rect.size.width, rect.size.height);
 }
 
 //MARK: - macOS 10.6+
@@ -1882,7 +1889,8 @@ CGDisplayModeRef QZ_BestDisplayMode(_THIS, const int bpp, const int w, const int
 				CGDisplayModeRelease(display_mode);
 			}
 			double cur_refresh_rate = display_refresh_rate;
-			for (CFIndex i = 0; i < count; i++) {
+			CFIndex i;
+			for (i = 0; i < count; i++) {
 				Uint32 thisw, thish, thisbpp;
 				CGDisplayModeRef this_mode = (CGDisplayModeRef) CFArrayGetValueAtIndex(array, i);
 				QZ_GetModeInfo(this, this_mode, &thisw, &thish, &thisbpp);

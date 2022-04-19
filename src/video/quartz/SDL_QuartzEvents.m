@@ -270,7 +270,7 @@ void     QZ_InitOSKeymap (_THIS) {
     }
 #endif
 
-#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1050)
+#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1050) && !defined(__LP64__)
     if (!saw_layout) {
         /* Get a pointer to the systems cached KCHR */
         const void *KCHRPtr = (const void *)GetScriptManagerVariable(smKCHRCache);

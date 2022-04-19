@@ -164,6 +164,7 @@ int main(int argc, char *argv[])
 	SDL_Event event;
 	Uint32 then, now, frames;
 	char* path;
+	char buffer[255];
 
 	/* Initialize SDL */
 	if ( SDL_Init(SDL_INIT_VIDEO) < 0 ) {
@@ -226,11 +227,13 @@ int main(int argc, char *argv[])
 	}
 
 #ifdef __MACOSX__
+	buffer[0] = 0;
 	CFStringRef name = CFSTR("icon");
 	CFStringRef extension = CFSTR("bmp");
 	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
 	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+	CFStringGetCString(url_path, &buffer[0], sizeof(buffer), kCFStringEncodingUTF8);
+	path = &buffer[0];
 #else
 	path = "icon.bmp";
 #endif

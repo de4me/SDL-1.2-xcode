@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -1373,10 +1373,11 @@
 				LastUpgradeCheck = 1330;
 			};
 			buildConfigurationList = 0073178E0858DB0500B2BC32 /* Build configuration list for PBXProject "SDL" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				en,
 				English,
 				Japanese,
 				French,
@@ -1481,13 +1482,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = "Run Script to Create SDL_config.h";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1500,17 +1497,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\nif ! command -v find &> /dev/null || ! command -v sed &> /dev/null\nthen\n    echo \"commands could not be found\"\n    exit\nfi\n\nHEADERS=\"\"\nFILES=()\nPATHS=(\"$BUILT_PRODUCTS_DIR/$PRIVATE_HEADERS_FOLDER_PATH\" \"$BUILT_PRODUCTS_DIR/$PUBLIC_HEADERS_FOLDER_PATH\")\n\nfor path in \"${PATHS[@]}\"; do\n    if [ -d \"$path\" ]; then\n        ARRAY=( $(ls \"$path\") )\n        for file in \"${ARRAY[@]}\"; do\n            FILES+=( \"$path/$file\" )\n            NAME=\"${file##*/}\"\n            HEADERS+=\"s/\\\"$NAME\\\"/<$PRODUCT_MODULE_NAME\\/$NAME>/g;\"\n        done\n    fi\ndone\n\nfor file in \"${FILES[@]}\"; do\n    sed -i '' -e \"$HEADERS\" \"$file\"\ndone\n";
+			shellScript = "#!/bin/bash\n\nif ! command -v find &> /dev/null || ! command -v sed &> /dev/null\nthen\n    echo \"commands could not be found\"\n    exit\nfi\n\nif [ -z \"$PRODUCT_MODULE_NAME\" ]; then\n    PRODUCT_MODULE_NAME=\"$PRODUCT_NAME\"\nfi\n\nHEADERS=\"\"\nFILES=()\nPATHS=(\"$BUILT_PRODUCTS_DIR/$PRIVATE_HEADERS_FOLDER_PATH\" \"$BUILT_PRODUCTS_DIR/$PUBLIC_HEADERS_FOLDER_PATH\")\n\nfor path in \"${PATHS[@]}\"; do\n    if [ -d \"$path\" ]; then\n        ARRAY=( $(ls \"$path\") )\n        for file in \"${ARRAY[@]}\"; do\n            FILES+=( \"$path/$file\" )\n            NAME=\"${file##*/}\"\n            HEADERS+=\"s/\\\"$NAME\\\"/<$PRODUCT_MODULE_NAME\\/$NAME>/g;\"\n        done\n    fi\ndone\n\nfor file in \"${FILES[@]}\"; do\n    sed -i '' -e \"$HEADERS\" \"$file\"\ndone\n";
 		};
 		BECDF6BD0761BA81005FE872 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1729,8 +1722,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
@@ -1740,10 +1732,12 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				SEPARATE_STRIP = YES;
 				WARNING_CFLAGS = "";
@@ -1761,7 +1755,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(GCC_PREPROCESSOR_DEFINITIONS)";
 				INFOPLIST_FILE = "Info-Framework.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = SDL.modulemap;
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
@@ -1777,8 +1770,7 @@
 		00CFA623106A567900758660 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = "$(GCC_PREPROCESSOR_DEFINITIONS)";
-				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
+				COMBINE_HIDPI_IMAGES = YES;
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
@@ -1790,6 +1782,7 @@
 		00CFA624106A567900758660 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
 				PRODUCT_NAME = SDLmain;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
@@ -1814,8 +1807,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
@@ -1825,10 +1817,11 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1847,7 +1840,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(GCC_PREPROCESSOR_DEFINITIONS)";
 				INFOPLIST_FILE = "Info-Framework.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = SDL.modulemap;
 				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
 				OTHER_CFLAGS_i386 = "";
@@ -1862,8 +1854,7 @@
 		00CFA629106A568900758660 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = "$(GCC_PREPROCESSOR_DEFINITIONS)";
-				OTHER_CFLAGS = "$(OTHER_CFLAGS_$(CURRENT_ARCH))";
+				COMBINE_HIDPI_IMAGES = YES;
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
@@ -1875,6 +1866,7 @@
 		00CFA62A106A568900758660 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
 				PRODUCT_NAME = SDLmain;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
@@ -1905,7 +1897,7 @@
 				003235531070931700C76517 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		0073177A0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Framework" */ = {
 			isa = XCConfigurationList;
@@ -1914,7 +1906,7 @@
 				00CFA622106A567900758660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		0073177E0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Static Library" */ = {
 			isa = XCConfigurationList;
@@ -1923,7 +1915,7 @@
 				00CFA623106A567900758660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		007317820858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Main Library" */ = {
 			isa = XCConfigurationList;
@@ -1932,7 +1924,7 @@
 				00CFA624106A567900758660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		007317860858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Standard DMG" */ = {
 			isa = XCConfigurationList;
@@ -1941,7 +1933,7 @@
 				00CFA625106A567900758660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		0073178A0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Developer Extras Package" */ = {
 			isa = XCConfigurationList;
@@ -1950,7 +1942,7 @@
 				00CFA626106A567900758660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		0073178E0858DB0500B2BC32 /* Build configuration list for PBXProject "SDL" */ = {
 			isa = XCConfigurationList;
@@ -1959,7 +1951,7 @@
 				00CFA621106A567900758660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

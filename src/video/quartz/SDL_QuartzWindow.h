@@ -45,6 +45,11 @@ typedef unsigned int NSUInteger;
 - (BOOL)windowShouldClose:(id)sender;
 @end
 
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
+@interface SDL_QuartzWindowDelegate() <NSWindowDelegate>
+@end
+#endif
+
 /* Subclass of NSView to set cursor rectangle */
 @interface SDL_QuartzView : NSView
 - (void)drawRect:(NSRect)dirtyRect;

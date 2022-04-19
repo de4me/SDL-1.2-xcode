@@ -151,8 +151,13 @@ int QZ_ShowWMCursor (_THIS, WMcursor *cursor) {
 /// screen (LL) -> window (LL)
 void QZ_PrivateGlobalToLocal (_THIS, NSPoint *p) {
 	if (qz_window != NULL) {
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1090
+#if (MAC_OS_X_VERSION_MIN_REQUIRED >= 101200)
 		*p = [ qz_window convertPointFromScreen:*p ];
+#elif (MAC_OS_X_VERSION_MAX_ALLOWED >= 101200)
+		if ([ qz_window respondsToSelector:@selector(convertPointFromScreen:) ])
+			*p = [ qz_window convertPointFromScreen:*p];
+		else
+			*p = [ qz_window convertScreenToBase:*p ];
 #else
 		*p = [ qz_window convertScreenToBase:*p ];
 #endif
@@ -164,8 +169,13 @@ void QZ_PrivateGlobalToLocal (_THIS, NSPoint *p) {
 /// window (LL) -> screen (LL)
 void QZ_PrivateLocalToGlobal (_THIS, NSPoint *p) {
 	if (qz_window != NULL) {
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1090
+#if (MAC_OS_X_VERSION_MIN_REQUIRED >= 101200)
 		*p = [ qz_window convertPointToScreen:*p ];
+#elif (MAC_OS_X_VERSION_MAX_ALLOWED >= 101200)
+		if ([ qz_window respondsToSelector:@selector(convertPointToScreen:) ])
+			*p = [ qz_window convertPointToScreen:*p ];
+		else
+			*p = [ qz_window convertBaseToScreen:*p ];
 #else
 		*p = [ qz_window convertBaseToScreen:*p ];
 #endif
@@ -175,10 +185,12 @@ void QZ_PrivateLocalToGlobal (_THIS, NSPoint *p) {
 /* Convert SDL coordinate to Cocoa coordinate */
 /// SDL (UL) -> window (LL)
 void QZ_PrivateSDLToCocoa (_THIS, NSPoint *p) {
-
-	CGRect source_rect;
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1050)
 	CGFloat height;
-	
+#else
+	float height;
+#endif
+	NSRect source_rect;
 	if (qz_window != NULL) {
 		source_rect = [NSWindow contentRectForFrameRect:qz_window.frame styleMask:qz_window.styleMask];
 		height = source_rect.size.height;
@@ -191,10 +203,12 @@ void QZ_PrivateSDLToCocoa (_THIS, NSPoint *p) {
 /* Convert Cocoa coordinate to SDL coordinate */
 /// window (LL) -> SDL (UL)
 void QZ_PrivateCocoaToSDL (_THIS, NSPoint *p) {
-	
-	CGRect source_rect;
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1050)
 	CGFloat height;
-	
+#else
+	float height;
+#endif
+	NSRect source_rect;
 	if (qz_window != NULL) {
 		source_rect = [NSWindow contentRectForFrameRect:qz_window.frame styleMask:qz_window.styleMask];
 		height = source_rect.size.height;
@@ -207,11 +221,13 @@ void QZ_PrivateCocoaToSDL (_THIS, NSPoint *p) {
 /* Convert SDL coordinate to window server (CoreGraphics) coordinate */
 /// SDL (UL) -> display (UL)
 CGPoint QZ_PrivateSDLToCG (_THIS, NSPoint *p) {
-    
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1050)
+	CGFloat height;
+#else
+	float height;
+#endif
     CGPoint cgp;
 	CGRect screen_rect;
-	CGFloat height;
-    
     if ( ! this->hidden->is_fullscreen ) { /* not captured => not fullscreen => local coord */
         QZ_PrivateSDLToCocoa (this, p);
         QZ_PrivateLocalToGlobal (this, p);

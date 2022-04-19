@@ -8,6 +8,10 @@
 #include "SDL.h"
 #include "SDL_thread.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 /* Are we done yet? */
 static int done = 0;
 
@@ -233,6 +237,8 @@ int main(int argc, char *argv[])
 	Uint32 video_flags;
 	SDL_Thread *mouse_thread;
 	SDL_Thread *keybd_thread;
+	char* path;
+	char path_buffer[255];
 
 	/* Set the options, based on command line arguments */
 	init_flags = SDL_INIT_VIDEO;
@@ -271,8 +277,20 @@ int main(int argc, char *argv[])
 		return(1);
 	}
 
+#ifdef __MACOSX__
+	path_buffer[0] = 0;
+	CFStringRef name = CFSTR("icon");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	CFStringGetCString(url_path, &path_buffer[0], sizeof(path_buffer), kCFStringEncodingUTF8);
+	path = &path_buffer[0];
+#else
+	path = "icon.bmp";		/* Sample image */
+#endif
+
 	/* Set the icon -- this must be done before the first mode set */
-	icon = LoadIconSurface("icon.bmp", &icon_mask);
+	icon = LoadIconSurface(path, &icon_mask);
 	if ( icon != NULL ) {
 		SDL_WM_SetIcon(icon, icon_mask);
 	}

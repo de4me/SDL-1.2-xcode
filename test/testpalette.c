@@ -147,6 +147,7 @@ int main(int argc, char **argv)
     int gamma_fade = 0;
     int gamma_ramp = 0;
 	char* path;
+	char buffer[255];
 
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	sdlerr("initialising SDL");
@@ -181,11 +182,13 @@ int main(int argc, char **argv)
     if (vidflags & SDL_FULLSCREEN) SDL_ShowCursor (SDL_FALSE);
 
 #ifdef __MACOSX__
+	buffer[0] = 0;
 	CFStringRef name = CFSTR("sail");
 	CFStringRef extension = CFSTR("bmp");
 	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
 	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-	path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+	CFStringGetCString(url_path, &buffer[0], sizeof(buffer), kCFStringEncodingUTF8);
+	path = &buffer[0];
 #else
 	path = "sail.bmp";
 #endif

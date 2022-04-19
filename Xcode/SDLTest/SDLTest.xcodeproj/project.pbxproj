@@ -83,7 +83,6 @@
 		002F33C009CA188600EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F33C109CA188600EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F33CF09CA19A600EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
-		002F33D209CA19A600EBEB88 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
 		002F33D409CA19A600EBEB88 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F33A709CA188600EBEB88 /* Cocoa.framework */; };
 		002F33E309CA1A0B00EBEB88 /* testdyngl.c in Sources */ = {isa = PBXBuildFile; fileRef = 002F33E209CA1A0B00EBEB88 /* testdyngl.c */; };
 		002F340609CA1BFF00EBEB88 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
@@ -128,7 +127,6 @@
 		BDA801FF271D3B6500CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BDA80201271D3B6900CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		BDA80202271D3B6900CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BDA80204271D3B6D00CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		BDA80205271D3B6D00CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BDA80207271D3B7100CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		BDA80208271D3B7100CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -176,6 +174,8 @@
 		BDA80247271D3BC000CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BDA80249271D3BC900CCA1E9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
 		BDA8024A271D3BC900CCA1E9 /* SDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BDC884E5280CBA4200DFF126 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003FA643093FFD41000C53B3 /* SDL.framework */; };
+		BDC884E6280CBA8B00DFF126 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
 		BEC566AF0761D90300A33029 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
 		BEC566B10761D90300A33029 /* checkkeys.c in Sources */ = {isa = PBXBuildFile; fileRef = 092D6D10FFB30A2C7F000001 /* checkkeys.c */; };
 		BEC566BC0761D90300A33029 /* SDLMain.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECDF3D0086C5EA7F000001 /* SDLMain.nib */; };
@@ -250,6 +250,8 @@
 		BEC568780761D90600A33029 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
 		BEC568790761D90600A33029 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
 		BEC5687A0761D90600A33029 /* libsdlmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC567FF0761D90600A33029 /* libsdlmain.a */; };
+		D678366C280D830400676AD8 /* icon.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 00794E5D09D20839003FC8A1 /* icon.bmp */; };
+		D67E7924280D7A0800BA6FAA /* sample.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 00794E6109D20839003FC8A1 /* sample.bmp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,13 +263,6 @@
 			remoteInfo = "libsdlmain.a (Upgraded)";
 		};
 		002F338809CA16BF00EBEB88 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BEC567F70761D90600A33029;
-			remoteInfo = "libsdlmain.a (Upgraded)";
-		};
-		002F33CC09CA19A600EBEB88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
@@ -721,6 +716,223 @@
 			proxyType = 1;
 			remoteGlobalIDString = BEC567F70761D90600A33029;
 			remoteInfo = "libsdlmain.a (Upgraded)";
+		};
+		D67835E5280D7E8B00676AD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D678362A280D802900676AD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D6783643280D812700676AD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D6783689280D83B200676AD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E769B280D4A7800BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E76A6280D4AD300BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEC567F70761D90600A33029;
+			remoteInfo = "libsdlmain.a (Upgraded)";
+		};
+		D67E76C7280D4C1100BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E76D6280D4CBC00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E76DD280D4F1E00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7732280D58DC00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7747280D59FE00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7759280D5B1900BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7792280D5F2000BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E77A3280D629300BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E77B4280D630200BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E77C0280D638B00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E77D5280D648700BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E77DF280D655900BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E77F4280D661C00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7805280D67ED00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7812280D684400BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E781C280D69FE00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E782A280D6A9A00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E783C280D6B0600BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E784A280D6B4B00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E784F280D6B7E00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E788B280D6E5800BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7894280D6E9900BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E78EF280D77AC00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E7902280D785B00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
+		};
+		D67E790A280D78CA00BA6FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003FA63A093FFD41000C53B3 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BECDF5FE0761BA81005FE872;
+			remoteInfo = Framework;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1282,8 +1494,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDA80204271D3B6D00CCA1E9 /* SDL.framework in Frameworks */,
-				002F33D209CA19A600EBEB88 /* libsdlmain.a in Frameworks */,
+				BDC884E6280CBA8B00DFF126 /* libsdlmain.a in Frameworks */,
+				BDC884E5280CBA4200DFF126 /* SDL.framework in Frameworks */,
 				002F33D409CA19A600EBEB88 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1626,6 +1838,7 @@
 				002F33A209CA183B00EBEB88 /* Linked Frameworks */,
 				00794E4609D207B4003FC8A1 /* Resources */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
+				BDC884E4280CBA4200DFF126 /* Frameworks */,
 			);
 			comments = "I made these tests link against our \"default\" framework which includes X11 stuff. If you didn't install the X11 headers with Xcode, you might have problems building the SDL.framework (which is a dependency). You can swap the dependencies around to get around this, or you can modify the default SDL.framework target to not include X11 stuff. (Go into its target build options and remove all the Preprocessor macros.)\n\n\n\nWe are sort of in a half-way state at the moment. Going \"all-the-way\" means we copy the SDL.framework inside the app bundle so we can run the test without the step of the user \"installing\" the framework. But there is an oversight/bug in Xcode that doesn't correctly find the location of the framework when in an embedded/nested Xcode project. We could probably try to hack this with a shell script that checks multiple directories for existence, but this is messier and more work than I prefer, so I rather just wait for Apple to fix this. In the meantime...\n\nThe \"All\" target will build the SDL framework from the Xcode project. The other targets do not have this dependency set (for flexibility reasons in case we make changes). If you have not built the framework, you will probably be unable to link. You will either need to build the framework, or you need to add \"-framework SDL\" to the link options and make sure you have the SDL.framework installed somewhere where it can be seen (like /Library/Frameworks...I think we already set this one up.) \n\nTo run though, you should have a copy of the SDL.framework in /Library/Frameworks or ~/Library/Frameworks.\n\n\n\n\ntestgl and testdyngl need -DHAVE_OPENGL\ntestgl needs to link against OpenGL.framework\n\n";
 			name = SDLTest;
@@ -1706,6 +1919,13 @@
 				002F346A09CA204F00EBEB88 /* testplatform.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BDC884E4280CBA4200DFF126 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1976,6 +2196,7 @@
 			);
 			dependencies = (
 				002F338709CA16BF00EBEB88 /* PBXTargetDependency */,
+				D67E775A280D5B1900BA6FAA /* PBXTargetDependency */,
 			);
 			name = testblitspeed;
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -1996,7 +2217,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				002F33CB09CA19A600EBEB88 /* PBXTargetDependency */,
+				D67E769C280D4A7800BA6FAA /* PBXTargetDependency */,
+				D67E76A7280D4AD300BA6FAA /* PBXTargetDependency */,
 			);
 			name = testdyngl;
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2018,6 +2240,7 @@
 			);
 			dependencies = (
 				002F340209CA1BFF00EBEB88 /* PBXTargetDependency */,
+				D67E77B5280D630200BA6FAA /* PBXTargetDependency */,
 			);
 			name = testfile;
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2040,6 +2263,7 @@
 			);
 			dependencies = (
 				002F342109CA1F0300EBEB88 /* PBXTargetDependency */,
+				D67E77E0280D655900BA6FAA /* PBXTargetDependency */,
 			);
 			name = testiconv;
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2062,6 +2286,7 @@
 			);
 			dependencies = (
 				002F343D09CA1FB300EBEB88 /* PBXTargetDependency */,
+				D67E782B280D6A9A00BA6FAA /* PBXTargetDependency */,
 			);
 			name = testoverlay2;
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2083,6 +2308,7 @@
 			);
 			dependencies = (
 				002F345A09CA204F00EBEB88 /* PBXTargetDependency */,
+				D67E784B280D6B4B00BA6FAA /* PBXTargetDependency */,
 			);
 			name = testplatform;
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2104,6 +2330,7 @@
 			);
 			dependencies = (
 				BEC568310761D90600A33029 /* PBXTargetDependency */,
+				D67E76C8280D4C1100BA6FAA /* PBXTargetDependency */,
 			);
 			name = "checkkeys (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2125,6 +2352,7 @@
 			);
 			dependencies = (
 				BEC568330761D90600A33029 /* PBXTargetDependency */,
+				D67E76D7280D4CBC00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "graywin (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2147,6 +2375,7 @@
 			);
 			dependencies = (
 				BEC568350761D90600A33029 /* PBXTargetDependency */,
+				D67E76DE280D4F1E00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "loopwave (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2169,6 +2398,7 @@
 			);
 			dependencies = (
 				BEC568370761D90600A33029 /* PBXTargetDependency */,
+				D67E7733280D58DC00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testalpha (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2190,6 +2420,7 @@
 			);
 			dependencies = (
 				BEC568390761D90600A33029 /* PBXTargetDependency */,
+				D67E7748280D59FE00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testbitmap (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2211,6 +2442,7 @@
 			);
 			dependencies = (
 				BEC5683B0761D90600A33029 /* PBXTargetDependency */,
+				D67E7793280D5F2000BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testcdrom (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2232,6 +2464,7 @@
 			);
 			dependencies = (
 				BEC5683D0761D90600A33029 /* PBXTargetDependency */,
+				D67E77A4280D629300BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testerror (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2254,6 +2487,7 @@
 			);
 			dependencies = (
 				BEC5683F0761D90600A33029 /* PBXTargetDependency */,
+				D67E77C1280D638B00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testgamma (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2275,6 +2509,7 @@
 			);
 			dependencies = (
 				BEC568410761D90600A33029 /* PBXTargetDependency */,
+				D67E77D6280D648700BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testgl (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2296,6 +2531,7 @@
 			);
 			dependencies = (
 				BEC568430761D90600A33029 /* PBXTargetDependency */,
+				D67E7895280D6E9900BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testthread (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2317,6 +2553,7 @@
 			);
 			dependencies = (
 				BEC568450761D90600A33029 /* PBXTargetDependency */,
+				D67E77F5280D661C00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testjoystick (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2338,6 +2575,7 @@
 			);
 			dependencies = (
 				BEC568470761D90600A33029 /* PBXTargetDependency */,
+				D67E7806280D67ED00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testkeys (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2359,6 +2597,7 @@
 			);
 			dependencies = (
 				BEC568490761D90600A33029 /* PBXTargetDependency */,
+				D67E7813280D684400BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testlock (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2381,6 +2620,7 @@
 			);
 			dependencies = (
 				BEC5684B0761D90600A33029 /* PBXTargetDependency */,
+				D67E781D280D69FE00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testoverlay (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2403,6 +2643,7 @@
 			);
 			dependencies = (
 				BEC5684D0761D90600A33029 /* PBXTargetDependency */,
+				D67E783D280D6B0600BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testpalette (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2424,6 +2665,7 @@
 			);
 			dependencies = (
 				BEC5684F0761D90600A33029 /* PBXTargetDependency */,
+				D67E7850280D6B7E00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testsem (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2446,6 +2688,7 @@
 			);
 			dependencies = (
 				BEC568510761D90600A33029 /* PBXTargetDependency */,
+				D67E788C280D6E5800BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testsprite (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2467,6 +2710,7 @@
 			);
 			dependencies = (
 				BEC568530761D90600A33029 /* PBXTargetDependency */,
+				D67E78F0280D77AC00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testtimer (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2488,6 +2732,7 @@
 			);
 			dependencies = (
 				BEC568570761D90600A33029 /* PBXTargetDependency */,
+				D67E7903280D785B00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testversion (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2509,6 +2754,7 @@
 			);
 			dependencies = (
 				BEC568590761D90600A33029 /* PBXTargetDependency */,
+				D67E790B280D78CA00BA6FAA /* PBXTargetDependency */,
 			);
 			name = "testvidinfo (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2531,6 +2777,7 @@
 			);
 			dependencies = (
 				BEC5685B0761D90600A33029 /* PBXTargetDependency */,
+				D67835E6280D7E8B00676AD8 /* PBXTargetDependency */,
 			);
 			name = "testwin (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2553,6 +2800,7 @@
 			);
 			dependencies = (
 				BEC5685D0761D90600A33029 /* PBXTargetDependency */,
+				D678362B280D802900676AD8 /* PBXTargetDependency */,
 			);
 			name = "testwm (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2574,6 +2822,7 @@
 			);
 			dependencies = (
 				BEC5685F0761D90600A33029 /* PBXTargetDependency */,
+				D6783644280D812700676AD8 /* PBXTargetDependency */,
 			);
 			name = "threadwin (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2595,6 +2844,7 @@
 			);
 			dependencies = (
 				BEC568610761D90600A33029 /* PBXTargetDependency */,
+				D678368A280D83B200676AD8 /* PBXTargetDependency */,
 			);
 			name = "torturethread (Upgraded)";
 			productInstallPath = "$(USER_APPS_DIR)";
@@ -2630,10 +2880,11 @@
 				LastUpgradeCheck = 1330;
 			};
 			buildConfigurationList = 001B5A0C08BDB826006539E9 /* Build configuration list for PBXProject "SDLTest" */;
-			compatibilityVersion = "Xcode 2.4";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				en,
 				English,
 				Japanese,
 				French,
@@ -2937,6 +3188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEC567B80761D90500A33029 /* SDLMain.nib in Resources */,
+				D67E7924280D7A0800BA6FAA /* sample.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2961,6 +3213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEC567E10761D90600A33029 /* SDLMain.nib in Resources */,
+				D678366C280D830400676AD8 /* icon.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3252,11 +3505,6 @@
 			isa = PBXTargetDependency;
 			target = BEC567F70761D90600A33029 /* libsdlmain.a (Upgraded) */;
 			targetProxy = 002F338809CA16BF00EBEB88 /* PBXContainerItemProxy */;
-		};
-		002F33CB09CA19A600EBEB88 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BEC567F70761D90600A33029 /* libsdlmain.a (Upgraded) */;
-			targetProxy = 002F33CC09CA19A600EBEB88 /* PBXContainerItemProxy */;
 		};
 		002F340209CA1BFF00EBEB88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3553,6 +3801,161 @@
 			target = BEC567F70761D90600A33029 /* libsdlmain.a (Upgraded) */;
 			targetProxy = BEC568600761D90600A33029 /* PBXContainerItemProxy */;
 		};
+		D67835E6280D7E8B00676AD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67835E5280D7E8B00676AD8 /* PBXContainerItemProxy */;
+		};
+		D678362B280D802900676AD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D678362A280D802900676AD8 /* PBXContainerItemProxy */;
+		};
+		D6783644280D812700676AD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D6783643280D812700676AD8 /* PBXContainerItemProxy */;
+		};
+		D678368A280D83B200676AD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D6783689280D83B200676AD8 /* PBXContainerItemProxy */;
+		};
+		D67E769C280D4A7800BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E769B280D4A7800BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E76A7280D4AD300BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEC567F70761D90600A33029 /* libsdlmain.a (Upgraded) */;
+			targetProxy = D67E76A6280D4AD300BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E76C8280D4C1100BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E76C7280D4C1100BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E76D7280D4CBC00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E76D6280D4CBC00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E76DE280D4F1E00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E76DD280D4F1E00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7733280D58DC00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7732280D58DC00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7748280D59FE00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7747280D59FE00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E775A280D5B1900BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7759280D5B1900BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7793280D5F2000BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7792280D5F2000BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E77A4280D629300BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E77A3280D629300BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E77B5280D630200BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E77B4280D630200BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E77C1280D638B00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E77C0280D638B00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E77D6280D648700BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E77D5280D648700BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E77E0280D655900BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E77DF280D655900BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E77F5280D661C00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E77F4280D661C00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7806280D67ED00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7805280D67ED00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7813280D684400BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7812280D684400BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E781D280D69FE00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E781C280D69FE00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E782B280D6A9A00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E782A280D6A9A00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E783D280D6B0600BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E783C280D6B0600BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E784B280D6B4B00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E784A280D6B4B00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7850280D6B7E00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E784F280D6B7E00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E788C280D6E5800BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E788B280D6E5800BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7895280D6E9900BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7894280D6E9900BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E78F0280D77AC00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E78EF280D77AC00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E7903280D785B00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E7902280D785B00BA6FAA /* PBXContainerItemProxy */;
+		};
+		D67E790B280D78CA00BA6FAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Framework;
+			targetProxy = D67E790A280D78CA00BA6FAA /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -3583,13 +3986,9 @@
 		001B593908BDB826006539E9 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Info-checkkeys__Upgraded_.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = checkkeys;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Deployment;
@@ -3597,13 +3996,9 @@
 		001B593A08BDB826006539E9 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Info-checkkeys__Upgraded_.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = checkkeys;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Development;
@@ -3611,13 +4006,9 @@
 		001B593B08BDB826006539E9 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Info-checkkeys__Upgraded_.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = checkkeys;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Default;
@@ -4384,18 +4775,13 @@
 					"$(HOME)/Library/Frameworks",
 					/Library/Frameworks,
 				);
-				GCC_VERSION_i386 = 4.0;
-				GCC_VERSION_ppc = 4.0;
-				GCC_VERSION_x86_64 = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../../include,
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
-				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
+				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
@@ -4412,19 +4798,14 @@
 					/Library/Frameworks,
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION_i386 = 4.0;
-				GCC_VERSION_ppc = 4.0;
-				GCC_VERSION_x86_64 = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../../include,
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
-				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
@@ -4440,18 +4821,13 @@
 					"$(HOME)/Library/Frameworks",
 					/Library/Frameworks,
 				);
-				GCC_VERSION_i386 = 4.0;
-				GCC_VERSION_ppc = 4.0;
-				GCC_VERSION_x86_64 = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../../include,
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.9;
-				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
-				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.9;
+				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
 			};
@@ -4690,7 +5066,7 @@
 				001B593708BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B593808BDB826006539E9 /* Build configuration list for PBXNativeTarget "checkkeys (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4700,7 +5076,7 @@
 				001B593B08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B593C08BDB826006539E9 /* Build configuration list for PBXNativeTarget "graywin (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4710,7 +5086,7 @@
 				001B593F08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B594008BDB826006539E9 /* Build configuration list for PBXNativeTarget "loopwave (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4720,7 +5096,7 @@
 				001B594308BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B594408BDB826006539E9 /* Build configuration list for PBXNativeTarget "testalpha (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4730,7 +5106,7 @@
 				001B594708BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B594808BDB826006539E9 /* Build configuration list for PBXNativeTarget "testbitmap (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4740,7 +5116,7 @@
 				001B594B08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B594C08BDB826006539E9 /* Build configuration list for PBXNativeTarget "testcdrom (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4750,7 +5126,7 @@
 				001B594F08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B595008BDB826006539E9 /* Build configuration list for PBXNativeTarget "testerror (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4760,7 +5136,7 @@
 				001B595308BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B595408BDB826006539E9 /* Build configuration list for PBXNativeTarget "testgamma (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4770,7 +5146,7 @@
 				001B595708BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B595808BDB826006539E9 /* Build configuration list for PBXNativeTarget "testgl (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4780,7 +5156,7 @@
 				001B595B08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B595C08BDB826006539E9 /* Build configuration list for PBXNativeTarget "testthread (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4790,7 +5166,7 @@
 				001B595F08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B596008BDB826006539E9 /* Build configuration list for PBXNativeTarget "testjoystick (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4800,7 +5176,7 @@
 				001B596308BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B596408BDB826006539E9 /* Build configuration list for PBXNativeTarget "testkeys (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4810,7 +5186,7 @@
 				001B596708BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B596808BDB826006539E9 /* Build configuration list for PBXNativeTarget "testlock (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4820,7 +5196,7 @@
 				001B596B08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B596C08BDB826006539E9 /* Build configuration list for PBXNativeTarget "testpalette (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4830,7 +5206,7 @@
 				001B596F08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B597008BDB826006539E9 /* Build configuration list for PBXNativeTarget "testsem (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4840,7 +5216,7 @@
 				001B597308BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B597408BDB826006539E9 /* Build configuration list for PBXNativeTarget "testsprite (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4850,7 +5226,7 @@
 				001B597708BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B597808BDB826006539E9 /* Build configuration list for PBXNativeTarget "testtimer (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4860,7 +5236,7 @@
 				001B597B08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B598008BDB826006539E9 /* Build configuration list for PBXNativeTarget "testversion (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4870,7 +5246,7 @@
 				001B598308BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B598408BDB826006539E9 /* Build configuration list for PBXNativeTarget "testvidinfo (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4880,7 +5256,7 @@
 				001B598708BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B598808BDB826006539E9 /* Build configuration list for PBXNativeTarget "testwin (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4890,7 +5266,7 @@
 				001B598B08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B598C08BDB826006539E9 /* Build configuration list for PBXNativeTarget "testwm (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4900,7 +5276,7 @@
 				001B598F08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B599008BDB826006539E9 /* Build configuration list for PBXNativeTarget "threadwin (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4910,7 +5286,7 @@
 				001B599308BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B599408BDB826006539E9 /* Build configuration list for PBXNativeTarget "torturethread (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4920,7 +5296,7 @@
 				001B599708BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B599808BDB826006539E9 /* Build configuration list for PBXAggregateTarget "All" */ = {
 			isa = XCConfigurationList;
@@ -4930,7 +5306,7 @@
 				001B599B08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B599C08BDB826006539E9 /* Build configuration list for PBXNativeTarget "testoverlay (Upgraded)" */ = {
 			isa = XCConfigurationList;
@@ -4940,7 +5316,7 @@
 				001B599F08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		001B5A0C08BDB826006539E9 /* Build configuration list for PBXProject "SDLTest" */ = {
 			isa = XCConfigurationList;
@@ -4950,7 +5326,7 @@
 				001B5A0F08BDB826006539E9 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		002F337D09CA14F900EBEB88 /* Build configuration list for PBXNativeTarget "test" */ = {
 			isa = XCConfigurationList;
@@ -4960,7 +5336,7 @@
 				002F338009CA14F900EBEB88 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		002F339309CA16BF00EBEB88 /* Build configuration list for PBXNativeTarget "testblitspeed" */ = {
 			isa = XCConfigurationList;
@@ -4970,7 +5346,7 @@
 				002F339609CA16BF00EBEB88 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		002F33D709CA19A600EBEB88 /* Build configuration list for PBXNativeTarget "testdyngl" */ = {
 			isa = XCConfigurationList;
@@ -4980,7 +5356,7 @@
 				002F33DA09CA19A600EBEB88 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		002F340E09CA1BFF00EBEB88 /* Build configuration list for PBXNativeTarget "testfile" */ = {
 			isa = XCConfigurationList;
@@ -4990,7 +5366,7 @@
 				002F341109CA1BFF00EBEB88 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		002F342D09CA1F0300EBEB88 /* Build configuration list for PBXNativeTarget "testiconv" */ = {
 			isa = XCConfigurationList;
@@ -5000,7 +5376,7 @@
 				002F343009CA1F0300EBEB88 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		002F344909CA1FB300EBEB88 /* Build configuration list for PBXNativeTarget "testoverlay2" */ = {
 			isa = XCConfigurationList;
@@ -5010,7 +5386,7 @@
 				002F344C09CA1FB300EBEB88 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 		002F346609CA204F00EBEB88 /* Build configuration list for PBXNativeTarget "testplatform" */ = {
 			isa = XCConfigurationList;
@@ -5020,7 +5396,7 @@
 				002F346909CA204F00EBEB88 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Deployment;
 		};
 /* End XCConfigurationList section */
 	};

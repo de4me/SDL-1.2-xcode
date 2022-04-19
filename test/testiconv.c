@@ -40,14 +40,17 @@ int main(int argc, char *argv[])
 	FILE *file;
 	int errors = 0;
 	char* path;
+	char path_buffer[255];
 
 	if ( argv[1] == NULL ) {
 #ifdef __MACOSX__
+		path_buffer[0] = 0;
 		CFStringRef name = CFSTR("utf8");
 		CFStringRef extension = CFSTR("txt");
 		CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
 		CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-		path = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+		CFStringGetCString(url_path, &path_buffer[0], sizeof(path_buffer), kCFStringEncodingUTF8);
+		path = &path_buffer[0];
 #else
 		path = "utf8.txt";
 #endif

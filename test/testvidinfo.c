@@ -8,6 +8,10 @@
 
 #include "SDL.h"
 
+#ifdef __MACOSX__
+#include <Carbon/Carbon.h>
+#endif
+
 #define NUM_BLITS	10
 #define NUM_UPDATES	500
 
@@ -83,6 +87,8 @@ int RunModeTests(SDL_Surface *screen)
 	Uint8 r, g, b;
 	SDL_Surface *bmp, *bmpcc, *tmp;
 	SDL_Event event;
+	char* path;
+	char buffer[255];
 
 	while ( SDL_PollEvent(&event) ) {
 		if ( event.type == SDL_KEYDOWN )
@@ -134,8 +140,20 @@ int RunModeTests(SDL_Surface *screen)
 			return 0;
 	}
 
+#ifdef __MACOSX__
+	buffer[0] = 0;
+	CFStringRef name = CFSTR("sample");
+	CFStringRef extension = CFSTR("bmp");
+	CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
+	CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+	CFStringGetCString(url_path, &buffer[0], sizeof(buffer), kCFStringEncodingUTF8);
+	path = &buffer[0];
+#else
+	path = "sample.bmp";
+#endif
+
         /* run the generic blit test */
-	bmp = SDL_LoadBMP("sample.bmp");
+	bmp = SDL_LoadBMP(path);
 	if ( ! bmp ) {
 		printf("Couldn't load sample.bmp: %s\n", SDL_GetError());
 		return 0;
@@ -164,7 +182,7 @@ int RunModeTests(SDL_Surface *screen)
 	}
 
         /* run the colorkeyed blit test */
-	bmpcc = SDL_LoadBMP("sample.bmp");
+	bmpcc = SDL_LoadBMP(path);
 	if ( ! bmpcc ) {
 		printf("Couldn't load sample.bmp: %s\n", SDL_GetError());
 		return 0;
@@ -260,7 +278,7 @@ int RunModeTests(SDL_Surface *screen)
         if (bmp->format->BitsPerPixel>8)
         {
 		SDL_FreeSurface(bmp);
-                bmp = SDL_LoadBMP("sample.bmp");
+                bmp = SDL_LoadBMP(path);
 		SDL_SetAlpha(bmp, SDL_SRCALPHA, 85); /* 85 - 33% alpha */
 		tmp = bmp;
 		bmp = SDL_DisplayFormat(bmp);
@@ -297,7 +315,7 @@ int RunModeTests(SDL_Surface *screen)
         if (bmp->format->BitsPerPixel>8)
         {
 		SDL_FreeSurface(bmpcc);
-                bmpcc = SDL_LoadBMP("sample.bmp");
+                bmpcc = SDL_LoadBMP(path);
 		SDL_SetAlpha(bmpcc, SDL_SRCALPHA, 85); /* 85 - 33% alpha */
                 SDL_SetColorKey(bmpcc, SDL_SRCCOLORKEY | SDL_RLEACCEL, *(Uint8 *)bmpcc->pixels);
 		tmp = bmpcc;

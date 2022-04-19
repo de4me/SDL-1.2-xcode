@@ -30,15 +30,18 @@ void DrawPict(SDL_Surface *screen, char *bmpfile,
 	int i, centered;
 	int ncolors;
 	SDL_Color *colors, *cmap;
+	char buffer[255];
 
 	/* Load the image into a surface */
 	if ( bmpfile == NULL ) {
 #ifdef __MACOSX__
+		buffer[0] = 0;
 		CFStringRef name = CFSTR("sample");
 		CFStringRef extension = CFSTR("bmp");
 		CFURLRef url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), name, extension, NULL);
 		CFStringRef url_path = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-		bmpfile = (char*) CFStringGetCStringPtr(url_path, kCFStringEncodingUTF8);
+		CFStringGetCString(url_path, &buffer[0], sizeof(buffer), kCFStringEncodingUTF8);
+		bmpfile = &buffer[0];
 #else
 		bmpfile = "sample.bmp";		/* Sample image */
 #endif

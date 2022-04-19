@@ -83,6 +83,13 @@
 /* use this to get the CGLContext; it handles Cocoa interface changes. */
 CGLContextObj QZ_GetCGLContextObj(NSOpenGLContext *nsctx);
 
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1070)
+  #if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
+  typedef CFTypeRef QZ_DirectPaletteRef;
+  #endif
+#else
+  typedef CGDirectPaletteRef QZ_DirectPaletteRef;
+#endif
 
 /* Main driver structure to store required state information */
 typedef struct SDL_PrivateVideoData {
@@ -92,7 +99,7 @@ typedef struct SDL_PrivateVideoData {
     const void         *mode;              /* current mode of the display */
     const void         *save_mode;         /* original mode of the display */
 #if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
-    CGDirectPaletteRef palette;            /* palette of an 8-bit display */
+	QZ_DirectPaletteRef palette;            /* palette of an 8-bit display */
 #endif
     NSOpenGLContext    *gl_context;        /* OpenGL rendering context */
     NSGraphicsContext  *nsgfx_context;     /* Cocoa graphics context */
