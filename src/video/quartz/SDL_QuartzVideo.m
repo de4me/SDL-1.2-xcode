@@ -1899,6 +1899,8 @@ CGDisplayModeRef QZ_BestDisplayMode(_THIS, const int bpp, const int w, const int
 					continue;
 				if ((curw < thisw) || (curh < thish) || (cur_refresh_rate > this_refresh_rate))
 					continue;
+				if (!CGDisplayModeIsUsableForDesktopGUI(this_mode))
+					continue;
 				result = this_mode;
 				curw = thisw;
 				curh = thish;
