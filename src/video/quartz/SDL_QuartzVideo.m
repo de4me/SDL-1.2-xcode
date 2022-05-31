@@ -1596,8 +1596,13 @@ void QZ_UpdateRectsOnDrawRect (/*TODO: NSRect from drawRect*/)
         QZ_DrawResizeIcon (this);
         CGContextFlush (cg_context);
         CGImageRef image = CGBitmapContextCreateImage (cg_context);
-		CGRect rectangle = NSRectToCGRect(window_view.frame);
-
+		CGRect rectangle;
+		NSRect rect = window_view.frame;
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1050)
+		rectangle = NSRectToCGRect(rect);
+#else
+		rectangle = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+#endif
         CGContextDrawImage (cgc, rectangle, image);
         CGImageRelease(image);
         CGContextFlush (cgc);
