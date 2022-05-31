@@ -194,7 +194,11 @@ static void QZ_SetPortAlphaOpaque () {
     [ [ NSNotificationCenter defaultCenter ] addObserver:self
         selector:@selector(appWillUnhide:) name:NSApplicationWillUnhideNotification object:NSApp ];
         
-    return [ super initWithContentRect:contentRect styleMask:styleMask backing:backingType defer:flag ];
+	if (self = [super initWithContentRect:contentRect styleMask:styleMask backing:backingType defer:flag]) {
+		self.backgroundColor = [NSColor blackColor];
+	}
+	
+	return self;
 }
 
 @end
