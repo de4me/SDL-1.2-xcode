@@ -694,8 +694,6 @@ static SDL_Surface* QZ_SetVideoFullScreen (_THIS, SDL_Surface *current, int widt
     current->w = width;
     current->h = height;
 
-    contentRect = NSMakeRect (0, 0, width, height);
-	
 	/* Sorry, QuickDraw was ripped out. */
 	if (getenv("SDL_NSWindowPointer") || getenv("SDL_NSQuickDrawViewPointer")) {
 		SDL_SetError ("Embedded QuickDraw windows are no longer supported");
@@ -756,6 +754,8 @@ SKIP_CHANGE_MODE:
 #else
 	screen_rect = NSMakeRect(rect_cg.origin.x, rect_cg.origin.y, rect_cg.size.width, rect_cg.size.height);
 #endif
+	
+	contentRect = NSMakeRect((screen_rect.size.width - width) / 2, (screen_rect.size.height - height) / 2, width, height);
 
 #if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
     if ( !isLion ) {
@@ -1596,7 +1596,7 @@ void QZ_UpdateRectsOnDrawRect (/*TODO: NSRect from drawRect*/)
         QZ_DrawResizeIcon (this);
         CGContextFlush (cg_context);
         CGImageRef image = CGBitmapContextCreateImage (cg_context);
-        CGRect rectangle = CGRectMake (0,0,[window_view frame].size.width,[window_view frame].size.height);
+		CGRect rectangle = NSRectToCGRect(window_view.frame);
 
         CGContextDrawImage (cgc, rectangle, image);
         CGImageRelease(image);
