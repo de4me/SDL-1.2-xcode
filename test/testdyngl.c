@@ -178,9 +178,9 @@ do_change_fullscreen:
 
 	for(i=0;i<NB_PIXELS;i++)
 	{
-		pixels[3*i]=rand()%250-125;
-		pixels[3*i+1]=rand()%250-125;
-		pixels[3*i+2]=rand()%250-125;
+		pixels[3*i]=(GLfloat) (rand()%250-125);
+		pixels[3*i+1]=(GLfloat) (rand()%250-125);
+		pixels[3*i+2]=(GLfloat) (rand()%250-125);
 	}
 	
 #if defined(__APPLE__)
@@ -210,7 +210,7 @@ do_change_fullscreen:
 	f.glEnable(GL_FOG);
 	f.glFogf(GL_FOG_START,-500);
 	f.glFogf(GL_FOG_END,500);
-	f.glFogf(GL_FOG_DENSITY,0.005);
+	f.glFogf(GL_FOG_DENSITY,0.005f);
 	
 	do
 	{

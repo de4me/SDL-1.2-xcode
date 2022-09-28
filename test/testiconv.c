@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
 		"UCS4",
 		"UCS-4",
 	};
+
+	const char * fname;
 	char buffer[BUFSIZ];
 	char *ucs4;
 	char *test[2];
@@ -87,5 +89,7 @@ int main(int argc, char *argv[])
 		fputs(test[0], stdout);
 		SDL_free(test[0]);
 	}
+
+	fprintf(stderr, "\nTotal errors: %d\n", errors);
 	return (errors ? errors + 1 : 0);
 }
