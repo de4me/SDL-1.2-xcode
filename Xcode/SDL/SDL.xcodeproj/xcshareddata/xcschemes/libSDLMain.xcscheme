@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BECDF5FE0761BA81005FE872"
-               BuildableName = "SDL.framework"
-               BlueprintName = "Framework"
+               BlueprintIdentifier = "BECDF6B40761BA81005FE872"
+               BuildableName = "libSDLMain.a"
+               BlueprintName = "libSDLMain"
                ReferencedContainer = "container:SDL.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BECDF5FE0761BA81005FE872"
-            BuildableName = "SDL.framework"
-            BlueprintName = "Framework"
+            BlueprintIdentifier = "BECDF6B40761BA81005FE872"
+            BuildableName = "libSDLMain.a"
+            BlueprintName = "libSDLMain"
             ReferencedContainer = "container:SDL.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

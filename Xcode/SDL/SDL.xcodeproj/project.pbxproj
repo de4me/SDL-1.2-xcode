@@ -509,7 +509,7 @@
 		BECDF66B0761BA81005FE872 /* Info-Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Framework.plist"; sourceTree = "<group>"; };
 		BECDF66C0761BA81005FE872 /* SDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECDF6B30761BA81005FE872 /* libSDL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDL.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BECDF6BA0761BA81005FE872 /* libSDLmain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDLmain.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BECDF6BA0761BA81005FE872 /* libSDLMain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDLMain.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECDF6BE0761BA81005FE872 /* Standard DMG */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Standard DMG"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECDF6C30761BA81005FE872 /* Developer Extras Package */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Developer Extras Package"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F51789D101769A2401D3D55B /* SDL_sysjoystick.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = SDL_sysjoystick.c; sourceTree = "<group>"; };
@@ -933,7 +933,7 @@
 				089C1665FE841158C02AAC07 /* Resources */,
 				BECDF66C0761BA81005FE872 /* SDL.framework */,
 				BECDF6B30761BA81005FE872 /* libSDL.a */,
-				BECDF6BA0761BA81005FE872 /* libSDLmain.a */,
+				BECDF6BA0761BA81005FE872 /* libSDLMain.a */,
 				BECDF6BE0761BA81005FE872 /* Standard DMG */,
 				BECDF6C30761BA81005FE872 /* Developer Extras Package */,
 			);
@@ -1285,9 +1285,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BECDF5FE0761BA81005FE872 /* Framework */ = {
+		BECDF5FE0761BA81005FE872 /* SDL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0073177A0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Framework" */;
+			buildConfigurationList = 0073177A0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "SDL" */;
 			buildPhases = (
 				00D55F050A11143E0030ED2A /* Run Script to Create SDL_config.h */,
 				BECDF5FF0761BA81005FE872 /* Headers */,
@@ -1302,15 +1302,15 @@
 			comments = "We recommend installing to /Library/Frameworks\nAn alternative is $(HOME)/Library/Frameworks for per-user if permissions are an issue.\n\nAdd the framework to the Groups & Files panel (under Linked Frameworks is a good place) and enable the check box for the targets that need to link to it. You can also manually add \"-framework SDL\" to your linker flags if you don't like the check box system.\n\nAdd /Library/Frameworks/SDL.framework/Headers to your header search path\nAdd /Library/Frameworks to your library search path\n(Adjust the two above if installed in $(HOME)/Library/Frameworks. You can also list both paths if you want robustness.)\n\nWe used to use an exports file. It was becoming a maintenance issue we kept neglecting, so we have removed it. If you need it back, set the \"Exported Symbols File\" option to:\n../../src/main/macosx/exports/SDL.x\n(You may need to regenerate the exports list. There is a Makefile in that directory that you can run from the command line to rebuild it.)\nLong term, we want to utilize gcc 4.0's new visibility feature (analogous to declspec on Windows). Other platforms would benefit from this change too. The downside is that we still use gcc 3.3 for the PowerPC build here so only our x86 builds will cull the symbols if we go down this route (and don't use the exports file).\n\n";
 			dependencies = (
 			);
-			name = Framework;
+			name = SDL;
 			productInstallPath = "@executable_path/../Frameworks";
 			productName = SDL;
 			productReference = BECDF66C0761BA81005FE872 /* SDL.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BECDF66D0761BA81005FE872 /* Static Library */ = {
+		BECDF66D0761BA81005FE872 /* libSDL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0073177E0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Static Library" */;
+			buildConfigurationList = 0073177E0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "libSDL" */;
 			buildPhases = (
 				00D55F080A11147F0030ED2A /* Run Script to Create SDL_config.h */,
 				BECDF66E0761BA81005FE872 /* Headers */,
@@ -1323,15 +1323,15 @@
 			comments = "This produces libsdl.a, which is the static build of SDL. You will have to link to the Cocoa and OpenGL frameworks in your application.";
 			dependencies = (
 			);
-			name = "Static Library";
+			name = libSDL;
 			productInstallPath = /usr/local/lib;
 			productName = "Static Library";
 			productReference = BECDF6B30761BA81005FE872 /* libSDL.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		BECDF6B40761BA81005FE872 /* Main Library */ = {
+		BECDF6B40761BA81005FE872 /* libSDLMain */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 007317820858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Main Library" */;
+			buildConfigurationList = 007317820858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "libSDLMain" */;
 			buildPhases = (
 				BD2AF4232749802F004E7B17 /* Run Script to Create SDL_config.h */,
 				BECDF6B50761BA81005FE872 /* Headers */,
@@ -1344,10 +1344,10 @@
 			comments = "This produces libSDLmain.a, which contains only SDL_main.m, the hook to get the app running correctly before your SDL code executes.";
 			dependencies = (
 			);
-			name = "Main Library";
+			name = libSDLMain;
 			productInstallPath = /usr/local/lib;
 			productName = libSDLmain.a;
-			productReference = BECDF6BA0761BA81005FE872 /* libSDLmain.a */;
+			productReference = BECDF6BA0761BA81005FE872 /* libSDLMain.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		BECDF6BB0761BA81005FE872 /* Standard DMG */ = {
@@ -1408,9 +1408,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BECDF5FE0761BA81005FE872 /* Framework */,
-				BECDF66D0761BA81005FE872 /* Static Library */,
-				BECDF6B40761BA81005FE872 /* Main Library */,
+				BECDF5FE0761BA81005FE872 /* SDL */,
+				BECDF66D0761BA81005FE872 /* libSDL */,
+				BECDF6B40761BA81005FE872 /* libSDLMain */,
 				BECDF6BB0761BA81005FE872 /* Standard DMG */,
 				BECDF6C00761BA81005FE872 /* Developer Extras Package */,
 				0032354F1070931700C76517 /* Generate Doxygen DocSet */,
@@ -1716,7 +1716,7 @@
 		};
 		BECDF6C60761BA81005FE872 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BECDF5FE0761BA81005FE872 /* Framework */;
+			target = BECDF5FE0761BA81005FE872 /* SDL */;
 			targetProxy = BECDF6C50761BA81005FE872 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1781,7 +1781,7 @@
 				OTHER_CFLAGS_ppc = "";
 				OTHER_LDFLAGS_ppc = "-prebind -seg1addr 0x30000000";
 				PRODUCT_BUNDLE_IDENTIFIER = org.libsdl.SDL;
-				PRODUCT_NAME = SDL;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1791,10 +1791,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
-				PRODUCT_NAME = SDL;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
 			};
 			name = Release;
@@ -1803,8 +1804,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
-				PRODUCT_NAME = SDLmain;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
 			};
 			name = Release;
@@ -1865,7 +1867,7 @@
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.libsdl.SDL;
-				PRODUCT_NAME = SDL;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1875,10 +1877,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
 				OTHER_CFLAGS_i386 = "";
 				OTHER_CFLAGS_ppc = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
-				PRODUCT_NAME = SDL;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
 			};
 			name = Debug;
@@ -1887,8 +1890,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
-				PRODUCT_NAME = SDLmain;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/SDL;
 			};
 			name = Debug;
@@ -1919,7 +1923,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0073177A0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Framework" */ = {
+		0073177A0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "SDL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00CFA628106A568900758660 /* Debug */,
@@ -1928,7 +1932,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0073177E0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Static Library" */ = {
+		0073177E0858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "libSDL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00CFA629106A568900758660 /* Debug */,
@@ -1937,7 +1941,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		007317820858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "Main Library" */ = {
+		007317820858DB0500B2BC32 /* Build configuration list for PBXNativeTarget "libSDLMain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00CFA62A106A568900758660 /* Debug */,
