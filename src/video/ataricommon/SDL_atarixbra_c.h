@@ -22,33 +22,31 @@
 #include "SDL_config.h"
 
 /*
- *	Atari keyboard events manager
+ *	XBRA protocol
  *
- *	Patrice Mandin
+ *	Miro Kropacek
  */
 
-#ifndef _SDL_ATARI_EVENTS_H_
-#define _SDL_ATARI_EVENTS_H_
+#ifndef _SDL_ATARI_XBRA_H_
+#define _SDL_ATARI_XBRA_H_
 
-#include "../SDL_sysvideo.h"
+#include "SDL_stdinc.h"
 
-/* Hidden "this" pointer for the video functions */
-#define _THIS	SDL_VideoDevice *this
+typedef void (*XbraHandler) (void);
 
-#define ATARIBIOS_MAXKEYS 128
+typedef struct xbra
+{
+	Uint32		xbra_id;
+	Uint32		app_id;
+	XbraHandler	oldvec;
+} XBRA;
 
-extern void (*Atari_ShutdownEvents)(void);
+/* Const */
 
-extern void Atari_InitOSKeymap(_THIS);
-extern void Atari_PumpEvents(_THIS);
+#define XBRA_ID	0x58425241UL /* 'XBRA' */
 
-extern void SDL_Atari_InitInternalKeymap(_THIS);
+/* Functions */
 
-extern void SDL_AtariMint_BackgroundTasks(void);
+extern XbraHandler Atari_UnhookXbra(Uint32 vecnum, Uint32 app_id, XbraHandler handler);
 
-/* Atari to Unicode charset translation table */
-extern Uint16 SDL_AtariToUnicodeTable[256];
-SDL_keysym *SDL_Atari_TranslateKey(int scancode, SDL_keysym *keysym,
-	SDL_bool pressed, short kstate);
-
-#endif /* _SDL_ATARI_EVENTS_H_ */
+#endif /* _SDL_ATARI_XBRA_H_ */

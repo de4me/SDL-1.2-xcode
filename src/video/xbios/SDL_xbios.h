@@ -32,6 +32,7 @@
 
 #define XBIOSMODE_DOUBLELINE (1<<0)
 #define XBIOSMODE_C2P (1<<1)
+#define XBIOSMODE_SHADOWCOPY (1<<2)
 
 typedef struct
 {
@@ -46,18 +47,19 @@ typedef struct
 #define NUM_MODELISTS	4		/* 8, 16, 24, and 32 bits-per-pixel */
 
 struct SDL_PrivateVideoData {
-	long old_video_mode;				/* Old video mode before entering SDL */
-	void *old_video_base;			/* Old pointer to screen buffer */
-	void *old_palette;				/* Old palette */
-	Uint32 old_num_colors;			/* Nb of colors in saved palette */
+	long old_video_mode;		/* Old video mode before entering SDL */
+	void *old_video_base;		/* Old pointer to screen buffer */
+	void *old_palette;		/* Old palette */
+	Uint32 old_num_colors;		/* Nb of colors in saved palette */
 
 	void *screens[2];		/* Pointers to aligned screen buffer */
-	void *screensmem[2];	/* Pointers to screen buffer */
-	void *shadowscreen;		/* Shadow screen for c2p conversion */
+	void *screensmem[2];		/* Pointers to screen buffer */
+	void *shadowscreen;		/* Pointer to aligned shadow screen buffer */
+	void *shadowscreenmem;		/* Pointers to shadow screen buffer */
 	int frame_number;		/* Number of frame for double buffer */
-	int pitch;				/* Destination line width for C2P */
+	int pitch;			/* Destination line width for C2P */
 
-	xbiosmode_t *current;	/* Current set mode */
+	const xbiosmode_t *current;	/* Current set mode */
 	int SDL_nummodes[NUM_MODELISTS];
 	SDL_Rect **SDL_modelist[NUM_MODELISTS];
 	xbiosmode_t **SDL_xbiosmode[NUM_MODELISTS];
@@ -69,13 +71,13 @@ struct SDL_PrivateVideoData {
 
 	void (*listModes)(_THIS, int actually_add);	/* List video modes */
 	void (*saveMode)(_THIS, SDL_PixelFormat *vformat);	/* Save mode,palette,vbase change format if needed */
-	void (*setMode)(_THIS, xbiosmode_t *new_video_mode);	/* Set mode */
+	void (*setMode)(_THIS, const xbiosmode_t *new_video_mode);	/* Set mode */
 	void (*restoreMode)(_THIS);	/* Restore system mode */
 	void (*vsync)(_THIS);
 	void (*getScreenFormat)(_THIS, int bpp, Uint32 *rmask, Uint32 *gmask, Uint32 *bmask, Uint32 *amask);	/* Get TrueColor screen format */
-	int (*getLineWidth)(_THIS, xbiosmode_t *new_video_mode, int width, int bpp);	/* Return video mode pitch */
+	int (*getLineWidth)(_THIS, const xbiosmode_t *new_video_mode, int width, int bpp);	/* Return video mode pitch */
 	void (*swapVbuffers)(_THIS);	/* Swap video buffers */
-	int (*allocVbuffers)(_THIS, int num_buffers, int bufsize);	/* Allocate video buffers */
+	int (*allocVbuffers)(_THIS, const xbiosmode_t *new_video_mode, int num_buffers, int bufsize);	/* Allocate video buffers */
 	void (*freeVbuffers)(_THIS);	/* Free video buffers */
 
 	void (*updRects)(_THIS, int numrects, SDL_Rect *rects);	/* updateRects to use when video ready */
@@ -112,8 +114,9 @@ enum {
 #define XBIOS_screens		(this->hidden->screens)
 #define XBIOS_screensmem	(this->hidden->screensmem)
 #define XBIOS_shadowscreen	(this->hidden->shadowscreen)
-#define XBIOS_fbnum			(this->hidden->frame_number)
-#define XBIOS_pitch			(this->hidden->pitch)
+#define XBIOS_shadowscreenmem	(this->hidden->shadowscreenmem)
+#define XBIOS_fbnum		(this->hidden->frame_number)
+#define XBIOS_pitch		(this->hidden->pitch)
 #define XBIOS_current		(this->hidden->current)
 #define XBIOS_recoffset		(this->hidden->recalc_offset)
 
@@ -124,7 +127,7 @@ enum {
 #define XBIOS_saveMode		(this->hidden->saveMode)
 #define XBIOS_setMode		(this->hidden->setMode)
 #define XBIOS_restoreMode	(this->hidden->restoreMode)
-#define XBIOS_vsync			(this->hidden->vsync)
+#define XBIOS_vsync		(this->hidden->vsync)
 #define XBIOS_getScreenFormat	(this->hidden->getScreenFormat)
 #define XBIOS_getLineWidth	(this->hidden->getLineWidth)
 #define XBIOS_swapVbuffers	(this->hidden->swapVbuffers)
@@ -151,5 +154,8 @@ void SDL_XBIOS_VideoInit_Milan(_THIS);
 
 /* SDL_xbios_ctpci.c */
 void SDL_XBIOS_VideoInit_Ctpci(_THIS);
+
+/* SDL_xbios_nova.c */
+void SDL_XBIOS_VideoInit_Nova(_THIS, void *cookie_nova);
 
 #endif /* _SDL_xbios_h */

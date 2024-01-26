@@ -43,6 +43,21 @@
 
 static Uint16 atari_prevmouseb;	/* save state of mouse buttons */
 
+static short AtariIkbd_Shiftstate(void)
+{
+	short kstate = 0;
+
+	if (SDL_AtariIkbd_keyboard[SCANCODE_LEFTSHIFT] == KEY_PRESSED)
+		kstate |= K_LSHIFT;
+	if (SDL_AtariIkbd_keyboard[SCANCODE_RIGHTSHIFT] == KEY_PRESSED)
+		kstate |= K_RSHIFT;
+	if (SDL_AtariIkbd_keyboard[SCANCODE_LEFTCONTROL] == KEY_PRESSED)
+		kstate |= K_CTRL;
+	if (SDL_AtariIkbd_keyboard[SCANCODE_LEFTALT] == KEY_PRESSED)
+		kstate |= K_ALT;
+	return kstate;
+}
+
 void AtariIkbd_InitOSKeymap(_THIS)
 {
 	SDL_memset((void *) SDL_AtariIkbd_keyboard, KEY_UNDEFINED, sizeof(SDL_AtariIkbd_keyboard));
@@ -51,7 +66,8 @@ void AtariIkbd_InitOSKeymap(_THIS)
 	SDL_AtariIkbd_mouseb = SDL_AtariIkbd_mousex = SDL_AtariIkbd_mousey = 0;
 	atari_prevmouseb = 0;
 
-	Supexec(SDL_AtariIkbdInstall);
+	Supexec(SDL_AtariIkbd_Install);
+	Setexc(VEC_PROCTERM, SDL_AtariIkbd_Restore);
 }
 
 static int atari_GetButton(int button)
@@ -81,14 +97,14 @@ void AtariIkbd_PumpEvents(_THIS)
 		/* Key pressed ? */
 		if (SDL_AtariIkbd_keyboard[i]==KEY_PRESSED) {
 			SDL_PrivateKeyboard(SDL_PRESSED,
-				SDL_Atari_TranslateKey(i, &keysym, SDL_TRUE));
+				SDL_Atari_TranslateKey(i, &keysym, SDL_TRUE, AtariIkbd_Shiftstate()));
 			SDL_AtariIkbd_keyboard[i]=KEY_UNDEFINED;
 		}
 			
 		/* Key released ? */
 		if (SDL_AtariIkbd_keyboard[i]==KEY_RELEASED) {
 			SDL_PrivateKeyboard(SDL_RELEASED,
-				SDL_Atari_TranslateKey(i, &keysym, SDL_FALSE));
+				SDL_Atari_TranslateKey(i, &keysym, SDL_FALSE, AtariIkbd_Shiftstate()));
 			SDL_AtariIkbd_keyboard[i]=KEY_UNDEFINED;
 		}
 	}
@@ -122,5 +138,5 @@ void AtariIkbd_PumpEvents(_THIS)
 
 void AtariIkbd_ShutdownEvents(void)
 {
-	Supexec(SDL_AtariIkbdUninstall);
+	Supexec(SDL_AtariIkbd_Restore);
 }

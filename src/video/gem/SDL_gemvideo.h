@@ -36,8 +36,8 @@ struct WMcursor {
 #define _THIS	SDL_VideoDevice *this
 
 /* Functions prototypes */
-void GEM_wind_redraw(_THIS, int winhandle, short *inside, SDL_bool pad_only);
-void GEM_align_work_area(_THIS, short windowid, SDL_bool clear_pads);
+void GEM_wind_redraw(_THIS, int winhandle, const GRECT *inside);
+void GEM_align_work_area(_THIS, short windowid);
 
 /* Private display data */
 
@@ -72,12 +72,10 @@ struct SDL_PrivateVideoData {
 
 	/* GEM infos */
 	short ap_id;
-	short desk_x, desk_y;		/* Desktop properties */
-	short desk_w, desk_h;
+	GRECT desk;					/* Desktop properties */
 	short win_handle;			/* Our window handle */
 	int window_type;			/* Window type */
-	short work_x, work_y;		/* Window work area x,y,w,h */
-	short work_w, work_h;
+	GRECT work;					/* Window work area x,y,w,h */
 	const char *title_name;		/* Window title */
 	const char *icon_name;		/* Icon title */
 	short version;				/* AES version */
@@ -89,6 +87,7 @@ struct SDL_PrivateVideoData {
 	SDL_bool locked;			/* AES locked for fullscreen ? */
 	SDL_bool lock_redraw;		/* Prevent redraw till buffers are setup */
 	SDL_bool cursor_hidden;		/* Mouse cursor hidden flag */
+	SDL_bool align_windows;		/* align windows to 16-pixel boundary */
 	short message[8];			/* To self-send an AES message */
 	void *menubar;				/* Menu bar save buffer when going fullscreen */
 	SDL_bool use_dev_mouse;		/* Use /dev/mouse ? */
@@ -121,16 +120,10 @@ struct SDL_PrivateVideoData {
 #define VDI_dst_mfdb		(this->hidden->dst_mfdb)
 
 #define GEM_ap_id			(this->hidden->ap_id)
-#define GEM_desk_x			(this->hidden->desk_x)
-#define GEM_desk_y			(this->hidden->desk_y)
-#define GEM_desk_w			(this->hidden->desk_w)
-#define GEM_desk_h			(this->hidden->desk_h)
+#define GEM_desk			(this->hidden->desk)
 #define GEM_handle			(this->hidden->win_handle)
 #define GEM_win_type		(this->hidden->window_type)
-#define GEM_work_x			(this->hidden->work_x)
-#define GEM_work_y			(this->hidden->work_y)
-#define GEM_work_w			(this->hidden->work_w)
-#define GEM_work_h			(this->hidden->work_h)
+#define GEM_work			(this->hidden->work)
 #define GEM_title_name		(this->hidden->title_name)
 #define GEM_icon_name		(this->hidden->icon_name)
 #define GEM_refresh_name	(this->hidden->refresh_name)
@@ -142,6 +135,7 @@ struct SDL_PrivateVideoData {
 #define GEM_locked			(this->hidden->locked)
 #define GEM_lock_redraw		(this->hidden->lock_redraw)
 #define GEM_cursor_hidden	(this->hidden->cursor_hidden)
+#define GEM_align_windows	(this->hidden->align_windows)
 #define GEM_message			(this->hidden->message)
 #define SDL_modelist		(this->hidden->SDL_modelist)
 #define GEM_icon			(this->hidden->icon)

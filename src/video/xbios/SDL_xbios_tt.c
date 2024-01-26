@@ -36,13 +36,13 @@
 #include "SDL_xbios_nova.h"
 
 static const xbiosmode_t ttmodes[]={
-	{TT_LOW,320,480,8, XBIOSMODE_C2P},
-	{TT_LOW,320,240,8, XBIOSMODE_C2P|XBIOSMODE_DOUBLELINE}
+	{TT_LOW,320,480,8,XBIOSMODE_C2P},
+	{TT_LOW,320,240,8,XBIOSMODE_C2P|XBIOSMODE_DOUBLELINE}
 };
 
 static void listModes(_THIS, int actually_add);
 static void saveMode(_THIS, SDL_PixelFormat *vformat);
-static void setMode(_THIS, xbiosmode_t *new_video_mode);
+static void setMode(_THIS, const xbiosmode_t *new_video_mode);
 static void restoreMode(_THIS);
 static int setColors(_THIS, int firstcolor, int ncolors, SDL_Color *colors);
 
@@ -99,7 +99,7 @@ static void saveMode(_THIS, SDL_PixelFormat *vformat)
 	}
 }
 
-static void setMode(_THIS, xbiosmode_t *new_video_mode)
+static void setMode(_THIS, const xbiosmode_t *new_video_mode)
 {
 	Setscreen(-1,XBIOS_screens[0],-1);
 
