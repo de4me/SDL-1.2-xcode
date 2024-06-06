@@ -174,6 +174,7 @@ void SDL_Atari_InitInternalKeymap(_THIS)
 	keymap[SCANCODE_RIGHTSHIFT] = SDLK_RSHIFT;
 	keymap[SCANCODE_LEFTALT] = SDLK_LALT;
 	keymap[SCANCODE_CAPSLOCK] = SDLK_CAPSLOCK;
+	keymap[SCANCODE_ALTGR] = SDLK_MODE;
 }
 
 void Atari_PumpEvents(_THIS)
@@ -234,15 +235,7 @@ SDL_keysym *SDL_Atari_TranslateKey(int scancode, SDL_keysym *keysym,
 
 	/* Set the keysym information */
 	keysym->scancode = scancode;
-	keysym->mod = KMOD_NONE;
-	if (kstate & K_LSHIFT)
-		keysym->mod |= KMOD_LSHIFT;
-	if (kstate & K_RSHIFT)
-		keysym->mod |= KMOD_RSHIFT;
-	if (kstate & K_CTRL)
-		keysym->mod |= KMOD_LCTRL;
-	if (kstate & K_ALT)
-		keysym->mod |= KMOD_LALT;
+	keysym->mod = KMOD_NONE;	/* set by SDL */
 	keysym->sym = keymap[scancode];
 	keysym->unicode = 0;
 

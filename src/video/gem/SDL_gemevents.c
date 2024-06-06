@@ -31,6 +31,7 @@
  */
 
 #include <gem.h>
+#include <mint/osbind.h>
 
 #include "SDL_timer.h"
 #include "../../events/SDL_sysevents.h"
@@ -41,7 +42,6 @@
 #include "../ataricommon/SDL_atarikeys.h"	/* for keyboard scancodes */
 #include "../ataricommon/SDL_atarievents_c.h"
 #include "../ataricommon/SDL_xbiosevents_c.h"
-#include "../ataricommon/SDL_ataridevmouse_c.h"
 
 /* Duration after which we consider key released */
 
@@ -100,7 +100,6 @@ void GEM_PumpEvents(_THIS)
 	prev_now = cur_tick;
 
 	SDL_AtariMint_BackgroundTasks();
-	clearKeyboardState(cur_tick);
 
 	if (prev_msg) {
 		/* Wait at least 20ms before each event processing loop */
@@ -131,6 +130,7 @@ void GEM_PumpEvents(_THIS)
 
 		/* Keyboard event ? */
 		if (resultat & MU_KEYBD) {
+			em_out.emo_kmeta |= (Kbshift(-1) & (0x80 | K_CAPSLOCK));	/* MU_KEYBD is not aware of AltGr and CAPSLOCK */
 			do_keyboard_special(em_out.emo_kmeta, cur_tick);
 			if (prevkc != em_out.emo_kreturn) {
 				do_keyboard(em_out.emo_kreturn, cur_tick);
@@ -148,21 +148,41 @@ void GEM_PumpEvents(_THIS)
 
 	/* Update mouse state */
 	graf_mkstate(&mousex, &mousey, &mouseb, &em_out.emo_kmeta);
+	em_out.emo_kmeta |= (Kbshift(-1) & K_CAPSLOCK);	/* MU_KEYBD is not aware of CAPSLOCK */
 	do_keyboard_special(em_out.emo_kmeta, cur_tick);
 	do_mouse_motion(this, mousex, mousey);
 	do_mouse_buttons(this, mouseb);
 
+	/* Purge inactive / lost keys */
+	clearKeyboardState(cur_tick);
+
 	/* Now generate keyboard events */
 	for (i=0; i<ATARIBIOS_MAXKEYS; i++) {
 		/* Key pressed ? */
-		if (gem_currentkeyboard[i] && !gem_previouskeyboard[i])
+		if (gem_currentkeyboard[i] && !gem_previouskeyboard[i]) {
 			SDL_PrivateKeyboard(SDL_PRESSED,
 				SDL_Atari_TranslateKey(i, &keysym, SDL_TRUE, em_out.emo_kmeta));
+			if (i == SCANCODE_CAPSLOCK) {
+				/* Pressed capslock: generate a release event, too because this
+				 * is what SDL expects; it handles locking by itself.
+				 */
+				SDL_PrivateKeyboard(SDL_RELEASED,
+					SDL_Atari_TranslateKey(i, &keysym, SDL_FALSE, em_out.emo_kmeta & ~K_CAPSLOCK));
+			}
+		}
 
 		/* Key unpressed ? */
-		if (gem_previouskeyboard[i] && !gem_currentkeyboard[i])
+		if (gem_previouskeyboard[i] && !gem_currentkeyboard[i]) {
+			if (i == SCANCODE_CAPSLOCK) {
+				/* Released capslock: generate a pressed event, too because this
+				 * is what SDL expects; it handles locking by itself.
+				 */
+				SDL_PrivateKeyboard(SDL_PRESSED,
+					SDL_Atari_TranslateKey(i, &keysym, SDL_TRUE, em_out.emo_kmeta | K_CAPSLOCK));
+			}
 			SDL_PrivateKeyboard(SDL_RELEASED,
 				SDL_Atari_TranslateKey(i, &keysym, SDL_FALSE, em_out.emo_kmeta));
+		}
 	}
 
 	SDL_memcpy(gem_previouskeyboard,gem_currentkeyboard,sizeof(gem_previouskeyboard));
@@ -298,22 +318,20 @@ static void do_keyboard(short kc, Uint32 tick)
 
 static void do_keyboard_special(short ks, Uint32 tick)
 {
-	int scancode=0;
-
-	/* Read special keys */
-	if (ks & K_RSHIFT)
-		scancode=SCANCODE_RIGHTSHIFT;
-	if (ks & K_LSHIFT)
-		scancode=SCANCODE_LEFTSHIFT;
-	if (ks & K_CTRL)
-		scancode=SCANCODE_LEFTCONTROL;
-	if (ks & K_ALT)
-		scancode=SCANCODE_LEFTALT;
-
-	if (scancode) {
-		gem_currentkeyboard[scancode]=0xFF;
-		keyboard_ticks[scancode]=tick;
+#define UPDATE_SPECIAL_KEYS(mask,scancode) \
+	{	\
+		if (ks & mask) { \
+			gem_currentkeyboard[scancode]=0xFF; \
+			keyboard_ticks[scancode]=tick; \
+		}	\
 	}
+
+	UPDATE_SPECIAL_KEYS(K_RSHIFT, SCANCODE_RIGHTSHIFT);
+	UPDATE_SPECIAL_KEYS(K_LSHIFT, SCANCODE_LEFTSHIFT);
+	UPDATE_SPECIAL_KEYS(K_CTRL, SCANCODE_LEFTCONTROL);
+	UPDATE_SPECIAL_KEYS(K_ALT, SCANCODE_LEFTALT);
+	UPDATE_SPECIAL_KEYS(K_CAPSLOCK, SCANCODE_CAPSLOCK);
+	UPDATE_SPECIAL_KEYS(0x80, SCANCODE_ALTGR);
 }
 
 static void do_mouse_motion(_THIS, short mx, short my)
@@ -337,11 +355,7 @@ static void do_mouse_motion(_THIS, short mx, short my)
 
 	/* Relative mouse motion ? */
 	if (GEM_mouse_relative) {
-		if (GEM_usedevmouse) {
-			SDL_AtariDevMouse_PostMouseEvents(this, SDL_FALSE);
-		} else {
-			SDL_AtariXbios_PostMouseEvents(this, SDL_FALSE);
-		}
+		SDL_AtariXbios_PostMouseEvents(this, SDL_FALSE);
 		return;
 	}
 
@@ -374,6 +388,23 @@ static void do_mouse_motion(_THIS, short mx, short my)
 	prevmy = my;
 }
 
+static int atari_GetButton(int button)
+{
+	switch(button)
+	{
+		case 0:
+		default:
+			return SDL_BUTTON_LEFT;
+			break;
+		case 1:
+			return SDL_BUTTON_RIGHT;
+			break;
+		case 2:
+			return SDL_BUTTON_MIDDLE;
+			break;
+	}
+}
+
 static void do_mouse_buttons(_THIS, short mb)
 {
 	int i;
@@ -392,10 +423,10 @@ static void do_mouse_buttons(_THIS, short mb)
 		prevbutton = prevmb & (1<<i);
 
 		if (curbutton && !prevbutton) {
-			SDL_PrivateMouseButton(SDL_PRESSED, i+1, 0, 0);
+			SDL_PrivateMouseButton(SDL_PRESSED, atari_GetButton(i), 0, 0);
 		}
 		if (!curbutton && prevbutton) {
-			SDL_PrivateMouseButton(SDL_RELEASED, i+1, 0, 0);
+			SDL_PrivateMouseButton(SDL_RELEASED, atari_GetButton(i), 0, 0);
 		}
 	}
 
