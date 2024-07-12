@@ -52,6 +52,7 @@
 #include "SDL_gemevents_c.h"
 #include "SDL_gemmouse_c.h"
 #include "SDL_gemwm_c.h"
+#include "../ataricommon/SDL_atarievents_c.h"
 #include "../ataricommon/SDL_xbiosevents_c.h"
 
 /* Defines */
@@ -456,7 +457,7 @@ int GEM_VideoInit(_THIS, SDL_PixelFormat *vformat)
 	VDI_ReadExtInfo(this, work_out);
 
 	if (VDI_format == VDI_FORMAT_INTER)
-		GEM_align_windows = SDL_getenv("SDL_GEM_ALIGN_WINDOW") != NULL;
+		GEM_align_windows = SDL_getenv("SDL_VIDEO_ALIGNED_WINDOWS") != NULL;
 	else
 		GEM_align_windows = SDL_FALSE;
 
@@ -509,6 +510,9 @@ int GEM_VideoInit(_THIS, SDL_PixelFormat *vformat)
 #endif
 
 	this->info.wm_available = 1;
+
+	/* Save & init CON: */
+	SDL_Atari_InitializeConsoleSettings();
 
 	/* We're done! */
 	return(0);
@@ -1165,6 +1169,9 @@ static int GEM_SetColors(_THIS, int firstcolor, int ncolors, SDL_Color *colors)
 */
 void GEM_VideoQuit(_THIS)
 {
+	/* Restore CON: */
+	SDL_Atari_RestoreConsoleSettings();
+
 	/* Restore mouse cursor */
 	if (GEM_cursor_hidden) {
 		graf_mouse(M_ON, NULL);

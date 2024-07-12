@@ -83,6 +83,8 @@ static void XBIOS_UpdateRects(_THIS, int numrects, SDL_Rect *rects);
 static void XBIOS_GL_SwapBuffers(_THIS);
 #endif
 
+static SDL_bool shadow_warning_shown;
+
 /* Xbios driver bootstrap functions */
 
 static long cookie_vdo;
@@ -195,9 +197,8 @@ static SDL_VideoDevice *XBIOS_CreateDevice(int devindex)
 	device->GL_SwapBuffers = XBIOS_GL_SwapBuffers;
 #endif
 
-	/* Events */
-	device->InitOSKeymap = Atari_InitOSKeymap;
-	device->PumpEvents = Atari_PumpEvents;
+	/* Events (XBIOS/IKBD driver) */
+	SDL_Atari_InitializeEvents(device);
 
 	device->free = XBIOS_DeleteDevice;
 
@@ -381,6 +382,9 @@ static int XBIOS_VideoInit(_THIS, SDL_PixelFormat *vformat)
 		SDL_XBIOS_TveilleDisable(this);
 	}
 
+	/* Save & init CON: */
+	SDL_Atari_InitializeConsoleSettings();
+
 	/* We're done! */
 	return(0);
 }
@@ -454,6 +458,8 @@ static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 		SDL_memset(XBIOS_shadowscreenmem, 0, new_screen_size);
 
 		XBIOS_shadowscreen=(void *) (( (long) XBIOS_shadowscreenmem+255) & 0xFFFFFF00UL);
+
+		modeflags &= ~SDL_HWSURFACE;
 	}
 
 	/* Output buffer needs to be twice in size for the software double-line mode */
@@ -498,6 +504,13 @@ static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 	/* this is for C2P conversion */
 	XBIOS_pitch = (*XBIOS_getLineWidth)(this, new_video_mode, new_video_mode->width, new_video_mode->depth);
 
+	/* XBIOS_setMode() is going to call SetScreen(XBIOS_screens[0])
+	 * and XBIOS_swapVbuffers() is going to call Setscreen(XBIOS_screens[XBIOS_fbnum])
+	 * so these can't be the same buffers if double buffering has been requested.
+	 */
+	XBIOS_fbnum = num_buffers-1;
+	XBIOS_current = new_video_mode;
+
 	current->w = width;
 	current->h = height;
 	current->pitch = lineWidth;
@@ -505,7 +518,7 @@ static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 	if (XBIOS_shadowscreen)
 		current->pixels = XBIOS_shadowscreen;
 	else
-		current->pixels = XBIOS_screens[0];
+		current->pixels = XBIOS_screens[XBIOS_fbnum];
 
 #if SDL_VIDEO_OPENGL
 	if (flags & SDL_OPENGL) {
@@ -527,9 +540,6 @@ static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 
 	(*XBIOS_vsync)(this);
 #endif
-
-	XBIOS_fbnum = 0;
-	XBIOS_current = new_video_mode;
 
 	this->UpdateRects = XBIOS_updRects;
 
@@ -561,6 +571,11 @@ static void XBIOS_UpdateRects(_THIS, int numrects, SDL_Rect *rects)
 {
 	/* SDL_UpdateRects() already added surface->offset_[xy] to each rect's coordinates */
 	SDL_Surface *surface = this->screen;
+
+	if (this->shadow && !shadow_warning_shown) {
+		fprintf(stderr, "Warning: shadow buffer in use, add SDL_HWSURFACE to your SDL_SetVideoMode()\n");
+		shadow_warning_shown = SDL_TRUE;
+	}
 
 	/*
 	 * SDL_LockSurface() adds surface->offset to surface->pixels
@@ -654,6 +669,11 @@ static int XBIOS_FlipHWSurface(_THIS, SDL_Surface *surface)
 	int src_offset = (surface->locked ? 0 : surface->offset);
 	int dst_offset;
 
+	if (this->shadow && !shadow_warning_shown) {
+		fprintf(stderr, "Warning: shadow buffer in use, add SDL_HWSURFACE to your SDL_SetVideoMode()\n");
+		shadow_warning_shown = SDL_TRUE;
+	}
+
 	if (XBIOS_current->flags & XBIOSMODE_C2P) {
 		int doubleline = (XBIOS_current->flags & XBIOSMODE_DOUBLELINE ? 1 : 0);
 
@@ -719,7 +739,10 @@ static void XBIOS_VideoQuit(_THIS)
 {
 	int i,j;
 
-	Atari_ShutdownEvents();
+	/* Restore CON: */
+	SDL_Atari_RestoreConsoleSettings();
+
+	(*XBIOS_ShutdownEvents)(this);
 
 	/* Restore video mode and palette */
 #ifndef DEBUG_VIDEO_XBIOS

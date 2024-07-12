@@ -26,21 +26,22 @@
  *
  *	Patrice Mandin
  *
- *	This routines choose what the final event manager will be
+ *	These routines choose what the final event manager will be
  */
 
-#include <mint/cookie.h>
 #include <mint/osbind.h>
+#include <mint/sysvars.h>
 
 #include "../../events/SDL_sysevents.h"
 #include "../../events/SDL_events_c.h"
 #include "../../timer/SDL_timer_c.h"
 
+#include "../xbios/SDL_xbios.h"	/* XBIOS SDL_PrivateVideoData */
+
 #include "SDL_atarikeys.h"
 #include "SDL_atarievents_c.h"
-#include "SDL_biosevents_c.h"
-#include "SDL_gemdosevents_c.h"
 #include "SDL_ikbdevents_c.h"
+#include "SDL_xbiosevents_c.h"
 
 /* from src/audio/mint/SDL_mintaudio.c */
 void SDL_AtariMint_UpdateAudio(void);
@@ -49,86 +50,73 @@ void SDL_AtariMint_UpdateAudio(void);
 void SDL_AtariMint_CheckTimer(void);
 #endif
 
-enum {
-	MCH_ST=0,
-	MCH_STE,
-	MCH_TT,
-	MCH_F30,
-	MCH_CLONE,
-	MCH_ARANYM
-};
-
 /* The translation tables from a console scancode to a SDL keysym */
 static SDLKey keymap[ATARIBIOS_MAXKEYS];
 static const char *keytab_normal;
 static const char *keytab_shift;
 
-void (*Atari_ShutdownEvents)(void);
+static SDL_bool conterm_set;
+static char old_conterm;
 
-static void Atari_InitializeEvents(_THIS)
+void SDL_Atari_InitializeEvents(_THIS)
 {
 	const char *envr;
-	long cookie_mch;
 
-	/* Test if we are on an Atari machine or not */
-	if (Getcookie(C__MCH, &cookie_mch) == C_NOTFOUND) {
-		cookie_mch = 0;
-	}
-	cookie_mch >>= 16;
+	SDL_Atari_InitInternalKeymap(this);
 
-	/* Default is Ikbd, the faster except for clones */
-	switch(cookie_mch) {
-		case MCH_ST:
-		case MCH_STE:
-		case MCH_TT:
-		case MCH_F30:
-		case MCH_ARANYM:
-			this->InitOSKeymap=AtariIkbd_InitOSKeymap;
-			this->PumpEvents=AtariIkbd_PumpEvents;
-			Atari_ShutdownEvents=AtariIkbd_ShutdownEvents;
-			break;
-		default:
-			this->InitOSKeymap=AtariGemdos_InitOSKeymap;
-			this->PumpEvents=AtariGemdos_PumpEvents;
-			Atari_ShutdownEvents=AtariGemdos_ShutdownEvents;
-			break;
+	if (!SDL_AtariXbios_IsKeyboardVectorSupported()) {
+		/* Fall back to hardware (TOS 1.x) */
+		this->InitOSKeymap=AtariIkbd_InitOSKeymap;
+		this->PumpEvents=AtariIkbd_PumpEvents;
+		XBIOS_ShutdownEvents=AtariIkbd_ShutdownEvents;
+	} else {
+		this->InitOSKeymap=AtariXbios_InitOSKeymap;
+		this->PumpEvents=AtariXbios_PumpEvents;
+		XBIOS_ShutdownEvents=AtariXbios_ShutdownEvents;
 	}
 
 	envr = SDL_getenv("SDL_ATARI_EVENTSDRIVER");
 
- 	if (!envr) {
+	if (!envr) {
 		return;
 	}
 
 	if (SDL_strcmp(envr, "ikbd") == 0) {
 		this->InitOSKeymap=AtariIkbd_InitOSKeymap;
 		this->PumpEvents=AtariIkbd_PumpEvents;
-		Atari_ShutdownEvents=AtariIkbd_ShutdownEvents;
+		XBIOS_ShutdownEvents=AtariIkbd_ShutdownEvents;
 	}
 
-	if (SDL_strcmp(envr, "gemdos") == 0) {
-		this->InitOSKeymap=AtariGemdos_InitOSKeymap;
-		this->PumpEvents=AtariGemdos_PumpEvents;
-		Atari_ShutdownEvents=AtariGemdos_ShutdownEvents;
-	}
-
-	if (SDL_strcmp(envr, "bios") == 0) {
-		this->InitOSKeymap=AtariBios_InitOSKeymap;
-		this->PumpEvents=AtariBios_PumpEvents;
-		Atari_ShutdownEvents=AtariBios_ShutdownEvents;
+	if (SDL_strcmp(envr, "xbios") == 0) {
+		this->InitOSKeymap=AtariXbios_InitOSKeymap;
+		this->PumpEvents=AtariXbios_PumpEvents;
+		XBIOS_ShutdownEvents=AtariXbios_ShutdownEvents;
 	}
 }
 
-void Atari_InitOSKeymap(_THIS)
+void SDL_Atari_InitializeConsoleSettings(void)
 {
-	Atari_InitializeEvents(this);
+	if (!conterm_set) {
+		long ssp = Super(SUP_SET);
+		old_conterm = *conterm;
+		*conterm &= ~((1<<2) | (1<<1) | (1<< 0));	/* disable bell, key-repeat and key-click */
+		Super(ssp);
 
-	SDL_Atari_InitInternalKeymap(this);
+		conterm_set = SDL_TRUE;
+	}
+}
+void SDL_Atari_RestoreConsoleSettings(void)
+{
+	if (conterm_set) {
+		long ssp = Super(SUP_SET);
+		*conterm = old_conterm;
+		Super(ssp);
 
-	/* Call choosen routine */
-	this->InitOSKeymap(this);
+		conterm_set = SDL_FALSE;
+	}
 }
 
+/* SDL_Atari_TranslateKey() is used also in GEM events driver */
 void SDL_Atari_InitInternalKeymap(_THIS)
 {
 	int i;
@@ -177,17 +165,8 @@ void SDL_Atari_InitInternalKeymap(_THIS)
 	keymap[SCANCODE_ALTGR] = SDLK_MODE;
 }
 
-void Atari_PumpEvents(_THIS)
-{
-	Atari_InitializeEvents(this);
-
-	/* Call choosen routine */
-	this->PumpEvents(this);
-}
-
 /* Atari to Unicode charset translation table */
-
-Uint16 SDL_AtariToUnicodeTable[256]={
+const static Uint16 SDL_AtariToUnicodeTable[256]={
 	/* Standard ASCII characters from 0x00 to 0x7e */
 	/* Unicode stuff from 0x7f to 0xff */
 
