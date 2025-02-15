@@ -94,6 +94,17 @@ enum {
 	VDO_MILAN
 };
 
+/* _MCH cookie values */
+enum {
+	MCH_ST=0,
+	MCH_STE,
+	MCH_TT,
+	MCH_F30,
+	MCH_MILAN,
+	MCH_ARANYM,
+	MCH_V4
+};
+
 /* Monitor types */
 enum {
 	MONITOR_MONO=0,
@@ -101,9 +112,6 @@ enum {
 	MONITOR_VGA,
 	MONITOR_RGB
 };
-
-/* EgetShift masks */
-#define ES_MODE		0x0700
 
 /* Hidden structure -> variables names */
 #define SDL_nummodes		(this->hidden->SDL_nummodes)
@@ -120,7 +128,6 @@ enum {
 #define XBIOS_fbnum		(this->hidden->frame_number)
 #define XBIOS_pitch		(this->hidden->pitch)
 #define XBIOS_current		(this->hidden->current)
-#define XBIOS_recoffset		(this->hidden->recalc_offset)
 
 #define TT_palette		(this->hidden->palette.pal16)
 #define F30_palette		(this->hidden->palette.pal32)
@@ -151,6 +158,9 @@ void SDL_XBIOS_VideoInit_TT(_THIS);
 
 /* SDL_xbios_f30.c */
 void SDL_XBIOS_VideoInit_F30(_THIS);
+
+/* SDL_xbios_v4.c */
+void SDL_XBIOS_VideoInit_V4(_THIS);
 
 /* SDL_xbios_milan.c */
 void SDL_XBIOS_VideoInit_Milan(_THIS);
