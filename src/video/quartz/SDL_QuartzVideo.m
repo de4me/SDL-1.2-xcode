@@ -351,7 +351,7 @@ static int QZ_VideoInit (_THIS, SDL_PixelFormat *video_format)
     }
 #endif
 
-#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
+#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070) && (MAC_OS_X_VERSION_MAX_ALLOWED < 1090)
     if (!IS_LION_OR_LATER(this)) {
         palette = CGPaletteCreateDefaultColorPalette();
     }
@@ -802,8 +802,10 @@ SKIP_CHANGE_MODE:
             thread = SDL_CreateThread ((int (*)(void *))QZ_ThreadFlip, this);
         }
 
+        #if (MAC_OS_X_VERSION_MAX_ALLOWED < 1090)
         if ( CGDisplayCanSetPalette (display_id) )
             current->flags |= SDL_HWPALETTE;
+        #endif
     }
 #endif
 
@@ -1317,7 +1319,7 @@ static int QZ_ToggleFullScreen (_THIS, int on)
 static int QZ_SetColors (_THIS, int first_color, int num_colors,
                          SDL_Color *colors)
 {
-#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
+#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070) && (MAC_OS_X_VERSION_MAX_ALLOWED < 1090)
     /* we shouldn't have an 8-bit mode on Lion! */
     if (!IS_LION_OR_LATER(this)) {
         uint32_t  index;
@@ -1650,7 +1652,7 @@ static void QZ_VideoQuit (_THIS)
     else
         QZ_UnsetVideoMode (this, TRUE, FALSE);
 
-#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070)
+#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1070) && (MAC_OS_X_VERSION_MAX_ALLOWED < 1090)
     if (!IS_LION_OR_LATER(this)) {
         CGPaletteRelease(palette);
     }
