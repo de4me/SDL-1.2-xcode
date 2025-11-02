@@ -2955,7 +2955,7 @@
 		003FA647093FFD41000C53B3 /* libSDLmain.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libSDLmain.a;
+			path = libSDLMain.a;
 			remoteRef = 003FA646093FFD41000C53B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -4780,7 +4780,7 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
@@ -4803,7 +4803,7 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
@@ -4826,7 +4826,7 @@
 					"$(HOME)/Library/Frameworks/SDL.framework/Headers",
 					/Library/Frameworks/SDL.framework/Headers,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wmost";
 				ZERO_LINK = NO;
