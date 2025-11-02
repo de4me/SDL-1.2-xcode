@@ -127,30 +127,32 @@ static int XBIOS_Available(void)
 	}
 
 	/* Test if we have a monochrome monitor plugged in */
-	switch( cookie_vdo >>16) {
-		case VDO_ST:
-		case VDO_STE:
-			if ( Getrez() == (ST_HIGH>>8) )
-				return 0;
-			break;
-		case VDO_TT:
-			if ( Getrez() == (TT_HIGH>>8) )
-				return 0;
-			break;
-		case VDO_F30:
-			if ( VgetMonitor() == MONITOR_MONO)
-				return 0;
-			if (Getcookie(C_SCPN, &cookie_scpn) == C_FOUND) {
-				if (!SDL_XBIOS_SB3Usable((scpn_cookie_t *)cookie_scpn)) {
-					return 0;
-				}
-			}
-			break;
-		case VDO_MILAN:
-			break;
-		default:
-			return 0;
-	}
+    if (cookie_nova == 0) {
+        switch( cookie_vdo >>16) {
+            case VDO_ST:
+            case VDO_STE:
+                if ( Getrez() == (ST_HIGH>>8) )
+                    return 0;
+                break;
+            case VDO_TT:
+                if ( Getrez() == (TT_HIGH>>8) )
+                    return 0;
+                break;
+            case VDO_F30:
+                if ( VgetMonitor() == MONITOR_MONO)
+                    return 0;
+                if (Getcookie(C_SCPN, &cookie_scpn) == C_FOUND) {
+                    if (!SDL_XBIOS_SB3Usable((scpn_cookie_t *)cookie_scpn)) {
+                        return 0;
+                    }
+                }
+                break;
+            case VDO_MILAN:
+                break;
+            default:
+                return 0;
+        }
+    }
 
 	return 1;
 }
@@ -306,20 +308,20 @@ static int XBIOS_VideoInit(_THIS, SDL_PixelFormat *vformat)
 {
 	int i;
 
-	GEM_CommonInit();
+	if (!GEM_CommonInit(&GEM_ap_id, &VDI_handle))
+		return(-1);
+
+	GEM_CommonCreateMenubar(this);
+
+	GEM_CommonSavePalette(this);
+
+	GEM_LockScreen(this, SDL_TRUE);
 
 	/* Initialize all variables that we clean on shutdown */
 	for ( i=0; i<NUM_MODELISTS; ++i ) {
 		SDL_nummodes[i] = 0;
 		SDL_modelist[i] = NULL;
 		SDL_xbiosmode[i] = NULL;
-	}
-
-	/* Allocate memory for old palette */
-	XBIOS_oldpalette = (void *)SDL_malloc(256*sizeof(long));
-	if ( !XBIOS_oldpalette ) {
-		SDL_SetError("Unable to allocate memory for old palette\n");
-		return(-1);
 	}
 
 	/* Determine the current screen size */
@@ -417,7 +419,7 @@ static void XBIOS_FreeBuffers(_THIS)
 static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 				int width, int height, int bpp, Uint32 flags)
 {
-	int mode;
+	int mode, new_depth;
 	int num_buffers;
 	xbiosmode_t *new_video_mode;
 	Uint32 new_screen_size;
@@ -441,15 +443,19 @@ static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 	}
 	new_video_mode = SDL_xbiosmode[bpp][mode];
 
-	modeflags = SDL_FULLSCREEN | SDL_PREALLOC | SDL_HWPALETTE | SDL_HWSURFACE;
+	modeflags = SDL_FULLSCREEN | SDL_PREALLOC | SDL_HWPALETTE;
+	/* By default keep the hardware flag */
+	modeflags |= (flags & SDL_HWSURFACE);
 
 	/* Allocate needed buffers: simple/double buffer and shadow surface */
-	lineWidth = (*XBIOS_getLineWidth)(this, new_video_mode, width, 8);
+	new_depth = new_video_mode->depth < 8 ? 8 : new_video_mode->depth;
+
+	lineWidth = (*XBIOS_getLineWidth)(this, new_video_mode, width, new_depth);
 
 	new_screen_size = lineWidth * height;
 	new_screen_size += 255; /* To align on a 256 byte adress */
 
-	if (new_video_mode->flags & (XBIOSMODE_C2P | XBIOSMODE_SHADOWCOPY)) {
+	if (new_video_mode->flags & XBIOSMODE_C2P) {
 		XBIOS_shadowscreenmem = Atari_SysMalloc(new_screen_size, MX_PREFTTRAM);
 
 		if (XBIOS_shadowscreenmem == NULL) {
@@ -459,8 +465,6 @@ static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 		SDL_memset(XBIOS_shadowscreenmem, 0, new_screen_size);
 
 		XBIOS_shadowscreen=(void *) (( (long) XBIOS_shadowscreenmem+255) & 0xFFFFFF00UL);
-
-		modeflags &= ~SDL_HWSURFACE;
 	}
 
 	/* Output buffer needs to be twice in size for the software double-line mode */
@@ -493,16 +497,24 @@ static SDL_Surface *XBIOS_SetVideoMode(_THIS, SDL_Surface *current,
 		return (NULL);
 	}
 
-	/* Allocate the new pixel format for the screen */
-	(*XBIOS_getScreenFormat)(this, 8, &rmask, &gmask, &bmask, &amask);
+	if ((flags & SDL_HWSURFACE) == SDL_SWSURFACE && !(new_video_mode->flags & XBIOSMODE_C2P)
+			&& (cookie_nova || ((long) XBIOS_screens[0]) >= 0x01000000 || Atari_SysMalloc(-1L, MX_TTRAM) != NULL)) {
+		/* If asked for a software surface, returning a hardware one leads to usage
+		 * of the shadow buffer which is what we want. However if there's only
+		 * ST RAM available and no graphics card, there's no point in creating
+		 * the shadow buffer.
+		 */
+		modeflags |= SDL_HWSURFACE;
+	}
 
-	if (!SDL_ReallocFormat(current, 8, rmask, gmask, bmask, amask)) {
+	/* Allocate the new pixel format for the screen */
+	(*XBIOS_getScreenFormat)(this, new_depth, &rmask, &gmask, &bmask, &amask);
+
+	if (!SDL_ReallocFormat(current, new_depth, rmask, gmask, bmask, amask)) {
 		XBIOS_FreeBuffers(this);
 		SDL_SetError("Couldn't allocate new pixel format for requested mode");
 		return(NULL);
 	}
-
-	GEM_LockScreen(SDL_TRUE);
 
 	/* this is for C2P conversion */
 	XBIOS_pitch = (*XBIOS_getLineWidth)(this, new_video_mode, new_video_mode->width, new_video_mode->depth);
@@ -576,7 +588,7 @@ static void XBIOS_UpdateRects(_THIS, int numrects, SDL_Rect *rects)
 	SDL_Surface *surface = this->screen;
 
 	if (this->shadow && !shadow_warning_shown) {
-		fprintf(stderr, "Warning: shadow buffer in use, add SDL_HWSURFACE to your SDL_SetVideoMode()\n");
+		fprintf(stderr, "Warning: shadow buffer in use due to SDL_SetVideoMode(SDL_SWSURFACE)\n");
 		shadow_warning_shown = SDL_TRUE;
 	}
 
@@ -609,31 +621,6 @@ static void XBIOS_UpdateRects(_THIS, int numrects, SDL_Rect *rects)
 				surface->pitch, XBIOS_pitch
 			);
 		}
-	} else if (XBIOS_current->flags & XBIOSMODE_SHADOWCOPY) {
-		/* Always bpp >= 8 and never XBIOSMODE_DOUBLELINE */
-		for (i=0;i<numrects;i++) {
-			Uint8 *blockSrcStart, *blockDstStart;
-			int y;
-
-			blockSrcStart = (Uint8 *) surface->pixels + src_offset;
-			blockSrcStart += surface->pitch * rects[i].y;
-			blockSrcStart += surface->format->BytesPerPixel * rects[i].x;
-
-			blockDstStart = ((Uint8 *) XBIOS_screens[XBIOS_fbnum]);
-			blockDstStart += XBIOS_pitch * rects[i].y;
-			blockDstStart += surface->format->BytesPerPixel * rects[i].x;
-
-			if ((surface->pitch == XBIOS_pitch) && (surface->pitch == rects[i].w * surface->format->BytesPerPixel)) {
-				SDL_memcpy(blockDstStart, blockSrcStart, rects[i].h * surface->pitch);
-			} else {
-				for(y=0;y<rects[i].h;y++){
-					SDL_memcpy(blockDstStart, blockSrcStart, rects[i].w * surface->format->BytesPerPixel);
-
-					blockSrcStart += surface->pitch;
-					blockDstStart += XBIOS_pitch;
-				}
-			}
-		}
 	}
 
 	if ((surface->flags & SDL_DOUBLEBUF) == SDL_DOUBLEBUF) {
@@ -665,7 +652,7 @@ static int XBIOS_FlipHWSurface(_THIS, SDL_Surface *surface)
 	int dst_offset;
 
 	if (this->shadow && !shadow_warning_shown) {
-		fprintf(stderr, "Warning: shadow buffer in use, add SDL_HWSURFACE to your SDL_SetVideoMode()\n");
+		fprintf(stderr, "Warning: shadow buffer in use due to SDL_SetVideoMode(SDL_SWSURFACE)\n");
 		shadow_warning_shown = SDL_TRUE;
 	}
 
@@ -683,27 +670,6 @@ static int XBIOS_FlipHWSurface(_THIS, SDL_Surface *surface)
 			doubleline, XBIOS_current->depth,
 			surface->pitch, XBIOS_pitch
 		);
-	} else if (XBIOS_current->flags & XBIOSMODE_SHADOWCOPY) {
-		/* Always bpp >= 8 and never XBIOSMODE_DOUBLELINE */
-		int i;
-		Uint8 *src, *dst;
-
-		/* Same dimensions as source surface */
-		dst_offset = surface->offset;
-
-		src = surface->pixels + src_offset;
-		dst = ((Uint8 *) XBIOS_screens[XBIOS_fbnum]) + dst_offset;
-
-		if ((surface->pitch == XBIOS_pitch) && (surface->pitch == surface->w * surface->format->BytesPerPixel)) {
-			SDL_memcpy(dst, src, surface->h * surface->pitch);
-		} else {
-			for (i=0; i<surface->h; i++) {
-				SDL_memcpy(dst, src, surface->w * surface->format->BytesPerPixel);
-
-				src += surface->pitch;
-				dst += XBIOS_pitch;
-			}
-		}
 	}
 
 	if ((surface->flags & SDL_DOUBLEBUF) == SDL_DOUBLEBUF) {
@@ -731,7 +697,8 @@ static int XBIOS_FlipHWSurface(_THIS, SDL_Surface *surface)
 }
 
 /* Note:  If we are terminated, this could be called in the middle of
-   another SDL video routine -- notably UpdateRects.
+   another SDL video routine -- notably UpdateRects. Also, when quitting
+   from XBIOS_VideoInit(), this function isn't really prepared for it.
 */
 static void XBIOS_VideoQuit(_THIS)
 {
@@ -755,12 +722,10 @@ static void XBIOS_VideoQuit(_THIS)
 	}
 #endif
 
-	GEM_CommonQuit(SDL_TRUE);
+	GEM_CommonRestorePalette(this);
 
-	if (XBIOS_oldpalette) {
-		SDL_free(XBIOS_oldpalette);
-		XBIOS_oldpalette=NULL;
-	}
+	GEM_CommonQuit(this, SDL_TRUE);
+
 	XBIOS_FreeBuffers(this);
 
 	/* Free mode list */

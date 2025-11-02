@@ -33,6 +33,8 @@ build-deps
 *.swp
 *.tmp
 *.rej
+*.d
+.vscode/**
 
 # for Xcode
 *.mode1*
@@ -89,3 +91,4 @@ test/testloadso
 
 include/SDL_config.h
 include/SDL_config.h.generated
+src/SDL.d
