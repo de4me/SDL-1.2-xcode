@@ -9,6 +9,7 @@ sdl-config
 SDL.spec
 sdl.pc
 SDL.qpg
+!build-scripts/
 build
 build-deps
 
