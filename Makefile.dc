@@ -1,20 +1,18 @@
 # Custom version by Ian Micheal included fast math built in DreamHAL
 # based on chui's great SDL, now for KOS 2.x fast blit and pixel paths.
 # DreamHAL memory routines and replacements; threading updates.
-# Set GL=1 to build the GLdc-enabled archive.
+# GLdc support is enabled by default; SDL_OPENGL selects it at runtime.
 
-CC := sh-elf-gcc
-AR := sh-elf-gcc-ar
-LD := sh-elf-gcc
+CC := kos-cc
+AR := kos-ar
+LD := kos-ld
 ARFLAGS ?= rcs
 
 # ------------------------------ Build variant ------------------------------
-ifdef GL
-DEFS   += -DSDL_VIDEO_OPENGL=1
-TARGET := libSDL_gl.a
-else
+# Dreamcast SDL now builds with GLdc support enabled by default.
+# Runtime selection happens via SDL_OPENGL in SDL_SetVideoMode().
+DEFS += -DSDL_VIDEO_OPENGL=1
 TARGET := libSDL.a
-endif
 
 # ------------------------------ Flags ------------------------------
 # KOS provides KOS_BASE and KOS_ARCH via environ.sh
@@ -24,7 +22,11 @@ KOS_CFLAGS += -Isrc/video -Isrc/video/dc -DNO_SIGNAL_H -DENABLE_DC
 # Ensure Dreamcast platform config and backend are selected
 KOS_CFLAGS += -D__DREAMCAST__ -DSDL_VIDEO_DRIVER_DREAMCAST
 
-CFLAGS   := $(KOS_CFLAGS) -Wimplicit-function-declaration $(DEFS) -Iinclude
+CFLAGS += -Wimplicit-function-declaration
+CFLAGS += $(KOS_CFLAGS)
+CFLAGS += $(DEFS)
+CFLAGS += -Iinclude
+
 DEPFLAGS := -MMD -MP
 
 # ------------------------------ Sources ------------------------------
@@ -102,7 +104,7 @@ OBJS := $(SRCS:.c=.o)
 
 # ------------------------------ Install locations ------------------------------
 INSTALL_LIB_DIR     := $(KOS_BASE)/addons/lib/$(KOS_ARCH)
-INSTALL_INCLUDE_DIR := $(KOS_BASE)/addons/include/$(KOS_ARCH)/SDL
+INSTALL_INCLUDE_DIR := $(KOS_BASE)/addons/include/SDL
 INSTALL_LIB         := $(INSTALL_LIB_DIR)/$(TARGET)
 
 # ------------------------------ Phony targets ------------------------------
@@ -123,20 +125,20 @@ $(OBJS): include/SDL_config.h include/SDL_config_dreamcast.h
 %.o: %.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
-# Single main target: build + install archive to addons/lib
-$(TARGET): copy_headers $(OBJS)
-	@mkdir -p $(INSTALL_LIB_DIR)
-	@rm -f $(INSTALL_LIB)
-	$(AR) $(ARFLAGS) $(INSTALL_LIB) $(OBJS)
-	@touch $@  # local stamp
+# Single main target: build local archive only
+$(TARGET): $(OBJS)
+	@rm -f $@
+	$(AR) $(ARFLAGS) $@ $(OBJS)
 
 # Copy public headers into addons include dir
 copy_headers: include/SDL_config.h
 	@mkdir -p $(INSTALL_INCLUDE_DIR)
 	@cp -R include/*.h $(INSTALL_INCLUDE_DIR)/
 
-# Convenience
-install: $(TARGET)
+# Copy archive and public headers into KOS addons
+install: $(TARGET) copy_headers
+	@mkdir -p $(INSTALL_LIB_DIR)
+	@cp -f $(TARGET) $(INSTALL_LIB)
 
 # Remove installed files under addons (does NOT touch repo files)
 uninstall:

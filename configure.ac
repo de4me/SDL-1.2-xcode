@@ -172,7 +172,7 @@ dnl Checks for library functions.
         AC_DEFINE(HAVE_MPROTECT)
         ]),
     )
-    AC_CHECK_FUNCS(malloc calloc realloc free getenv putenv unsetenv qsort abs bcopy memset memcmp memcpy memmove strlen strlcpy strlcat strdup _strrev _strupr _strlwr strchr strrchr strstr itoa _ltoa _uitoa _ultoa strtod strtol strtoul _i64toa _ui64toa strtoll strtoull atoi atof strcmp strncmp _stricmp strcasecmp _strnicmp strncasecmp sscanf snprintf vsnprintf iconv sigaction setjmp nanosleep getauxval elf_aux_info)
+    AC_CHECK_FUNCS(malloc calloc realloc free getenv putenv unsetenv qsort abs bcopy memset memcmp memcpy memmove strlen strlcpy strlcat strdup _strrev _strupr _strlwr strchr strrchr strstr itoa _ltoa _ultoa strtod strtol strtoul _i64toa _ui64toa strtoll strtoull atoi atof strcmp strncmp _stricmp strcasecmp _strnicmp strncasecmp sscanf snprintf vsnprintf iconv sigaction setjmp nanosleep getauxval elf_aux_info)
 
     AC_CHECK_LIB(iconv, libiconv_open, [EXTRA_LDFLAGS="$EXTRA_LDFLAGS -liconv"])
     AC_CHECK_LIB(m, pow, [EXTRA_LDFLAGS="$EXTRA_LDFLAGS -lm"])
@@ -689,9 +689,16 @@ CheckAtariAudio()
         if test x$have_mint_falcon_hdr = xyes; then
             mintaudio=yes
             AC_DEFINE(SDL_AUDIO_DRIVER_MINT)
-            SOURCES="$SOURCES $srcdir/src/audio/mint/*.c"
+            SOURCES="$SOURCES $srcdir/src/audio/mint/SDL_mintaudio.c"
+            SOURCES="$SOURCES $srcdir/src/audio/mint/SDL_mintaudio_dma8.c"
             SOURCES="$SOURCES $srcdir/src/audio/mint/*.S"
             have_audio=yes
+
+            AC_CHECK_HEADER(usound.h, have_usound_hdr=yes)
+            if test x$have_usound_hdr = xyes; then
+                AC_DEFINE(SDL_AUDIO_DRIVER_MINT_XBIOS)
+                SOURCES="$SOURCES $srcdir/src/audio/mint/SDL_mintaudio_xbios.c"
+            fi
         fi
     fi
 }
